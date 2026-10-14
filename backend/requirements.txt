@@ -1,0 +1,14 @@
+# Runtime dependencies for the Phase 1-11E BYOMKESH pipeline.
+# The implementation uses Pydantic v2 APIs (ConfigDict, model_validate, model_copy).
+pydantic>=2.7,<3
+python-dotenv>=1.0,<2
+google-genai>=1.0,<2
+reportlab>=4.2,<6
+
+# Retained source modules under src/ use these provider/JSON helpers.
+groq>=0.11,<2
+json5>=0.9,<1
+json-repair>=0.30,<1
+
+# Test-only dependency.
+pytest>=8,<10
