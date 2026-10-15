@@ -7,7 +7,8 @@ from uuid import uuid4
 
 from src.chargesheet.chargesheet_populator import ChargeSheetPopulator
 from src.chargesheet.chargesheet_stage import ChargeSheetStage
-from src.chargesheet.form_if5_schema import ChargeSheetField, ChargeSheetLegalFinding, FieldStatus, IF5Row
+from src.chargesheet.chargesheet_validator import ChargeSheetValidator
+from src.chargesheet.form_if5_schema import ChargeSheetElementRow, ChargeSheetField, ChargeSheetLegalFinding, FieldStatus, IF5Row
 from src.chargesheet.presentation import document_action_statement, format_value, unique_lines
 from src.context.case_context import CaseContext
 from src.domain.common import SourceReference
@@ -169,6 +170,35 @@ class ChargeSheetTests(TestCase):
             result = WorkflowEngine(StageRegistry([ChargeSheetStage(Path(directory))])).run(workflow)
             self.assertTrue(result.report.successful)
             self.assertEqual([item.name for item in result.context.generated_artifacts], ["chargesheet_data"])
+
+    def test_validator_blocks_finding_on_non_chargeable_section(self):
+        data = ChargeSheetPopulator().populate(context(), findings())
+        # Inject non-chargeable definition section finding
+        def_finding = data.legal_findings[0].model_copy(update={"section_key": "BNS:100"})
+        invalid_data = data.model_copy(update={"legal_findings": (def_finding,)})
+        report = ChargeSheetValidator().validate(invalid_data)
+        self.assertTrue(any("non-chargeable" in e for e in report.errors))
+
+    def test_validator_blocks_draft_record_in_final(self):
+        data = ChargeSheetPopulator().populate(context(), findings())
+        draft_finding = data.legal_findings[0].model_copy(update={"is_draft": True})
+        invalid_data = data.model_copy(update={"legal_findings": (draft_finding,)})
+        report = ChargeSheetValidator().validate(invalid_data, final=True)
+        self.assertTrue(any("draft legal reference" in e for e in report.errors))
+
+    def test_validator_blocks_supported_finding_with_unconfirmed_officer_judgment_in_final(self):
+        data = ChargeSheetPopulator().populate(context(), findings())
+        el = ChargeSheetElementRow(
+            element_id="intent_element",
+            description="Intent to cause hurt",
+            state="officer_review",
+            evidence_text="None",
+            officer_judgment=True,
+        )
+        finding_with_oj = data.legal_findings[0].model_copy(update={"element_rows": (el,), "status": "supported"})
+        invalid_data = data.model_copy(update={"legal_findings": (finding_with_oj,)})
+        report = ChargeSheetValidator().validate(invalid_data, final=True)
+        self.assertTrue(any("unconfirmed officer_judgment elements" in e for e in report.errors))
 
 
 if __name__ == "__main__":

@@ -155,6 +155,52 @@ class ChargeSheetPopulator:
             ChargeSheetReviewItem(category="missing_information", description=item.description)
             for item in context.canonical_missing_information
         )
+        # Partition FIR sections vs applicable sections
+        fir_sections = [
+            str(fact.value).strip()
+            for fact in context.legal_section_references
+            if fact.value
+        ]
+        supported_sections = [
+            f.section_key or f.proposed_section
+            for f in findings.findings
+            if f.status == LegalFindingStatus.SUPPORTED
+        ]
+        supported_sec_nums = [
+            (f.proposed_section or "").split("(")[0].strip()
+            for f in findings.findings
+            if f.status == LegalFindingStatus.SUPPORTED
+        ]
+
+        fir_not_supported = []
+        fallback_ref = context.source_references[:1] if context.source_references else ()
+        for sec in fir_sections:
+            sec_clean = sec.removeprefix("BNS:").removeprefix("IPC:").split("(")[0].strip()
+            if sec_clean not in supported_sec_nums and sec not in supported_sections:
+                fir_not_supported.append(
+                    ChargeSheetField(
+                        value=f"Section {sec} (from FIR): Insufficient evidence to support charge",
+                        status=FieldStatus.REVIEW_REQUIRED,
+                        source_references=fallback_ref,
+                        review_required=True,
+                    )
+                )
+
+        applicable_not_in_fir = []
+        fir_cleans = [s.removeprefix("BNS:").removeprefix("IPC:").split("(")[0].strip() for s in fir_sections]
+        for f in findings.findings:
+            if f.status == LegalFindingStatus.SUPPORTED:
+                sec_clean = (f.proposed_section or "").split("(")[0].strip()
+                if sec_clean not in fir_cleans and f.section_key not in fir_sections:
+                    applicable_not_in_fir.append(
+                        ChargeSheetField(
+                            value=f"{f.proposed_section}: Supported by evidence but not cited in FIR",
+                            status=FieldStatus.REVIEW_REQUIRED if f.review_required else FieldStatus.POPULATED,
+                            source_references=f.source_references,
+                            review_required=f.review_required,
+                        )
+                    )
+
         return ChargeSheetData(
             case_id=context.case_id,
             disposition=context.validation_disposition,
@@ -170,14 +216,22 @@ class ChargeSheetPopulator:
             medical_findings=tuple(self._field(item, review) for item in context.medical_findings),
             forensic_findings=tuple(self._field(item, review) for item in context.forensic_findings),
             vehicle_findings=tuple(self._field(item.registration_number, review) for item in context.vehicles),
-            legal_sections=legal_sections, legal_findings=finding_rows, conflicts=conflict_items, missing_information=missing_items,
+            legal_sections=legal_sections, legal_findings=finding_rows,
+            fir_sections_not_supported=tuple(fir_not_supported),
+            applicable_not_in_fir=tuple(applicable_not_in_fir),
+            conflicts=conflict_items, missing_information=missing_items,
             annexures=self._document_rows(context, review),
             final_opinion=self._unavailable(), signature=self._unavailable(),
+            is_draft_dataset=findings.is_draft,
+            draft_banner=findings.draft_banner,
         )
 
     def _legal_field(self, finding) -> ChargeSheetField:
         review = finding.review_required or finding.status != LegalFindingStatus.SUPPORTED
-        return ChargeSheetField(value=finding.proposed_section or finding.offence, status=FieldStatus.REVIEW_REQUIRED if review else FieldStatus.POPULATED, confidence=finding.confidence, source_references=finding.source_references, review_required=review)
+        val = finding.proposed_section or finding.offence
+        if getattr(finding, "read_with", None):
+            val += f" read with {', '.join(finding.read_with)}"
+        return ChargeSheetField(value=val, status=FieldStatus.REVIEW_REQUIRED if review else FieldStatus.POPULATED, confidence=finding.confidence, source_references=finding.source_references, review_required=review)
 
     def _legal_finding(self, finding) -> ChargeSheetLegalFinding:
         review = finding.review_required or finding.status != LegalFindingStatus.SUPPORTED
@@ -189,10 +243,29 @@ class ChargeSheetPopulator:
             ChargeSheetField(value=format_value(item.description) or "Evidence reference recorded; description unavailable.", status=FieldStatus.REVIEW_REQUIRED, source_references=item.source_references, review_required=True)
             for item in finding.contradicting_evidence
         )
+        from .form_if5_schema import ChargeSheetElementRow
+        element_rows = tuple(
+            ChargeSheetElementRow(
+                element_id=el.element_id,
+                description=el.description,
+                state=el.state,
+                evidence_text="; ".join(
+                    f"{tag}: {', '.join(hits)}" for tag, hits in el.hits.items() if hits
+                ) or "No direct tag matches",
+                officer_judgment=el.officer_judgment,
+            )
+            for el in getattr(finding, "element_results", ())
+        )
         return ChargeSheetLegalFinding(
             offence=ChargeSheetField(value=finding.offence, status=FieldStatus.REVIEW_REQUIRED if review else FieldStatus.POPULATED, confidence=finding.confidence, source_references=finding.source_references, review_required=review),
             proposed_section=self._legal_field(finding),
             description=ChargeSheetField(value=finding.description, status=FieldStatus.REVIEW_REQUIRED if review else FieldStatus.POPULATED, confidence=finding.confidence, source_references=finding.source_references, review_required=review),
             status=finding.status.value, evidence_strength=finding.evidence_strength.value, review_required=review,
             supporting_evidence=evidence, contradicting_evidence=contradicting,
+            section_key=getattr(finding, "section_key", ""),
+            accused_name=getattr(finding, "accused_name", None),
+            read_with=getattr(finding, "read_with", ()),
+            warnings=getattr(finding, "warnings", ()),
+            element_rows=element_rows,
+            is_draft=(getattr(finding, "dataset_status", "") == "draft"),
         )

@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -13,42 +13,131 @@ from src.knowledge_graph.graph_models import GraphProvenance
 from src.legal.evidence_mapper import EvidenceMapper
 from src.legal.legal_findings import EvidenceStrength, LegalFinding, LegalFindingStatus, LegalFindings
 from src.legal.legal_reasoner import LegalReasoner, LegalReasoningClient
-from src.legal.legal_rules import FixtureLegalReferenceProvider, LegalReference
+from src.legal.legal_rules import (
+    Element,
+    FixtureLegalReferenceProvider,
+    LegalJurisdiction,
+    LegalReference,
+    LegalReferenceSource,
+    Relation,
+)
 from src.legal.legal_stage import LegalReasoningStage
-from src.normalization.canonical_models import CanonicalCaseMetadata, CanonicalEvidence, CanonicalInvestigation, ConfidenceSummary
-from src.validation.validation_models import ValidationDisposition, ValidationIssue, IssueCategory, IssueSeverity, ValidationReport
+from src.normalization.canonical_models import (
+    CanonicalCaseMetadata,
+    CanonicalEvidence,
+    CanonicalInvestigation,
+    CanonicalPerson,
+    CanonicalTimelineEvent,
+    ConfidenceSummary,
+)
+from src.validation.validation_models import (
+    IssueCategory,
+    IssueSeverity,
+    ValidationDisposition,
+    ValidationIssue,
+    ValidationReport,
+)
 from src.workflow.context import WorkflowContext
 from src.workflow.engine import WorkflowEngine
 from src.workflow.registry import StageRegistry
 from src.workflow.state import WorkflowState
 
 
-def fact(value, confidence=0.8):
+def fact(value, confidence=0.8, tags=()):
     from src.normalization.canonical_models import CanonicalFact
-    document_id = uuid4(); provenance = GraphProvenance(document_id=document_id, confidence=confidence, parser_name="fixture", timestamp=datetime(2026, 1, 1, tzinfo=timezone.utc), source_reference=SourceReference(document_id=document_id))
-    return CanonicalFact(value=value, source_document_ids=(document_id,), references=(provenance,), source_path="fixture.path", confidence=confidence, extraction_method="fixture", timestamp=provenance.timestamp)
+    document_id = uuid4()
+    provenance = GraphProvenance(
+        document_id=document_id,
+        confidence=confidence,
+        parser_name="fixture",
+        timestamp=datetime(2026, 1, 1, tzinfo=timezone.utc),
+        source_reference=SourceReference(document_id=document_id),
+    )
+    return CanonicalFact(
+        value=value,
+        source_document_ids=(document_id,),
+        references=(provenance,),
+        source_path="fixture.path",
+        confidence=confidence,
+        extraction_method="fixture",
+        timestamp=provenance.timestamp,
+        tags=tags,
+    )
 
 
 def report(disposition=ValidationDisposition.DRAFT_ALLOWED, issues=()):
-    return ValidationReport(errors=tuple(issue for issue in issues if issue.severity in {IssueSeverity.ERROR, IssueSeverity.CRITICAL}), warnings=tuple(issue for issue in issues if issue.severity == IssueSeverity.WARNING), completeness_score=1, critical_failure=disposition == ValidationDisposition.FINAL_BLOCKED, review_required=disposition != ValidationDisposition.DRAFT_ALLOWED, disposition=disposition)
+    return ValidationReport(
+        errors=tuple(issue for issue in issues if issue.severity in {IssueSeverity.ERROR, IssueSeverity.CRITICAL}),
+        warnings=tuple(issue for issue in issues if issue.severity == IssueSeverity.WARNING),
+        completeness_score=1,
+        critical_failure=disposition == ValidationDisposition.FINAL_BLOCKED,
+        review_required=disposition != ValidationDisposition.DRAFT_ALLOWED,
+        disposition=disposition,
+    )
 
 
 def canonical():
-    case_id = uuid4(); evidence = CanonicalEvidence(evidence_id=uuid4(), type="evidence", description=fact("CCTV recording"), source_documents=(), confidence=.8)
-    return CanonicalInvestigation(case_metadata=CanonicalCaseMetadata(case_id=case_id, fir_number=fact("42/2026")), police_station=fact("Central PS"), evidence=(evidence,), medical_findings=(fact("injury"),), confidence_summary=ConfidenceSummary(average=.8, fact_count=3))
+    case_id = uuid4()
+    evidence = CanonicalEvidence(
+        evidence_id=uuid4(),
+        type="evidence",
+        description=fact("CCTV recording"),
+        source_documents=(),
+        confidence=0.8,
+    )
+    occurrence_fact = fact("2024-08-01T10:00:00")
+    occurrence_fact = occurrence_fact.model_copy(update={"source_path": "fir.occurrence_datetime"})
+    return CanonicalInvestigation(
+        case_metadata=CanonicalCaseMetadata(case_id=case_id, fir_number=fact("42/2026")),
+        police_station=fact("Central PS"),
+        evidence=(evidence,),
+        medical_findings=(fact("injury", tags=("injury.documented",)),),
+        timeline=(
+            CanonicalTimelineEvent(
+                event_id=uuid4(),
+                timestamp=occurrence_fact,
+                description=fact("Incident occurrence on road", tags=("driving.on_public_way",)),
+            ),
+        ),
+        confidence_summary=ConfidenceSummary(average=0.8, fact_count=3),
+    )
 
 
-def reference():
-    from datetime import date
-    from src.legal.legal_rules import LegalJurisdiction, LegalReferenceSource
-    return LegalReference(section_id=uuid4(), section_number="S-1", offence_name="Fixture offence", description="Fixture legal reference", required_elements=("injury",), jurisdiction=LegalJurisdiction.INDIA, effective_from=date(2024, 7, 1), source=LegalReferenceSource(publisher="Fixture", citation="Fixture reference", uri="https://example.test/reference"), version="fixture-v1", source_reference=SourceReference(document_id=uuid4()))
+def reference(section_number="S-1", key="BNS:S-1", required_tags=("injury.documented",), officer_judgment=False, relations=()):
+    el = Element(
+        id="injury_element",
+        type="result",
+        description="Documented injury",
+        fact_tags=required_tags,
+        required=True,
+        officer_judgment=officer_judgment,
+    )
+    return LegalReference(
+        section_id=uuid4(),
+        key=key,
+        law_code="BNS",
+        section_number=section_number,
+        offence_name=f"Fixture offence {section_number}",
+        description=f"Fixture legal reference {section_number}",
+        required_elements=("injury_element",),
+        elements=(el,),
+        relations=tuple(relations),
+        jurisdiction=LegalJurisdiction.INDIA,
+        effective_from=date(2024, 7, 1),
+        source=LegalReferenceSource(publisher="Fixture", citation="Fixture reference", uri="https://example.test/reference"),
+        version="fixture-v1",
+        source_reference=SourceReference(document_id=uuid4()),
+    )
 
 
 class QueueClient(LegalReasoningClient):
-    def __init__(self, responses): self.responses = list(responses)
+    def __init__(self, responses):
+        self.responses = list(responses)
+
     def generate_json(self, prompt):
         response = self.responses.pop(0)
-        if isinstance(response, Exception): raise response
+        if isinstance(response, Exception):
+            raise response
         return response
 
 
@@ -79,7 +168,7 @@ class CaseContextAndLegalTests(unittest.TestCase):
 
     def test_insufficient_evidence_and_missing_legal_reference(self):
         context = CaseContextBuilder().build(canonical(), report())
-        insufficient_ref = reference().model_copy(update={"required_elements": ("missing element",)})
+        insufficient_ref = reference(required_tags=("missing.tag",))
         finding = LegalReasoner(FixtureLegalReferenceProvider((insufficient_ref,))).reason(context).findings[0]
         self.assertEqual(finding.status, LegalFindingStatus.INSUFFICIENT_EVIDENCE)
         empty = LegalReasoner(FixtureLegalReferenceProvider()).reason(context)
@@ -87,17 +176,55 @@ class CaseContextAndLegalTests(unittest.TestCase):
         self.assertTrue(empty.review_required)
 
     def test_conflicted_evidence_requires_review(self):
-        issue = ValidationIssue(category=IssueCategory.CONFLICT, severity=IssueSeverity.ERROR, description="Conflict", field_path="evidence")
+        issue = ValidationIssue(category=IssueCategory.CONFLICT, severity=IssueSeverity.ERROR, description="Conflict", field_path="fixture.path")
         validation = report(ValidationDisposition.REVIEW_REQUIRED, (issue,)).model_copy(update={"conflicts": (issue,)})
         context = CaseContextBuilder().build(canonical(), validation)
         finding = LegalReasoner(FixtureLegalReferenceProvider((reference(),))).reason(context).findings[0]
         self.assertEqual(finding.status, LegalFindingStatus.CONFLICTED)
 
+    def test_officer_judgment_never_auto_satisfied(self):
+        context = CaseContextBuilder().build(canonical(), report())
+        ref = reference(officer_judgment=True)
+        finding = LegalReasoner(FixtureLegalReferenceProvider((ref,))).reason(context).findings[0]
+        self.assertEqual(finding.status, LegalFindingStatus.SUPPORTED)
+        self.assertTrue(finding.review_required)
+        self.assertEqual(finding.element_results[0].state, "officer_review")
+
+    def test_mutually_exclusive_pair_surfaces_warning(self):
+        context = CaseContextBuilder().build(canonical(), report())
+        rel_1_to_2 = Relation(key="BNS:S-2", relation="mutually_exclusive")
+        rel_2_to_1 = Relation(key="BNS:S-1", relation="mutually_exclusive")
+        ref1 = reference("S-1", "BNS:S-1", relations=[rel_1_to_2])
+        ref2 = reference("S-2", "BNS:S-2", relations=[rel_2_to_1])
+        res = LegalReasoner(FixtureLegalReferenceProvider((ref1, ref2))).reason(context)
+        self.assertEqual(len(res.findings), 2)
+        self.assertTrue(any("Mutually exclusive" in w for f in res.findings for w in f.warnings))
+
     def test_mocked_llm_output_and_invalid_retry(self):
         context = CaseContextBuilder().build(canonical(), report())
         mapping = EvidenceMapper().available(context)[0]
         legal_reference = reference()
-        valid = LegalFindings(findings=(LegalFinding(legal_reference_id=legal_reference.section_id, offence="Fixture offence", proposed_section="S-1", description="Mock", supporting_evidence=(mapping,), evidence_strength=EvidenceStrength.MEDIUM, confidence=.7, status=LegalFindingStatus.SUPPORTED, review_required=False, source_references=mapping.source_references),), review_required=False, validation_disposition=context.validation_disposition, retry_count=0).model_dump(mode="json")
+        valid = LegalFindings(
+            findings=(
+                LegalFinding(
+                    legal_reference_id=legal_reference.section_id,
+                    section_key=legal_reference.key,
+                    law_code=legal_reference.law_code,
+                    offence="Fixture offence",
+                    proposed_section="S-1",
+                    description="Mock",
+                    supporting_evidence=(mapping,),
+                    evidence_strength=EvidenceStrength.MEDIUM,
+                    confidence=0.7,
+                    status=LegalFindingStatus.SUPPORTED,
+                    review_required=False,
+                    source_references=mapping.source_references,
+                ),
+            ),
+            review_required=False,
+            validation_disposition=context.validation_disposition,
+            retry_count=0,
+        ).model_dump(mode="json")
         forged = json.loads(json.dumps(valid))
         forged["findings"][0]["supporting_evidence"][0]["source_document_id"] = str(uuid4())
         result = LegalReasoner(FixtureLegalReferenceProvider((legal_reference,)), QueueClient([forged, valid])).reason(context)
@@ -111,7 +238,14 @@ class CaseContextAndLegalTests(unittest.TestCase):
         self.assertTrue(LegalReasoner(FixtureLegalReferenceProvider((reference(),))).reason(reviewed).review_required)
 
     def test_workflow_integration_and_artifacts(self):
-        source = canonical(); validation = report(); workflow = WorkflowContext(case_id=source.case_metadata.case_id, canonical_investigation=source, validation_report=validation, execution_state=WorkflowState(case_id=source.case_metadata.case_id))
+        source = canonical()
+        validation = report()
+        workflow = WorkflowContext(
+            case_id=source.case_metadata.case_id,
+            canonical_investigation=source,
+            validation_report=validation,
+            execution_state=WorkflowState(case_id=source.case_metadata.case_id),
+        )
         with TemporaryDirectory() as temp_dir:
             context_run = WorkflowEngine(StageRegistry([CaseContextStage(Path(temp_dir))])).run(workflow)
             legal_run = WorkflowEngine(StageRegistry([LegalReasoningStage(Path(temp_dir), LegalReasoner(FixtureLegalReferenceProvider((reference(),))))])).run(context_run.context)
@@ -123,4 +257,5 @@ class CaseContextAndLegalTests(unittest.TestCase):
             self.assertTrue(any(path.name == "evidence_mapping.json" for path in paths))
 
 
-if __name__ == "__main__": unittest.main()
+if __name__ == "__main__":
+    unittest.main()

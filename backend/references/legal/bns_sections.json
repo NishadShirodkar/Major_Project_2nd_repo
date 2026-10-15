@@ -1,21 +1,3792 @@
 {
+  "schema_version": "2.0",
   "version": "bns-2023-2024-07-01",
+  "law": {
+    "law_code": "BNS",
+    "title": "The Bharatiya Nyaya Sanhita, 2023",
+    "act": "Act 45 of 2023",
+    "in_force_from": "2024-07-01",
+    "replaces": "Indian Penal Code, 1860, for offences committed on or after in_force_from"
+  },
+  "effective_date_semantics": "effective_from and effective_to compare against the date the offence was committed, not the FIR or filing date",
+  "dataset_status": "draft: records are not production-ready until review.status is verified",
+  "element_types": [
+    "act",
+    "result",
+    "causation",
+    "mens_rea",
+    "circumstance",
+    "status",
+    "instrument"
+  ],
+  "relation_types": {
+    "defined_by": "Target section supplies the definition used by this record",
+    "defines": "This record supplies the definition used by the target",
+    "simple_form": "Target is the simpler/base form of this offence",
+    "aggravated_form": "Target is the aggravated form of this offence",
+    "mutually_exclusive": "Cannot normally stand together for the same act and same victim",
+    "alternative_charge": "Commonly charged in the alternative; officer chooses based on evidence",
+    "may_combine_with": "Commonly charged together"
+  },
+  "fact_tag_vocabulary": {
+    "accident.occurred": "Accident or collision documented",
+    "accused.act.confinement": "Accused confined victim within limits",
+    "accused.act.dishonest_use": "Accused used or disposed of property dishonestly",
+    "accused.act.driving": "Accused was driving or riding the vehicle",
+    "accused.act.false_representation": "Accused made a false representation or deception",
+    "accused.act.instigation_or_aid": "Accused instigated, aided or intentionally assisted another's act",
+    "accused.act.physical": "Physical act by accused (strike, push, hit, grab)",
+    "accused.act.restraint": "Accused obstructed victim's movement in some direction",
+    "accused.act.taking_person": "Accused took or enticed a person away",
+    "accused.act.taking_property": "Accused took or moved property",
+    "accused.act.threat": "Accused communicated a threat",
+    "accused.act.weapon_use": "Accused used a weapon, instrument or means",
+    "accused.identified": "Accused person identified in case documents",
+    "accused.is_husband_or_relative": "Accused is the husband or a relative of the husband",
+    "accused.left_scene_without_reporting": "Accused left scene without reporting to police or Magistrate",
+    "accused.multiple": "Two or more accused in the same incident",
+    "accused.party_to_agreement": "Accused is party to an agreement between persons",
+    "accused.presence_at_scene": "Accused placed at the scene by at least one source",
+    "act.criminal_act_committed": "A criminal act was committed",
+    "act.in_furtherance_common_intention": "Act done by several persons in furtherance of a common intention",
+    "agreement.between_two_or_more": "Agreement between two or more persons documented",
+    "agreement.illegal_object": "Agreement's object is an illegal act or a legal act by illegal means",
+    "cruelty.harassment_documented": "Harassment for property or dowry documented",
+    "cruelty.soon_before_death": "Cruelty or harassment documented soon before the death",
+    "cruelty.wilful_conduct": "Wilful conduct likely to drive to suicide or cause grave injury/danger",
+    "death.cause_documented": "Cause of death documented (postmortem or equivalent)",
+    "death.confirmed": "Death confirmed by a document",
+    "death.unnatural_circumstances": "Death by burns, bodily injury or otherwise than normal circumstances",
+    "death.within_seven_years_of_marriage": "Death within seven years of marriage",
+    "defence.claimed": "Private defence or similar defence raised in documents",
+    "dowry.demand_documented": "Dowry or property demand documented",
+    "driving.on_public_way": "Driving occurred on a public way",
+    "force.fear_of_instant_hurt_or_restraint": "Fear of instant death, hurt or wrongful restraint put on victim",
+    "group.five_or_more": "Five or more persons acted together",
+    "guardian.consent_absent": "Lawful guardian did not consent",
+    "injury.bodily_pain": "Bodily pain documented",
+    "injury.disease": "Disease caused by the act documented",
+    "injury.documented": "Injury recorded in a medical document",
+    "injury.grievous": "Injury of a kind that matches a grievous-hurt category (check against BNS 116)",
+    "injury.infirmity": "Infirmity documented",
+    "injury.permanent_disability": "Permanent disability documented",
+    "injury.survived_victim": "Victim survived the attack",
+    "injury.vegetative_state": "Persistent vegetative state documented",
+    "intent.indicator.alarm_or_compel": "Circumstances suggest intent to alarm or compel",
+    "intent.indicator.concerted_action": "Concerted action by multiple persons",
+    "intent.indicator.deception_at_inception": "Deception evident from the start",
+    "intent.indicator.dishonest_taking": "Circumstances suggest dishonest taking",
+    "intent.indicator.knowledge_of_risk": "Circumstances suggest knowledge of likely consequence",
+    "intent.indicator.motive": "Motive documented",
+    "intent.indicator.prior_planning": "Prior planning documented",
+    "intent.indicator.prior_threat": "Prior threat documented",
+    "intent.indicator.vital_part_target": "Injury on a vital body part",
+    "intent.indicator.weapon_choice": "Nature of weapon suggests intent or knowledge",
+    "link.abetment_to_suicide": "Source links accused's instigation/aid to the suicide",
+    "link.act_to_death": "Source links the accused's act to the death",
+    "link.act_to_injury": "Source links the accused's act to the injury",
+    "negligence.indicators": "Documents indicate rash or negligent conduct",
+    "property.delivery_induced": "Victim delivered property because of deception",
+    "property.entrusted": "Property entrusted to or placed under accused's dominion",
+    "property.misappropriated_or_disposed": "Property misappropriated, converted or disposed of",
+    "property.movable": "Movable property involved",
+    "property.moved_from_possession": "Property moved out of victim's possession",
+    "property.taken_by_force_or_fear": "Property taken using force or fear",
+    "property.without_consent": "Property taken without owner's consent",
+    "provocation.documented": "Grave and sudden provocation raised or documented",
+    "threat.communicated": "A threat was communicated to the victim",
+    "threat.injury_to_person_property_reputation": "Threat of injury to person, reputation or property",
+    "vehicle.involved": "Vehicle involved in the incident",
+    "vehicle.rash_or_negligent_indicators": "Documents indicate rash or negligent driving (speed, signal, lane, vehicle condition)",
+    "victim.confined": "Victim confined within circumscribed limits",
+    "victim.married_woman": "Victim is a married woman",
+    "victim.minor_or_unsound_mind": "Victim is a minor or of unsound mind",
+    "victim.movement_obstructed": "Victim's movement was obstructed",
+    "victim.removed_from_guardianship": "Victim removed from lawful guardianship",
+    "victim.suicide_death": "Victim died by suicide",
+    "weapon.dangerous": "Weapon/means of dangerous kind (stabbing, cutting, firearm, fire, heated substance, poison, corrosive, explosive)",
+    "weapon.recovered": "Weapon recovered and documented"
+  },
   "references": [
     {
-      "section_id": "ec5fb2ce-b0b0-4ad8-a0d6-aa56caa6be7f",
-      "section_number": "115",
-      "offence_name": "Voluntarily causing hurt",
-      "description": "Configured BNS reference for voluntarily causing hurt; application requires evidence supporting the required element.",
-      "required_elements": ["hurt"],
+      "section_id": "d9c6a054-610d-5ae1-a659-af52b28b2025",
+      "key": "BNS:3(5)",
+      "law_code": "BNS",
+      "section_number": "3",
+      "sub_section": "5",
+      "offence_name": "Acts done by several persons in furtherance of common intention",
+      "kind": "general_principle",
+      "chargeable": false,
+      "description": "Each person is liable for a criminal act done by several persons in furtherance of a common intention as if done by him alone. Cited as 'read with' another chargeable section.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "multiple_participants",
+        "criminal_act_done",
+        "participation_by_accused",
+        "common_intention_shared"
+      ],
+      "elements": [
+        {
+          "id": "multiple_participants",
+          "type": "circumstance",
+          "description": "Two or more persons involved",
+          "fact_tags": [
+            "accused.multiple"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "criminal_act_done",
+          "type": "act",
+          "description": "A criminal act was done",
+          "fact_tags": [
+            "act.criminal_act_committed",
+            "act.in_furtherance_common_intention"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "participation_by_accused",
+          "type": "act",
+          "description": "This accused participated in the act",
+          "fact_tags": [
+            "accused.presence_at_scene",
+            "accused.act.physical",
+            "accused.act.weapon_use"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "common_intention_shared",
+          "type": "mens_rea",
+          "description": "Common intention shared by all participants",
+          "fact_tags": [
+            "intent.indicator.concerted_action",
+            "intent.indicator.prior_planning"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [],
+      "ipc_equivalent": [
+        "IPC:34"
+      ],
+      "trigger_fact_tags": [
+        "accused.multiple",
+        "intent.indicator.concerted_action"
+      ],
+      "aliases": [
+        "common intention",
+        "joint act",
+        "read with"
+      ],
+      "modelling_notes": [
+        "Applies together with another offence. Evaluate per accused."
+      ],
+      "punishment": null,
+      "procedure": null,
       "jurisdiction": "IN",
       "effective_from": "2024-07-01",
       "effective_to": null,
       "source": {
         "publisher": "India Code",
-        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 115",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 3(5)",
         "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
       },
-      "version": "bns-2023-2024-07-01"
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "b675cedf-52e1-58aa-bb0b-096bc0e98728",
+      "key": "BNS:61(2)",
+      "law_code": "BNS",
+      "section_number": "61",
+      "sub_section": "2",
+      "offence_name": "Criminal conspiracy",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Agreement between two or more persons to do, or cause to be done, an illegal act or a legal act by illegal means.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "agreement_between_two_or_more",
+        "illegal_object",
+        "accused_party_to_agreement",
+        "intent_to_agree"
+      ],
+      "elements": [
+        {
+          "id": "agreement_between_two_or_more",
+          "type": "act",
+          "description": "Agreement between two or more persons",
+          "fact_tags": [
+            "agreement.between_two_or_more"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "illegal_object",
+          "type": "circumstance",
+          "description": "Object of the agreement is illegal",
+          "fact_tags": [
+            "agreement.illegal_object"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "accused_party_to_agreement",
+          "type": "status",
+          "description": "Accused is a party to the agreement",
+          "fact_tags": [
+            "accused.party_to_agreement"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "intent_to_agree",
+          "type": "mens_rea",
+          "description": "Intent to enter the agreement",
+          "fact_tags": [
+            "intent.indicator.prior_planning"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [],
+      "ipc_equivalent": [
+        "IPC:120B"
+      ],
+      "trigger_fact_tags": [
+        "agreement.between_two_or_more",
+        "agreement.illegal_object"
+      ],
+      "aliases": [
+        "conspiracy",
+        "planning together"
+      ],
+      "modelling_notes": [
+        "May stand alone or be added to another offence. Check whether an overt act is needed when the object is not itself an offence."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 61(2)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "88f9af5c-d650-56ea-8fc6-ee2936427fe9",
+      "key": "BNS:100",
+      "law_code": "BNS",
+      "section_number": "100",
+      "sub_section": null,
+      "offence_name": "Culpable homicide",
+      "kind": "definition",
+      "chargeable": false,
+      "description": "Definition: causing death by an act done with intention of causing death, or such bodily injury as is likely to cause death, or with knowledge that the act is likely to cause death.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "death_caused",
+        "act_by_accused",
+        "causation_to_death",
+        "intent_or_knowledge"
+      ],
+      "elements": [
+        {
+          "id": "death_caused",
+          "type": "result",
+          "description": "Death of a person confirmed and cause documented",
+          "fact_tags": [
+            "death.confirmed",
+            "death.cause_documented"
+          ],
+          "tag_match": "all",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "act_by_accused",
+          "type": "act",
+          "description": "Accused performed the act (physical act, weapon use or driving)",
+          "fact_tags": [
+            "accused.act.physical",
+            "accused.act.weapon_use",
+            "accused.act.driving"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "causation_to_death",
+          "type": "causation",
+          "description": "Accused's act linked to the death",
+          "fact_tags": [
+            "link.act_to_death"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "intent_or_knowledge",
+          "type": "mens_rea",
+          "description": "Intention to cause death or likely-fatal injury, or knowledge of likely death",
+          "fact_tags": [
+            "intent.indicator.motive",
+            "intent.indicator.prior_threat",
+            "intent.indicator.weapon_choice",
+            "intent.indicator.vital_part_target",
+            "intent.indicator.knowledge_of_risk"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:101",
+          "relation": "defines"
+        },
+        {
+          "key": "BNS:103(1)",
+          "relation": "defines"
+        },
+        {
+          "key": "BNS:105",
+          "relation": "defines"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:299"
+      ],
+      "trigger_fact_tags": [
+        "death.confirmed",
+        "link.act_to_death"
+      ],
+      "aliases": [
+        "culpable homicide"
+      ],
+      "modelling_notes": [],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 100",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "c6fa9ee6-c5af-522c-ad58-4c89ce3f7131",
+      "key": "BNS:101",
+      "law_code": "BNS",
+      "section_number": "101",
+      "sub_section": null,
+      "offence_name": "Murder",
+      "kind": "definition",
+      "chargeable": false,
+      "description": "Definition: culpable homicide is murder if done with the intentions or knowledge listed in the section and no exception applies.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "death_caused",
+        "act_by_accused",
+        "causation_to_death",
+        "intent_or_knowledge_murder",
+        "no_murder_exception"
+      ],
+      "elements": [
+        {
+          "id": "death_caused",
+          "type": "result",
+          "description": "Death of a person confirmed and cause documented",
+          "fact_tags": [
+            "death.confirmed",
+            "death.cause_documented"
+          ],
+          "tag_match": "all",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "act_by_accused",
+          "type": "act",
+          "description": "Accused performed the act (physical act, weapon use or driving)",
+          "fact_tags": [
+            "accused.act.physical",
+            "accused.act.weapon_use",
+            "accused.act.driving"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "causation_to_death",
+          "type": "causation",
+          "description": "Accused's act linked to the death",
+          "fact_tags": [
+            "link.act_to_death"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "intent_or_knowledge_murder",
+          "type": "mens_rea",
+          "description": "Intention to cause death, or injury sufficient in ordinary course to cause death, or knowledge the act is imminently dangerous",
+          "fact_tags": [
+            "intent.indicator.motive",
+            "intent.indicator.prior_threat",
+            "intent.indicator.weapon_choice",
+            "intent.indicator.vital_part_target",
+            "intent.indicator.knowledge_of_risk"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        },
+        {
+          "id": "no_murder_exception",
+          "type": "circumstance",
+          "description": "No exception reducing murder applies (e.g. grave and sudden provocation, private defence)",
+          "fact_tags": [
+            "provocation.documented",
+            "defence.claimed"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:100",
+          "relation": "defined_by"
+        },
+        {
+          "key": "BNS:103(1)",
+          "relation": "defines"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:300"
+      ],
+      "trigger_fact_tags": [
+        "death.confirmed",
+        "weapon.dangerous"
+      ],
+      "aliases": [
+        "murder definition"
+      ],
+      "modelling_notes": [],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 101",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "6335a0ac-4e00-5692-9d73-d1b8ade33c8e",
+      "key": "BNS:103(1)",
+      "law_code": "BNS",
+      "section_number": "103",
+      "sub_section": "1",
+      "offence_name": "Punishment for murder",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Charge of murder: death caused by the accused's act with the intention or knowledge required for murder.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "death_caused",
+        "act_by_accused",
+        "causation_to_death",
+        "intent_or_knowledge_murder",
+        "no_murder_exception"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "death_caused",
+          "type": "result",
+          "description": "Death of a person confirmed and cause documented",
+          "fact_tags": [
+            "death.confirmed",
+            "death.cause_documented"
+          ],
+          "tag_match": "all",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "act_by_accused",
+          "type": "act",
+          "description": "Accused performed the act (physical act, weapon use or driving)",
+          "fact_tags": [
+            "accused.act.physical",
+            "accused.act.weapon_use",
+            "accused.act.driving"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "causation_to_death",
+          "type": "causation",
+          "description": "Accused's act linked to the death",
+          "fact_tags": [
+            "link.act_to_death"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "intent_or_knowledge_murder",
+          "type": "mens_rea",
+          "description": "Intention to cause death, or injury sufficient in ordinary course to cause death, or knowledge the act is imminently dangerous",
+          "fact_tags": [
+            "intent.indicator.motive",
+            "intent.indicator.prior_threat",
+            "intent.indicator.weapon_choice",
+            "intent.indicator.vital_part_target",
+            "intent.indicator.knowledge_of_risk"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        },
+        {
+          "id": "no_murder_exception",
+          "type": "circumstance",
+          "description": "No exception reducing murder applies (e.g. grave and sudden provocation, private defence)",
+          "fact_tags": [
+            "provocation.documented",
+            "defence.claimed"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:100",
+          "relation": "defined_by"
+        },
+        {
+          "key": "BNS:101",
+          "relation": "defined_by"
+        },
+        {
+          "key": "BNS:105",
+          "relation": "mutually_exclusive"
+        },
+        {
+          "key": "BNS:106(1)",
+          "relation": "mutually_exclusive"
+        },
+        {
+          "key": "BNS:106(2)",
+          "relation": "mutually_exclusive"
+        },
+        {
+          "key": "BNS:109(1)",
+          "relation": "mutually_exclusive"
+        },
+        {
+          "key": "BNS:80(2)",
+          "relation": "alternative_charge"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:302"
+      ],
+      "trigger_fact_tags": [
+        "death.confirmed",
+        "death.cause_documented",
+        "weapon.dangerous",
+        "link.act_to_death"
+      ],
+      "aliases": [
+        "murder",
+        "homicide",
+        "killing"
+      ],
+      "modelling_notes": [],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 103(1)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "732ccd2f-9d75-5cbb-a139-fc75bf287631",
+      "key": "BNS:105",
+      "law_code": "BNS",
+      "section_number": "105",
+      "sub_section": null,
+      "offence_name": "Culpable homicide not amounting to murder",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Charge where culpable homicide is established but an exception reduces it below murder, or the intention/knowledge falls short of murder.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "death_caused",
+        "act_by_accused",
+        "causation_to_death",
+        "intent_or_knowledge_homicide",
+        "murder_threshold_not_met"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "death_caused",
+          "type": "result",
+          "description": "Death of a person confirmed and cause documented",
+          "fact_tags": [
+            "death.confirmed",
+            "death.cause_documented"
+          ],
+          "tag_match": "all",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "act_by_accused",
+          "type": "act",
+          "description": "Accused performed the act (physical act, weapon use or driving)",
+          "fact_tags": [
+            "accused.act.physical",
+            "accused.act.weapon_use",
+            "accused.act.driving"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "causation_to_death",
+          "type": "causation",
+          "description": "Accused's act linked to the death",
+          "fact_tags": [
+            "link.act_to_death"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "intent_or_knowledge_homicide",
+          "type": "mens_rea",
+          "description": "Intention to cause likely-fatal injury or knowledge that the act is likely to cause death",
+          "fact_tags": [
+            "intent.indicator.motive",
+            "intent.indicator.prior_threat",
+            "intent.indicator.weapon_choice",
+            "intent.indicator.vital_part_target",
+            "intent.indicator.knowledge_of_risk"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        },
+        {
+          "id": "murder_threshold_not_met",
+          "type": "circumstance",
+          "description": "Murder threshold not met or an exception applies",
+          "fact_tags": [
+            "provocation.documented",
+            "defence.claimed"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:100",
+          "relation": "defined_by"
+        },
+        {
+          "key": "BNS:103(1)",
+          "relation": "mutually_exclusive"
+        },
+        {
+          "key": "BNS:106(1)",
+          "relation": "mutually_exclusive"
+        },
+        {
+          "key": "BNS:106(2)",
+          "relation": "mutually_exclusive"
+        },
+        {
+          "key": "BNS:109(1)",
+          "relation": "mutually_exclusive"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:304"
+      ],
+      "trigger_fact_tags": [
+        "death.confirmed",
+        "provocation.documented",
+        "defence.claimed"
+      ],
+      "aliases": [
+        "culpable homicide",
+        "manslaughter"
+      ],
+      "modelling_notes": [
+        "Punishment differs by clause (intention vs knowledge). Capture clause when verifying."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 105",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "d0176a3a-c575-54ee-b6af-7b5c4061705a",
+      "key": "BNS:106(1)",
+      "law_code": "BNS",
+      "section_number": "106",
+      "sub_section": "1",
+      "offence_name": "Causing death by negligence",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Death caused by a rash or negligent act not amounting to culpable homicide.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "death_caused",
+        "rash_or_negligent_act",
+        "causation_to_death",
+        "no_intention_or_knowledge_of_death"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "death_caused",
+          "type": "result",
+          "description": "Death of a person confirmed and cause documented",
+          "fact_tags": [
+            "death.confirmed",
+            "death.cause_documented"
+          ],
+          "tag_match": "all",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "rash_or_negligent_act",
+          "type": "act",
+          "description": "Rash or negligent act by accused",
+          "fact_tags": [
+            "negligence.indicators",
+            "vehicle.rash_or_negligent_indicators"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        },
+        {
+          "id": "causation_to_death",
+          "type": "causation",
+          "description": "Accused's act linked to the death",
+          "fact_tags": [
+            "link.act_to_death"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "no_intention_or_knowledge_of_death",
+          "type": "mens_rea",
+          "description": "No intention or knowledge of death (not culpable homicide)",
+          "fact_tags": [],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:103(1)",
+          "relation": "mutually_exclusive"
+        },
+        {
+          "key": "BNS:105",
+          "relation": "mutually_exclusive"
+        },
+        {
+          "key": "BNS:106(2)",
+          "relation": "aggravated_form"
+        },
+        {
+          "key": "BNS:281",
+          "relation": "may_combine_with"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:304A"
+      ],
+      "trigger_fact_tags": [
+        "death.confirmed",
+        "accident.occurred",
+        "negligence.indicators"
+      ],
+      "aliases": [
+        "death by negligence",
+        "rash and negligent act causing death",
+        "accident death"
+      ],
+      "modelling_notes": [
+        "Different punishment rule for registered medical practitioners. Verify clause."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 106(1)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "d1f4a73e-cd85-516b-932e-7db3f57d0eb0",
+      "key": "BNS:106(2)",
+      "law_code": "BNS",
+      "section_number": "106",
+      "sub_section": "2",
+      "offence_name": "Causing death by rash and negligent driving and escaping without reporting",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Death caused by rash and negligent driving not amounting to culpable homicide, with the driver escaping without reporting to a police officer or Magistrate soon after.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "death_caused",
+        "vehicle_driven_by_accused",
+        "rash_and_negligent_driving",
+        "causation_to_death",
+        "escaped_without_reporting"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "death_caused",
+          "type": "result",
+          "description": "Death of a person confirmed and cause documented",
+          "fact_tags": [
+            "death.confirmed",
+            "death.cause_documented"
+          ],
+          "tag_match": "all",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "vehicle_driven_by_accused",
+          "type": "act",
+          "description": "Accused was driving the vehicle",
+          "fact_tags": [
+            "accused.act.driving",
+            "vehicle.involved"
+          ],
+          "tag_match": "all",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "rash_and_negligent_driving",
+          "type": "act",
+          "description": "Driving was rash and negligent",
+          "fact_tags": [
+            "vehicle.rash_or_negligent_indicators",
+            "negligence.indicators"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        },
+        {
+          "id": "causation_to_death",
+          "type": "causation",
+          "description": "Accused's act linked to the death",
+          "fact_tags": [
+            "link.act_to_death"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "escaped_without_reporting",
+          "type": "circumstance",
+          "description": "Accused left without reporting to police or Magistrate soon after",
+          "fact_tags": [
+            "accused.left_scene_without_reporting"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:103(1)",
+          "relation": "mutually_exclusive"
+        },
+        {
+          "key": "BNS:105",
+          "relation": "mutually_exclusive"
+        },
+        {
+          "key": "BNS:106(1)",
+          "relation": "simple_form"
+        },
+        {
+          "key": "BNS:281",
+          "relation": "may_combine_with"
+        }
+      ],
+      "ipc_equivalent": [],
+      "trigger_fact_tags": [
+        "accident.occurred",
+        "accused.left_scene_without_reporting",
+        "vehicle.involved",
+        "death.confirmed"
+      ],
+      "aliases": [
+        "hit and run",
+        "hit-and-run"
+      ],
+      "modelling_notes": [
+        "New provision. No direct IPC equivalent (verify)."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 106(2)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "54f816cd-85b7-5617-a062-acf908994d2e",
+      "key": "BNS:108",
+      "law_code": "BNS",
+      "section_number": "108",
+      "sub_section": null,
+      "offence_name": "Abetment of suicide",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Instigating or intentionally aiding a person to die by suicide.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "suicide_death",
+        "instigation_or_aid",
+        "link_to_suicide",
+        "intent_to_abet"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "suicide_death",
+          "type": "result",
+          "description": "Death by suicide confirmed",
+          "fact_tags": [
+            "victim.suicide_death",
+            "death.confirmed"
+          ],
+          "tag_match": "all",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "instigation_or_aid",
+          "type": "act",
+          "description": "Accused instigated or aided the suicide",
+          "fact_tags": [
+            "accused.act.instigation_or_aid"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "link_to_suicide",
+          "type": "causation",
+          "description": "Instigation or aid linked to the suicide",
+          "fact_tags": [
+            "link.abetment_to_suicide"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "intent_to_abet",
+          "type": "mens_rea",
+          "description": "Intention to instigate or aid",
+          "fact_tags": [
+            "intent.indicator.motive",
+            "intent.indicator.prior_threat"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:80(2)",
+          "relation": "alternative_charge"
+        },
+        {
+          "key": "BNS:85",
+          "relation": "may_combine_with"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:306"
+      ],
+      "trigger_fact_tags": [
+        "victim.suicide_death",
+        "accused.act.instigation_or_aid"
+      ],
+      "aliases": [
+        "abetment of suicide",
+        "suicide abetment"
+      ],
+      "modelling_notes": [],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 108",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "351978d8-2ab3-56bf-9e3c-51a13b11b644",
+      "key": "BNS:109(1)",
+      "law_code": "BNS",
+      "section_number": "109",
+      "sub_section": "1",
+      "offence_name": "Attempt to murder",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Act done with intention or knowledge such that, if death had been caused, the accused would be guilty of murder.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "act_by_accused",
+        "intent_to_cause_death",
+        "act_capable_of_causing_death",
+        "victim_survived"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "act_by_accused",
+          "type": "act",
+          "description": "Accused performed the act (physical act, weapon use or driving)",
+          "fact_tags": [
+            "accused.act.physical",
+            "accused.act.weapon_use",
+            "accused.act.driving"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "intent_to_cause_death",
+          "type": "mens_rea",
+          "description": "Intention or knowledge such that death, if caused, would be murder",
+          "fact_tags": [
+            "intent.indicator.motive",
+            "intent.indicator.prior_threat",
+            "intent.indicator.weapon_choice",
+            "intent.indicator.vital_part_target",
+            "intent.indicator.knowledge_of_risk"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        },
+        {
+          "id": "act_capable_of_causing_death",
+          "type": "circumstance",
+          "description": "Act capable of causing death in the circumstances",
+          "fact_tags": [
+            "weapon.dangerous",
+            "intent.indicator.vital_part_target"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        },
+        {
+          "id": "victim_survived",
+          "type": "result",
+          "description": "Victim survived (death not caused)",
+          "fact_tags": [
+            "injury.survived_victim"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:103(1)",
+          "relation": "mutually_exclusive"
+        },
+        {
+          "key": "BNS:105",
+          "relation": "mutually_exclusive"
+        },
+        {
+          "key": "BNS:117(2)",
+          "relation": "alternative_charge"
+        },
+        {
+          "key": "BNS:118(2)",
+          "relation": "alternative_charge"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:307"
+      ],
+      "trigger_fact_tags": [
+        "injury.survived_victim",
+        "weapon.dangerous",
+        "intent.indicator.vital_part_target"
+      ],
+      "aliases": [
+        "attempt to murder",
+        "attempted murder"
+      ],
+      "modelling_notes": [
+        "When hurt results, the section provides a heavier punishment. Capture clause when verifying."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 109(1)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "f9fab2bf-e200-598a-a694-e0b67b3642e8",
+      "key": "BNS:114",
+      "law_code": "BNS",
+      "section_number": "114",
+      "sub_section": null,
+      "offence_name": "Hurt",
+      "kind": "definition",
+      "chargeable": false,
+      "description": "Definition: causing bodily pain, disease or infirmity to any person.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "hurt_result"
+      ],
+      "elements": [
+        {
+          "id": "hurt_result",
+          "type": "result",
+          "description": "Bodily pain, disease or infirmity documented",
+          "fact_tags": [
+            "injury.bodily_pain",
+            "injury.disease",
+            "injury.infirmity"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:115(2)",
+          "relation": "defines"
+        },
+        {
+          "key": "BNS:118(1)",
+          "relation": "defines"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:319"
+      ],
+      "trigger_fact_tags": [
+        "injury.bodily_pain",
+        "injury.disease",
+        "injury.infirmity"
+      ],
+      "aliases": [
+        "hurt"
+      ],
+      "modelling_notes": [],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 114",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "528d15c7-058a-57e8-98e5-7c8e913457af",
+      "key": "BNS:115(2)",
+      "law_code": "BNS",
+      "section_number": "115",
+      "sub_section": "2",
+      "offence_name": "Voluntarily causing hurt",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Charge of voluntarily causing hurt: act done intending or knowing it is likely to cause hurt, and hurt caused.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "act_by_accused",
+        "hurt_result",
+        "causation_to_injury",
+        "intent_or_knowledge_hurt"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "act_by_accused",
+          "type": "act",
+          "description": "Accused performed the act (physical act, weapon use or driving)",
+          "fact_tags": [
+            "accused.act.physical",
+            "accused.act.weapon_use",
+            "accused.act.driving"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "hurt_result",
+          "type": "result",
+          "description": "Bodily pain, disease or infirmity documented",
+          "fact_tags": [
+            "injury.bodily_pain",
+            "injury.disease",
+            "injury.infirmity"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "causation_to_injury",
+          "type": "causation",
+          "description": "Accused's act linked to the injury",
+          "fact_tags": [
+            "link.act_to_injury"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "intent_or_knowledge_hurt",
+          "type": "mens_rea",
+          "description": "Intention or knowledge that the act is likely to cause hurt",
+          "fact_tags": [
+            "intent.indicator.motive",
+            "intent.indicator.prior_threat",
+            "intent.indicator.weapon_choice",
+            "intent.indicator.vital_part_target",
+            "intent.indicator.knowledge_of_risk"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:114",
+          "relation": "defined_by"
+        },
+        {
+          "key": "BNS:117(2)",
+          "relation": "aggravated_form"
+        },
+        {
+          "key": "BNS:118(1)",
+          "relation": "aggravated_form"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:323"
+      ],
+      "trigger_fact_tags": [
+        "injury.bodily_pain",
+        "injury.documented",
+        "link.act_to_injury"
+      ],
+      "aliases": [
+        "hurt",
+        "assault causing hurt",
+        "simple hurt",
+        "beating"
+      ],
+      "modelling_notes": [],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 115(2)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "990cf1f3-cca1-5dca-8b33-2339cd5d02b4",
+      "key": "BNS:116",
+      "law_code": "BNS",
+      "section_number": "116",
+      "sub_section": null,
+      "offence_name": "Grievous hurt",
+      "kind": "definition",
+      "chargeable": false,
+      "description": "Definition: hurt of a kind listed in the section as grievous (for example emasculation, permanent loss of sight or hearing, fracture, severe bodily pain for twenty days).",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "grievous_hurt_result"
+      ],
+      "elements": [
+        {
+          "id": "grievous_hurt_result",
+          "type": "result",
+          "description": "Injury matching a grievous-hurt category documented",
+          "fact_tags": [
+            "injury.grievous"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:117(2)",
+          "relation": "defines"
+        },
+        {
+          "key": "BNS:117(3)",
+          "relation": "defines"
+        },
+        {
+          "key": "BNS:118(2)",
+          "relation": "defines"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:320"
+      ],
+      "trigger_fact_tags": [
+        "injury.grievous"
+      ],
+      "aliases": [
+        "grievous hurt"
+      ],
+      "modelling_notes": [
+        "Category list must be encoded as structured sub-elements when verifying."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 116",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "dc826599-a660-5eb5-847e-e6de96b1f0fa",
+      "key": "BNS:117(2)",
+      "law_code": "BNS",
+      "section_number": "117",
+      "sub_section": "2",
+      "offence_name": "Voluntarily causing grievous hurt",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Charge of voluntarily causing grievous hurt: act done intending or knowing it is likely to cause grievous hurt, and grievous hurt caused.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "act_by_accused",
+        "grievous_hurt_result",
+        "causation_to_injury",
+        "intent_or_knowledge_grievous",
+        "no_grave_and_sudden_provocation"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "act_by_accused",
+          "type": "act",
+          "description": "Accused performed the act (physical act, weapon use or driving)",
+          "fact_tags": [
+            "accused.act.physical",
+            "accused.act.weapon_use",
+            "accused.act.driving"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "grievous_hurt_result",
+          "type": "result",
+          "description": "Injury matching a grievous-hurt category documented",
+          "fact_tags": [
+            "injury.grievous"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "causation_to_injury",
+          "type": "causation",
+          "description": "Accused's act linked to the injury",
+          "fact_tags": [
+            "link.act_to_injury"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "intent_or_knowledge_grievous",
+          "type": "mens_rea",
+          "description": "Intention or knowledge that the act is likely to cause grievous hurt",
+          "fact_tags": [
+            "intent.indicator.motive",
+            "intent.indicator.prior_threat",
+            "intent.indicator.weapon_choice",
+            "intent.indicator.vital_part_target",
+            "intent.indicator.knowledge_of_risk"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        },
+        {
+          "id": "no_grave_and_sudden_provocation",
+          "type": "circumstance",
+          "description": "No grave and sudden provocation",
+          "fact_tags": [
+            "provocation.documented"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:109(1)",
+          "relation": "alternative_charge"
+        },
+        {
+          "key": "BNS:115(2)",
+          "relation": "simple_form"
+        },
+        {
+          "key": "BNS:116",
+          "relation": "defined_by"
+        },
+        {
+          "key": "BNS:117(3)",
+          "relation": "aggravated_form"
+        },
+        {
+          "key": "BNS:118(2)",
+          "relation": "aggravated_form"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:325"
+      ],
+      "trigger_fact_tags": [
+        "injury.grievous",
+        "injury.documented",
+        "link.act_to_injury"
+      ],
+      "aliases": [
+        "grievous hurt",
+        "serious injury",
+        "fracture case"
+      ],
+      "modelling_notes": [],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 117(2)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "e67dc521-61ce-548f-b0e9-1a96887d0837",
+      "key": "BNS:117(3)",
+      "law_code": "BNS",
+      "section_number": "117",
+      "sub_section": "3",
+      "offence_name": "Voluntarily causing grievous hurt resulting in permanent disability or persistent vegetative state",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Grievous hurt that causes permanent disability or a persistent vegetative state.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "act_by_accused",
+        "grievous_hurt_result",
+        "permanent_disability_or_vegetative_state",
+        "causation_to_injury",
+        "intent_or_knowledge_grievous"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "act_by_accused",
+          "type": "act",
+          "description": "Accused performed the act (physical act, weapon use or driving)",
+          "fact_tags": [
+            "accused.act.physical",
+            "accused.act.weapon_use",
+            "accused.act.driving"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "grievous_hurt_result",
+          "type": "result",
+          "description": "Injury matching a grievous-hurt category documented",
+          "fact_tags": [
+            "injury.grievous"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "permanent_disability_or_vegetative_state",
+          "type": "result",
+          "description": "Permanent disability or persistent vegetative state documented",
+          "fact_tags": [
+            "injury.permanent_disability",
+            "injury.vegetative_state"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "causation_to_injury",
+          "type": "causation",
+          "description": "Accused's act linked to the injury",
+          "fact_tags": [
+            "link.act_to_injury"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "intent_or_knowledge_grievous",
+          "type": "mens_rea",
+          "description": "Intention or knowledge that the act is likely to cause grievous hurt",
+          "fact_tags": [
+            "intent.indicator.motive",
+            "intent.indicator.prior_threat",
+            "intent.indicator.weapon_choice",
+            "intent.indicator.vital_part_target",
+            "intent.indicator.knowledge_of_risk"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:116",
+          "relation": "defined_by"
+        },
+        {
+          "key": "BNS:117(2)",
+          "relation": "simple_form"
+        }
+      ],
+      "ipc_equivalent": [],
+      "trigger_fact_tags": [
+        "injury.permanent_disability",
+        "injury.vegetative_state"
+      ],
+      "aliases": [
+        "permanent disability",
+        "vegetative state"
+      ],
+      "modelling_notes": [
+        "New provision. No direct IPC equivalent (verify)."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 117(3)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "39a6188a-3325-54da-9316-ecd24778fd49",
+      "key": "BNS:118(1)",
+      "law_code": "BNS",
+      "section_number": "118",
+      "sub_section": "1",
+      "offence_name": "Voluntarily causing hurt by dangerous weapons or means",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Hurt caused using a dangerous weapon or means (stabbing, cutting, firearm, fire, heated substance, poison, corrosive, explosive).",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "act_by_accused",
+        "hurt_result",
+        "dangerous_weapon_or_means",
+        "causation_to_injury",
+        "intent_or_knowledge_hurt"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "act_by_accused",
+          "type": "act",
+          "description": "Accused performed the act (physical act, weapon use or driving)",
+          "fact_tags": [
+            "accused.act.physical",
+            "accused.act.weapon_use",
+            "accused.act.driving"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "hurt_result",
+          "type": "result",
+          "description": "Bodily pain, disease or infirmity documented",
+          "fact_tags": [
+            "injury.bodily_pain",
+            "injury.disease",
+            "injury.infirmity"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "dangerous_weapon_or_means",
+          "type": "instrument",
+          "description": "Dangerous weapon or means used",
+          "fact_tags": [
+            "weapon.dangerous"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "causation_to_injury",
+          "type": "causation",
+          "description": "Accused's act linked to the injury",
+          "fact_tags": [
+            "link.act_to_injury"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "intent_or_knowledge_hurt",
+          "type": "mens_rea",
+          "description": "Intention or knowledge that the act is likely to cause hurt",
+          "fact_tags": [
+            "intent.indicator.motive",
+            "intent.indicator.prior_threat",
+            "intent.indicator.weapon_choice",
+            "intent.indicator.vital_part_target",
+            "intent.indicator.knowledge_of_risk"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:114",
+          "relation": "defined_by"
+        },
+        {
+          "key": "BNS:115(2)",
+          "relation": "simple_form"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:324"
+      ],
+      "trigger_fact_tags": [
+        "weapon.dangerous",
+        "injury.bodily_pain",
+        "weapon.recovered"
+      ],
+      "aliases": [
+        "hurt with weapon",
+        "stabbing",
+        "knife injury"
+      ],
+      "modelling_notes": [],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 118(1)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "cf503614-1a24-5699-b1a5-24339874dcba",
+      "key": "BNS:118(2)",
+      "law_code": "BNS",
+      "section_number": "118",
+      "sub_section": "2",
+      "offence_name": "Voluntarily causing grievous hurt by dangerous weapons or means",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Grievous hurt caused using a dangerous weapon or means.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "act_by_accused",
+        "grievous_hurt_result",
+        "dangerous_weapon_or_means",
+        "causation_to_injury",
+        "intent_or_knowledge_grievous"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "act_by_accused",
+          "type": "act",
+          "description": "Accused performed the act (physical act, weapon use or driving)",
+          "fact_tags": [
+            "accused.act.physical",
+            "accused.act.weapon_use",
+            "accused.act.driving"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "grievous_hurt_result",
+          "type": "result",
+          "description": "Injury matching a grievous-hurt category documented",
+          "fact_tags": [
+            "injury.grievous"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "dangerous_weapon_or_means",
+          "type": "instrument",
+          "description": "Dangerous weapon or means used",
+          "fact_tags": [
+            "weapon.dangerous"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "causation_to_injury",
+          "type": "causation",
+          "description": "Accused's act linked to the injury",
+          "fact_tags": [
+            "link.act_to_injury"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "intent_or_knowledge_grievous",
+          "type": "mens_rea",
+          "description": "Intention or knowledge that the act is likely to cause grievous hurt",
+          "fact_tags": [
+            "intent.indicator.motive",
+            "intent.indicator.prior_threat",
+            "intent.indicator.weapon_choice",
+            "intent.indicator.vital_part_target",
+            "intent.indicator.knowledge_of_risk"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:109(1)",
+          "relation": "alternative_charge"
+        },
+        {
+          "key": "BNS:116",
+          "relation": "defined_by"
+        },
+        {
+          "key": "BNS:117(2)",
+          "relation": "simple_form"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:326"
+      ],
+      "trigger_fact_tags": [
+        "weapon.dangerous",
+        "injury.grievous"
+      ],
+      "aliases": [
+        "grievous hurt with weapon",
+        "serious stabbing"
+      ],
+      "modelling_notes": [],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 118(2)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "13ede227-d8f0-5924-b51d-ef65ecdbbbca",
+      "key": "BNS:125",
+      "law_code": "BNS",
+      "section_number": "125",
+      "sub_section": null,
+      "offence_name": "Act endangering life or personal safety of others",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Act done so rashly or negligently as to endanger human life or the personal safety of others. Higher punishment if hurt or grievous hurt is caused.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "act_endangering_safety",
+        "rash_or_negligent",
+        "endangerment_documented"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "act_endangering_safety",
+          "type": "act",
+          "description": "Act by accused that endangered life or safety",
+          "fact_tags": [
+            "accused.act.physical",
+            "accused.act.driving",
+            "negligence.indicators"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "rash_or_negligent",
+          "type": "mens_rea",
+          "description": "Act was rash or negligent",
+          "fact_tags": [
+            "negligence.indicators",
+            "vehicle.rash_or_negligent_indicators"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        },
+        {
+          "id": "endangerment_documented",
+          "type": "result",
+          "description": "Endangerment, accident or injury documented",
+          "fact_tags": [
+            "accident.occurred",
+            "injury.documented"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:281",
+          "relation": "may_combine_with"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:336",
+        "IPC:337",
+        "IPC:338"
+      ],
+      "trigger_fact_tags": [
+        "accident.occurred",
+        "negligence.indicators",
+        "injury.documented"
+      ],
+      "aliases": [
+        "rash act",
+        "negligent act",
+        "endangering life"
+      ],
+      "modelling_notes": [
+        "Modelled at section level. Clauses for hurt and grievous hurt need separate handling when verifying."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 125",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": "Confirm clause structure against official text."
+      }
+    },
+    {
+      "section_id": "519ce480-2fb0-5b7d-853b-95d10dd03168",
+      "key": "BNS:126(2)",
+      "law_code": "BNS",
+      "section_number": "126",
+      "sub_section": "2",
+      "offence_name": "Wrongful restraint",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Voluntarily obstructing a person so as to prevent them from proceeding in a direction they have a right to proceed.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "voluntary_obstruction",
+        "movement_prevented",
+        "victim_had_right_to_proceed"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "voluntary_obstruction",
+          "type": "act",
+          "description": "Accused obstructed the victim",
+          "fact_tags": [
+            "accused.act.restraint"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "movement_prevented",
+          "type": "result",
+          "description": "Victim's movement in a direction was prevented",
+          "fact_tags": [
+            "victim.movement_obstructed"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "victim_had_right_to_proceed",
+          "type": "circumstance",
+          "description": "Victim had a right to proceed in that direction",
+          "fact_tags": [],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:127(2)",
+          "relation": "aggravated_form"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:341"
+      ],
+      "trigger_fact_tags": [
+        "accused.act.restraint",
+        "victim.movement_obstructed"
+      ],
+      "aliases": [
+        "wrongful restraint",
+        "blocking path"
+      ],
+      "modelling_notes": [],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 126(2)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "3e1d7ab6-4a9b-5e6b-aa32-9bbb548d1ba9",
+      "key": "BNS:127(2)",
+      "law_code": "BNS",
+      "section_number": "127",
+      "sub_section": "2",
+      "offence_name": "Wrongful confinement",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Wrongfully restraining a person in a way that prevents them proceeding beyond circumscribing limits.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "voluntary_restraint",
+        "confined_within_limits",
+        "confinement_wrongful"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "voluntary_restraint",
+          "type": "act",
+          "description": "Accused restrained or confined the victim",
+          "fact_tags": [
+            "accused.act.restraint",
+            "accused.act.confinement"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "confined_within_limits",
+          "type": "result",
+          "description": "Victim confined within circumscribing limits",
+          "fact_tags": [
+            "victim.confined"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "confinement_wrongful",
+          "type": "circumstance",
+          "description": "Confinement had no legal justification",
+          "fact_tags": [],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:126(2)",
+          "relation": "simple_form"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:342"
+      ],
+      "trigger_fact_tags": [
+        "victim.confined",
+        "accused.act.confinement"
+      ],
+      "aliases": [
+        "wrongful confinement",
+        "illegal confinement",
+        "locked up"
+      ],
+      "modelling_notes": [],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 127(2)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "b1b67db4-767e-57d5-8be7-4040c629af86",
+      "key": "BNS:137(2)",
+      "law_code": "BNS",
+      "section_number": "137",
+      "sub_section": "2",
+      "offence_name": "Kidnapping",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Taking or enticing a minor or a person of unsound mind out of the keeping of the lawful guardian without the guardian's consent.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "taking_or_enticing",
+        "victim_status",
+        "removed_from_guardianship",
+        "guardian_consent_absent"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "taking_or_enticing",
+          "type": "act",
+          "description": "Accused took or enticed the person",
+          "fact_tags": [
+            "accused.act.taking_person"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "victim_status",
+          "type": "status",
+          "description": "Victim is a minor or of unsound mind",
+          "fact_tags": [
+            "victim.minor_or_unsound_mind"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "removed_from_guardianship",
+          "type": "result",
+          "description": "Victim removed from lawful guardianship",
+          "fact_tags": [
+            "victim.removed_from_guardianship"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "guardian_consent_absent",
+          "type": "circumstance",
+          "description": "Guardian did not consent",
+          "fact_tags": [
+            "guardian.consent_absent"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [],
+      "ipc_equivalent": [
+        "IPC:363"
+      ],
+      "trigger_fact_tags": [
+        "accused.act.taking_person",
+        "victim.minor_or_unsound_mind",
+        "victim.removed_from_guardianship"
+      ],
+      "aliases": [
+        "kidnapping",
+        "missing minor"
+      ],
+      "modelling_notes": [
+        "Models kidnapping from lawful guardianship only. Kidnapping-from-India limb not modelled."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 137(2)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": "Confirm sub-section numbering and age thresholds against official text."
+      }
+    },
+    {
+      "section_id": "d0aade8a-e85d-57ea-a15b-8045885ce46f",
+      "key": "BNS:303(2)",
+      "law_code": "BNS",
+      "section_number": "303",
+      "sub_section": "2",
+      "offence_name": "Theft",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Dishonestly taking movable property out of a person's possession without consent.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "taking_of_property",
+        "movable_property",
+        "without_consent",
+        "dishonest_intention"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "taking_of_property",
+          "type": "act",
+          "description": "Accused took or moved the property",
+          "fact_tags": [
+            "accused.act.taking_property",
+            "property.moved_from_possession"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "movable_property",
+          "type": "circumstance",
+          "description": "Property is movable",
+          "fact_tags": [
+            "property.movable"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "without_consent",
+          "type": "circumstance",
+          "description": "Taken without owner's consent",
+          "fact_tags": [
+            "property.without_consent"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "dishonest_intention",
+          "type": "mens_rea",
+          "description": "Dishonest intention",
+          "fact_tags": [
+            "intent.indicator.dishonest_taking"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:309",
+          "relation": "aggravated_form"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:379"
+      ],
+      "trigger_fact_tags": [
+        "accused.act.taking_property",
+        "property.moved_from_possession",
+        "property.without_consent"
+      ],
+      "aliases": [
+        "theft",
+        "stealing",
+        "chori"
+      ],
+      "modelling_notes": [
+        "Definition sub-section 303(1) is modelled inside this record."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 303(2)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "b72c0bca-5d55-5d00-884c-7aadd085791b",
+      "key": "BNS:309",
+      "law_code": "BNS",
+      "section_number": "309",
+      "sub_section": null,
+      "offence_name": "Robbery",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Theft or extortion accompanied by, or through, instant death, hurt, wrongful restraint or fear of it.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "theft_or_extortion",
+        "force_or_fear",
+        "dishonest_intention"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "theft_or_extortion",
+          "type": "act",
+          "description": "Theft or extortion of property",
+          "fact_tags": [
+            "accused.act.taking_property",
+            "property.moved_from_possession",
+            "property.taken_by_force_or_fear"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "force_or_fear",
+          "type": "circumstance",
+          "description": "Hurt, restraint or fear of instant hurt/death put on victim",
+          "fact_tags": [
+            "force.fear_of_instant_hurt_or_restraint",
+            "injury.documented"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "dishonest_intention",
+          "type": "mens_rea",
+          "description": "Dishonest intention",
+          "fact_tags": [
+            "intent.indicator.dishonest_taking"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:303(2)",
+          "relation": "simple_form"
+        },
+        {
+          "key": "BNS:310(2)",
+          "relation": "aggravated_form"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:390",
+        "IPC:392"
+      ],
+      "trigger_fact_tags": [
+        "property.taken_by_force_or_fear",
+        "force.fear_of_instant_hurt_or_restraint"
+      ],
+      "aliases": [
+        "robbery",
+        "loot with force",
+        "snatching with force"
+      ],
+      "modelling_notes": [
+        "Modelled at section level. Sub-sections for definition, punishment and aggravated forms need separate handling."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 309",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": "Confirm sub-section numbering against official text."
+      }
+    },
+    {
+      "section_id": "179e9a50-b1ad-518c-8227-bf70af34c50f",
+      "key": "BNS:310(2)",
+      "law_code": "BNS",
+      "section_number": "310",
+      "sub_section": "2",
+      "offence_name": "Dacoity",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Robbery, or attempt to commit robbery, by five or more persons conjointly.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "five_or_more_persons",
+        "commits_or_attempts_robbery",
+        "dishonest_intention"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "five_or_more_persons",
+          "type": "circumstance",
+          "description": "Five or more persons acted conjointly",
+          "fact_tags": [
+            "group.five_or_more",
+            "accused.multiple"
+          ],
+          "tag_match": "all",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "commits_or_attempts_robbery",
+          "type": "act",
+          "description": "Robbery committed or attempted",
+          "fact_tags": [
+            "accused.act.taking_property",
+            "force.fear_of_instant_hurt_or_restraint"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "dishonest_intention",
+          "type": "mens_rea",
+          "description": "Dishonest intention",
+          "fact_tags": [
+            "intent.indicator.dishonest_taking"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:309",
+          "relation": "simple_form"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:391",
+        "IPC:395"
+      ],
+      "trigger_fact_tags": [
+        "group.five_or_more",
+        "force.fear_of_instant_hurt_or_restraint"
+      ],
+      "aliases": [
+        "dacoity",
+        "gang robbery"
+      ],
+      "modelling_notes": [
+        "Dacoity with murder and related clauses are separate provisions, not modelled here."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 310(2)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": "Confirm sub-section numbering against official text."
+      }
+    },
+    {
+      "section_id": "dca064be-67fa-5cf4-b8e5-1eeb558a2d20",
+      "key": "BNS:316(2)",
+      "law_code": "BNS",
+      "section_number": "316",
+      "sub_section": "2",
+      "offence_name": "Criminal breach of trust",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Dishonest misappropriation or conversion of property by a person entrusted with it or with dominion over it.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "entrustment",
+        "misappropriation_or_disposal",
+        "dishonest_intention"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "entrustment",
+          "type": "circumstance",
+          "description": "Property entrusted to accused or under accused's dominion",
+          "fact_tags": [
+            "property.entrusted"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "misappropriation_or_disposal",
+          "type": "act",
+          "description": "Accused misappropriated, converted or disposed of the property",
+          "fact_tags": [
+            "accused.act.dishonest_use",
+            "property.misappropriated_or_disposed"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "dishonest_intention",
+          "type": "mens_rea",
+          "description": "Dishonest intention",
+          "fact_tags": [
+            "intent.indicator.dishonest_taking"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:318(4)",
+          "relation": "alternative_charge"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:406"
+      ],
+      "trigger_fact_tags": [
+        "property.entrusted",
+        "property.misappropriated_or_disposed"
+      ],
+      "aliases": [
+        "criminal breach of trust",
+        "cbt",
+        "misappropriation"
+      ],
+      "modelling_notes": [
+        "Definition sub-section 316(1) is modelled inside this record. Aggravated forms (clerk, servant, banker) not modelled."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 316(2)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "e21d196d-f0a9-51ec-b33f-8647d896cf07",
+      "key": "BNS:318(4)",
+      "law_code": "BNS",
+      "section_number": "318",
+      "sub_section": "4",
+      "offence_name": "Cheating and dishonestly inducing delivery of property",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Cheating by deceiving a person and thereby dishonestly inducing them to deliver property or to make, alter or destroy a valuable security.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "deception",
+        "delivery_induced",
+        "dishonest_intention_at_inception"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "deception",
+          "type": "act",
+          "description": "Accused deceived the victim by false representation",
+          "fact_tags": [
+            "accused.act.false_representation"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "delivery_induced",
+          "type": "result",
+          "description": "Victim delivered property because of the deception",
+          "fact_tags": [
+            "property.delivery_induced"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "dishonest_intention_at_inception",
+          "type": "mens_rea",
+          "description": "Dishonest or fraudulent intention at the time of inducement",
+          "fact_tags": [
+            "intent.indicator.deception_at_inception",
+            "intent.indicator.dishonest_taking"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:316(2)",
+          "relation": "alternative_charge"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:420"
+      ],
+      "trigger_fact_tags": [
+        "accused.act.false_representation",
+        "property.delivery_induced"
+      ],
+      "aliases": [
+        "cheating",
+        "fraud",
+        "420"
+      ],
+      "modelling_notes": [
+        "Definition sub-section 318(1) is modelled inside this record."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 318(4)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "8ece4c1b-d7f3-5f90-a6ae-1093c67ee718",
+      "key": "BNS:351(2)",
+      "law_code": "BNS",
+      "section_number": "351",
+      "sub_section": "2",
+      "offence_name": "Criminal intimidation",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Threatening a person with injury to person, reputation or property with intent to cause alarm or to compel an act or omission.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "threat_communicated",
+        "threat_subject",
+        "intent_to_alarm_or_compel"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "threat_communicated",
+          "type": "act",
+          "description": "Threat communicated by accused",
+          "fact_tags": [
+            "accused.act.threat",
+            "threat.communicated"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "threat_subject",
+          "type": "circumstance",
+          "description": "Threat of injury to person, reputation or property",
+          "fact_tags": [
+            "threat.injury_to_person_property_reputation"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "intent_to_alarm_or_compel",
+          "type": "mens_rea",
+          "description": "Intent to cause alarm or compel an act or omission",
+          "fact_tags": [
+            "intent.indicator.alarm_or_compel"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        }
+      ],
+      "relations": [],
+      "ipc_equivalent": [
+        "IPC:506"
+      ],
+      "trigger_fact_tags": [
+        "threat.communicated",
+        "accused.act.threat"
+      ],
+      "aliases": [
+        "criminal intimidation",
+        "threatening",
+        "threat to kill"
+      ],
+      "modelling_notes": [
+        "Threat of death or grievous hurt and anonymous threats are separate sub-sections, not modelled here."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 351(2)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "a4c8bf50-bb95-5fc8-a1fe-4eb91ccacbe0",
+      "key": "BNS:80(2)",
+      "law_code": "BNS",
+      "section_number": "80",
+      "sub_section": "2",
+      "offence_name": "Dowry death",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Death of a woman within seven years of marriage, by burns, bodily injury or otherwise than in normal circumstances, where she was subjected to cruelty or harassment for dowry soon before death.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "victim_married_woman",
+        "unnatural_death",
+        "within_seven_years_of_marriage",
+        "cruelty_for_dowry",
+        "soon_before_death",
+        "accused_is_husband_or_relative"
+      ],
+      "elements": [
+        {
+          "id": "victim_married_woman",
+          "type": "status",
+          "description": "Victim is a married woman",
+          "fact_tags": [
+            "victim.married_woman"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "unnatural_death",
+          "type": "result",
+          "description": "Death by burns, bodily injury or otherwise than normal circumstances",
+          "fact_tags": [
+            "death.unnatural_circumstances",
+            "death.confirmed"
+          ],
+          "tag_match": "all",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "within_seven_years_of_marriage",
+          "type": "circumstance",
+          "description": "Death within seven years of marriage",
+          "fact_tags": [
+            "death.within_seven_years_of_marriage"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "cruelty_for_dowry",
+          "type": "act",
+          "description": "Cruelty or harassment for dowry documented",
+          "fact_tags": [
+            "cruelty.harassment_documented",
+            "dowry.demand_documented"
+          ],
+          "tag_match": "all",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "soon_before_death",
+          "type": "circumstance",
+          "description": "Cruelty or harassment soon before the death",
+          "fact_tags": [
+            "cruelty.soon_before_death"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "accused_is_husband_or_relative",
+          "type": "status",
+          "description": "Accused is husband or relative of husband",
+          "fact_tags": [
+            "accused.is_husband_or_relative"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:103(1)",
+          "relation": "alternative_charge"
+        },
+        {
+          "key": "BNS:108",
+          "relation": "alternative_charge"
+        },
+        {
+          "key": "BNS:85",
+          "relation": "may_combine_with"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:304B"
+      ],
+      "trigger_fact_tags": [
+        "victim.married_woman",
+        "death.within_seven_years_of_marriage",
+        "dowry.demand_documented"
+      ],
+      "aliases": [
+        "dowry death",
+        "bride burning"
+      ],
+      "modelling_notes": [
+        "Definition sub-section 80(1) is modelled inside this record."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 80(2)",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "88d49cfe-66fa-5af5-a72d-7f29d9795436",
+      "key": "BNS:85",
+      "law_code": "BNS",
+      "section_number": "85",
+      "sub_section": null,
+      "offence_name": "Husband or relative of husband subjecting a woman to cruelty",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Cruelty by the husband or his relative towards a married woman, including wilful conduct likely to drive her to suicide or cause grave injury, or harassment to coerce her or her relatives to meet property or valuable security demands.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "victim_married_woman",
+        "accused_is_husband_or_relative",
+        "cruelty_conduct",
+        "dowry_or_property_demand_or_grave_risk"
+      ],
+      "elements": [
+        {
+          "id": "victim_married_woman",
+          "type": "status",
+          "description": "Victim is a married woman",
+          "fact_tags": [
+            "victim.married_woman"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "accused_is_husband_or_relative",
+          "type": "status",
+          "description": "Accused is husband or relative of husband",
+          "fact_tags": [
+            "accused.is_husband_or_relative"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "cruelty_conduct",
+          "type": "act",
+          "description": "Cruelty or harassment conduct documented",
+          "fact_tags": [
+            "cruelty.wilful_conduct",
+            "cruelty.harassment_documented"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "dowry_or_property_demand_or_grave_risk",
+          "type": "circumstance",
+          "description": "Demand for property/dowry, or conduct likely to cause suicide or grave injury",
+          "fact_tags": [
+            "dowry.demand_documented",
+            "cruelty.wilful_conduct"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:108",
+          "relation": "may_combine_with"
+        },
+        {
+          "key": "BNS:80(2)",
+          "relation": "may_combine_with"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:498A"
+      ],
+      "trigger_fact_tags": [
+        "victim.married_woman",
+        "cruelty.harassment_documented",
+        "dowry.demand_documented"
+      ],
+      "aliases": [
+        "cruelty",
+        "498a",
+        "domestic cruelty",
+        "dowry harassment"
+      ],
+      "modelling_notes": [
+        "Definition of 'cruelty' sits in the next section and is modelled inside this record."
+      ],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 85",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
+    },
+    {
+      "section_id": "157aa4de-4d7e-505a-b9d6-c71c9c68da70",
+      "key": "BNS:281",
+      "law_code": "BNS",
+      "section_number": "281",
+      "sub_section": null,
+      "offence_name": "Rash driving or riding on a public way",
+      "kind": "offence",
+      "chargeable": true,
+      "description": "Driving or riding on a public way so rashly or negligently as to endanger human life or be likely to cause hurt or injury to any other person.",
+      "official_text_excerpt": null,
+      "required_elements": [
+        "accused_identified",
+        "vehicle_driven",
+        "on_public_way",
+        "rash_or_negligent_driving",
+        "endangerment_or_injury"
+      ],
+      "elements": [
+        {
+          "id": "accused_identified",
+          "type": "status",
+          "description": "Accused person identified",
+          "fact_tags": [
+            "accused.identified"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "vehicle_driven",
+          "type": "act",
+          "description": "Accused was driving or riding the vehicle",
+          "fact_tags": [
+            "accused.act.driving",
+            "vehicle.involved"
+          ],
+          "tag_match": "all",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "on_public_way",
+          "type": "circumstance",
+          "description": "Driving on a public way",
+          "fact_tags": [
+            "driving.on_public_way"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        },
+        {
+          "id": "rash_or_negligent_driving",
+          "type": "act",
+          "description": "Driving was rash or negligent",
+          "fact_tags": [
+            "vehicle.rash_or_negligent_indicators",
+            "negligence.indicators"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": true
+        },
+        {
+          "id": "endangerment_or_injury",
+          "type": "result",
+          "description": "Accident, danger or injury documented",
+          "fact_tags": [
+            "accident.occurred",
+            "injury.documented"
+          ],
+          "tag_match": "any",
+          "required": true,
+          "officer_judgment": false
+        }
+      ],
+      "relations": [
+        {
+          "key": "BNS:106(1)",
+          "relation": "may_combine_with"
+        },
+        {
+          "key": "BNS:106(2)",
+          "relation": "may_combine_with"
+        },
+        {
+          "key": "BNS:125",
+          "relation": "may_combine_with"
+        }
+      ],
+      "ipc_equivalent": [
+        "IPC:279"
+      ],
+      "trigger_fact_tags": [
+        "accused.act.driving",
+        "vehicle.rash_or_negligent_indicators",
+        "accident.occurred"
+      ],
+      "aliases": [
+        "rash driving",
+        "negligent driving",
+        "road accident"
+      ],
+      "modelling_notes": [],
+      "punishment": null,
+      "procedure": null,
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "source": {
+        "publisher": "India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 281",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01",
+      "review": {
+        "status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "pending_fields": [
+          "official_text_excerpt",
+          "punishment",
+          "procedure",
+          "element_review"
+        ],
+        "notes": null
+      }
     }
   ]
 }

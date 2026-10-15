@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from uuid import UUID
 
 from ..chargesheet.chargesheet_stage import ChargeSheetStage
+from ..config import Config
 from ..context.context_stage import CaseContextStage
 from ..extraction.gemini_ocr import GeminiOCRClient
 from ..extraction.ocr_client import OCRClient
@@ -13,7 +15,6 @@ from ..extraction.ocr_stage import OCRStage
 from ..intake.document_intake_stage import DocumentIntakeStage
 from ..intake.file_validator import FileValidator
 from ..intake.upload_manager import IncomingUpload, UploadManager
-from ..config import Config
 from ..knowledge_graph.graph_stage import GraphStage
 from ..legal.legal_reasoner import LegalReasoner
 from ..legal.legal_rules import LegalReferenceProvider, LocalLegalReferenceProvider
@@ -22,6 +23,7 @@ from ..normalization.canonical_stage import CanonicalInvestigationStage
 from ..parsers.base_parser import GeminiParserClient, ParserClient
 from ..parsers.parser_registry import ParserRegistry, create_default_parser_registry
 from ..parsers.parser_stage import ParserStage
+from ..tagging.tagging_stage import FactTaggingStage
 from ..validation.evidence_validator import EvidenceValidator
 from ..validation.validation_stage import EvidenceValidationStage
 from .context import ContextItem, WorkflowContext
@@ -36,6 +38,7 @@ STAGE_ORDER = (
     "document_parsing",
     "investigation_knowledge_graph",
     "canonical_investigation",
+    "fact_tagging",
     "evidence_validation",
     "case_context",
     "legal_reasoning",
@@ -68,10 +71,18 @@ def create_production_registry(
     legal_reference_version: str | None = None,
     legal_reasoner: LegalReasoner | None = None,
     evidence_validator: EvidenceValidator | None = None,
+    allow_draft_legal: bool | None = None,
     resume: bool = False,
 ) -> StageRegistry:
     """Compose the approved Phase 1-10 stages in their required execution order."""
-    resolved_provider = legal_reference_provider or LocalLegalReferenceProvider.load(legal_reference_path, legal_reference_version)
+    if allow_draft_legal is None:
+        allow_draft_legal = os.environ.get("ALLOW_DRAFT_LEGAL_REFERENCES", "false").lower() in {"true", "1", "yes"}
+
+    resolved_provider = legal_reference_provider or LocalLegalReferenceProvider.load(
+        legal_reference_path,
+        legal_reference_version,
+        allow_draft=allow_draft_legal,
+    )
     resolved_ocr_client = ocr_client or GeminiOCRClient(api_key=gemini_api_key or Config.GEMINI_API_KEY, model=gemini_model or Config.GEMINI_MODEL)
     resolved_parser_client = parser_client or GeminiParserClient(api_key=gemini_api_key or Config.GEMINI_API_KEY, model=gemini_model or Config.GEMINI_MODEL)
     resolved_parser_registry = parser_registry or create_default_parser_registry(resolved_parser_client)
@@ -82,6 +93,7 @@ def create_production_registry(
         ParserStage(storage_root, resolved_parser_registry),
         GraphStage(storage_root),
         CanonicalInvestigationStage(storage_root),
+        FactTaggingStage(storage_root, reference_provider=resolved_provider),
         EvidenceValidationStage(storage_root, validator=evidence_validator),
         CaseContextStage(storage_root),
         LegalReasoningStage(storage_root, reasoner=resolved_reasoner),

@@ -3,5 +3,6 @@ venv/
 .env
 .env.*
 !.env.example
+output/
 __pycache__/
 .pytest_cache/

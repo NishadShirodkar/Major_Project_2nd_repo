@@ -23,14 +23,26 @@ class IF5Renderer:
 
     _MAX_TABLE_ROW_TEXT_LENGTH = 1200
 
+    def __init__(self) -> None:
+        self._is_draft = False
+
     def render(self, data: ChargeSheetData, output: Path, *, final: bool = False) -> Path:
         if data.disposition == "final_blocked":
             raise ValueError("FINAL_BLOCKED cases cannot render a charge sheet")
         output.parent.mkdir(parents=True, exist_ok=True)
+        self._is_draft = not final or data.is_draft_dataset
         styles = self._styles()
         story = [Spacer(1, 16 * mm), Paragraph("CHARGE SHEET", styles["DocumentTitle"])]
         status = f"FINALIZED / APPROVED VERSION {data.version}" if final else f"DRAFT / REVIEW COPY - VERSION {data.version}"
-        story += [Paragraph(status, styles["Status"]), Spacer(1, 5 * mm), self._case_information(data, styles), Spacer(1, 5 * mm), HRFlowable(width="100%", thickness=.7, color=colors.HexColor("#64748B")), Spacer(1, 4 * mm)]
+        story += [Paragraph(status, styles["Status"]), Spacer(1, 3 * mm)]
+
+        if data.draft_banner:
+            story += [
+                Paragraph(f"<b>{escape(data.draft_banner)}</b>", styles["DraftBanner"]),
+                Spacer(1, 3 * mm),
+            ]
+
+        story += [self._case_information(data, styles), Spacer(1, 5 * mm), HRFlowable(width="100%", thickness=.7, color=colors.HexColor("#64748B")), Spacer(1, 4 * mm)]
         self._text_section(story, "Case Summary", data.case_summary, styles)
         self._text_section(story, "Detailed Facts", data.detailed_facts, styles)
         self._text_section(story, "Investigation Conducted", data.investigation_conducted, styles)
@@ -41,6 +53,12 @@ class IF5Renderer:
         self._text_section(story, "Evidence Analysis", data.evidence_analysis, styles)
         self._findings_section(story, "Applicable Sections", data.legal_sections, styles)
         self._legal_findings_section(story, data.legal_findings, styles)
+
+        if data.fir_sections_not_supported:
+            self._findings_section(story, "FIR Sections Not Supported by Evidence", data.fir_sections_not_supported, styles)
+        if data.applicable_not_in_fir:
+            self._findings_section(story, "Applicable Sections (Not in Initial FIR)", data.applicable_not_in_fir, styles)
+
         self._review_items_section(story, "Conflicts Requiring Review", data.conflicts, styles)
         self._review_items_section(story, "Missing Information", data.missing_information, styles)
         story.append(PageBreak())
@@ -48,8 +66,7 @@ class IF5Renderer:
         story += [Spacer(1, 6 * mm), HRFlowable(width="100%", thickness=.5, color=colors.HexColor("#94A3B8")), Spacer(1, 4 * mm), Paragraph(self._paragraph_text(f"Final Opinion of Investigating Officer: {data.final_opinion.rendered}"), styles["Body"]), Spacer(1, 5 * mm), Paragraph(self._paragraph_text(f"Signature: {data.signature.rendered}"), styles["Body"])]
         document = BaseDocTemplate(str(output), pagesize=A4, rightMargin=15 * mm, leftMargin=15 * mm, topMargin=22 * mm, bottomMargin=17 * mm, title="Charge Sheet Final" if final else "Charge Sheet Draft")
         frame = Frame(document.leftMargin, document.bottomMargin, document.width, document.height, id="body")
-        # Draw chrome after each page's flowables.  Continued tables otherwise
-        # paint over the chrome that was drawn at page start.
+        # Draw chrome after each page's flowables. Continued tables otherwise paint over chrome.
         document.addPageTemplates(PageTemplate(id="charge-sheet", frames=[frame], onPageEnd=self._page_chrome))
         document.build(story)
         return output
@@ -59,6 +76,7 @@ class IF5Renderer:
         styles = getSampleStyleSheet()
         styles.add(ParagraphStyle(name="DocumentTitle", parent=styles["Title"], alignment=TA_CENTER, fontName="Helvetica-Bold", fontSize=17, leading=21, spaceAfter=3 * mm, textColor=colors.HexColor("#0F172A")))
         styles.add(ParagraphStyle(name="Status", parent=styles["Normal"], alignment=TA_CENTER, fontName="Helvetica-Bold", fontSize=8.5, leading=11, textColor=colors.HexColor("#475569")))
+        styles.add(ParagraphStyle(name="DraftBanner", parent=styles["Normal"], alignment=TA_CENTER, fontName="Helvetica-Bold", fontSize=9, leading=12, textColor=colors.HexColor("#DC2626")))
         styles.add(ParagraphStyle(name="Section", parent=styles["Heading2"], fontName="Helvetica-Bold", fontSize=12, leading=15, spaceBefore=3 * mm, spaceAfter=2 * mm, textColor=colors.HexColor("#172554")))
         styles.add(ParagraphStyle(name="Body", parent=styles["Normal"], fontSize=9.3, leading=13, spaceAfter=1.5 * mm))
         styles.add(ParagraphStyle(name="Small", parent=styles["Normal"], fontSize=7.8, leading=9.6))
@@ -69,9 +87,21 @@ class IF5Renderer:
 
     def _page_chrome(self, canvas, document) -> None:
         canvas.saveState()
-        canvas.setStrokeColor(colors.HexColor("#94A3B8")); canvas.setLineWidth(.45)
+        # Draft watermark banner across page center if draft
+        if self._is_draft:
+            canvas.saveState()
+            canvas.setFont("Helvetica-Bold", 42)
+            canvas.setFillColor(colors.HexColor("#E2E8F0"))
+            canvas.translate(A4[0] / 2, A4[1] / 2)
+            canvas.rotate(45)
+            canvas.drawCentredString(0, 0, "DRAFT / REVIEW ONLY")
+            canvas.restoreState()
+
+        canvas.setStrokeColor(colors.HexColor("#94A3B8"))
+        canvas.setLineWidth(.45)
         canvas.line(document.leftMargin, A4[1] - 13 * mm, A4[0] - document.rightMargin, A4[1] - 13 * mm)
-        canvas.setFont("Helvetica", 7.5); canvas.setFillColor(colors.HexColor("#64748B"))
+        canvas.setFont("Helvetica", 7.5)
+        canvas.setFillColor(colors.HexColor("#64748B"))
         canvas.drawString(document.leftMargin, A4[1] - 10 * mm, "BYOMKESH AI - CHARGE SHEET")
         canvas.drawRightString(A4[0] - document.rightMargin, 9 * mm, f"Page {canvas.getPageNumber()}")
         canvas.restoreState()
@@ -124,11 +154,9 @@ class IF5Renderer:
         story.extend([table, Spacer(1, 3 * mm)])
 
     def _requires_structured_row(self, row: IF5Row) -> bool:
-        """Avoid ReportLab table rows that cannot split when one cell is very long."""
         return max(len(row.description.rendered), len(row.exhibit.rendered)) > self._MAX_TABLE_ROW_TEXT_LENGTH
 
     def _structured_rows(self, story: list, rows: tuple[IF5Row, ...], styles) -> None:
-        """Render unbounded row content as independently splittable flowables."""
         for row in rows:
             story.append(HRFlowable(width="100%", thickness=.35, color=colors.HexColor("#94A3B8"), spaceBefore=1 * mm, spaceAfter=1 * mm))
             story.append(Paragraph(f"S.No. {row.serial}", styles["RecordHeading"]))
@@ -150,7 +178,10 @@ class IF5Renderer:
         self._heading(story, "Legal Findings", styles)
         for index, finding in enumerate(findings, 1):
             story.append(HRFlowable(width="100%", thickness=.5, color=colors.HexColor("#94A3B8"), spaceBefore=1 * mm, spaceAfter=1 * mm))
-            story.append(Paragraph(f"Legal Finding {index}", styles["RecordHeading"]))
+            heading_title = f"Legal Finding {index}"
+            if finding.accused_name:
+                heading_title += f" (Accused: {finding.accused_name})"
+            story.append(Paragraph(heading_title, styles["RecordHeading"]))
             self._labelled_value(story, "Offence / Section", f"{finding.offence.rendered}\n{finding.proposed_section.rendered}", styles)
             self._labelled_value(story, "Status", finding.status, styles)
             self._labelled_value(story, "Offence Description", finding.description.rendered, styles)
@@ -158,6 +189,42 @@ class IF5Renderer:
             if finding.offence.confidence is not None:
                 self._labelled_value(story, "Confidence", f"{finding.offence.confidence:.2f}", styles)
             self._labelled_value(story, "Review Required", "Yes" if finding.review_required else "No", styles)
+
+            for w in finding.warnings:
+                story.append(Paragraph(f"<b>Warning:</b> {escape(w)}", styles["FieldLabel"]))
+
+            # Render element evaluation table if available
+            if finding.element_rows:
+                story.append(Paragraph("Element Evaluation Matrix", styles["FieldLabel"]))
+                table_data = [[
+                    Paragraph("Element", styles["TableHeader"]),
+                    Paragraph("Description", styles["TableHeader"]),
+                    Paragraph("State", styles["TableHeader"]),
+                    Paragraph("Matched Evidence", styles["TableHeader"]),
+                ]]
+                for el in finding.element_rows:
+                    state_lbl = el.state.upper()
+                    if el.officer_judgment:
+                        state_lbl += " (Officer Review Required)"
+                    table_data.append([
+                        Paragraph(escape(el.element_id), styles["Small"]),
+                        Paragraph(escape(el.description), styles["Small"]),
+                        Paragraph(escape(state_lbl), styles["Small"]),
+                        Paragraph(escape(el.evidence_text), styles["Small"]),
+                    ])
+                t = Table(table_data, colWidths=[30 * mm, 52 * mm, 38 * mm, 60 * mm], hAlign="LEFT")
+                t.setStyle(TableStyle([
+                    ("GRID", (0, 0), (-1, -1), .35, colors.HexColor("#94A3B8")),
+                    ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#1E3A5F")),
+                    ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                    ("LEFTPADDING", (0, 0), (-1, -1), 4),
+                    ("RIGHTPADDING", (0, 0), (-1, -1), 4),
+                    ("TOPPADDING", (0, 0), (-1, -1), 3),
+                    ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+                ]))
+                story.append(t)
+                story.append(Spacer(1, 2 * mm))
+
             self._evidence_items(story, "Supporting Evidence", finding.supporting_evidence, styles)
             if finding.contradicting_evidence:
                 self._evidence_items(story, "Contradicting Evidence", finding.contradicting_evidence, styles)

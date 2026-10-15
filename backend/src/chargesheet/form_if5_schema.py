@@ -47,6 +47,14 @@ class IF5Row(DomainModel):
     exhibit: ChargeSheetField
 
 
+class ChargeSheetElementRow(DomainModel):
+    element_id: str
+    description: str
+    state: str
+    evidence_text: str
+    officer_judgment: bool = False
+
+
 class ChargeSheetLegalFinding(DomainModel):
     """A reviewable legal conclusion without upgrading its evidentiary status."""
 
@@ -58,6 +66,12 @@ class ChargeSheetLegalFinding(DomainModel):
     review_required: bool
     supporting_evidence: tuple[ChargeSheetField, ...] = ()
     contradicting_evidence: tuple[ChargeSheetField, ...] = ()
+    section_key: str = ""
+    accused_name: str | None = None
+    read_with: tuple[str, ...] = ()
+    warnings: tuple[str, ...] = ()
+    element_rows: tuple[ChargeSheetElementRow, ...] = ()
+    is_draft: bool = False
 
 
 class ChargeSheetReviewItem(DomainModel):
@@ -90,11 +104,15 @@ class ChargeSheetData(DomainModel):
     vehicle_findings: tuple[ChargeSheetField, ...] = ()
     legal_sections: tuple[ChargeSheetField, ...] = ()
     legal_findings: tuple[ChargeSheetLegalFinding, ...] = ()
+    fir_sections_not_supported: tuple[ChargeSheetField, ...] = ()
+    applicable_not_in_fir: tuple[ChargeSheetField, ...] = ()
     conflicts: tuple[ChargeSheetReviewItem, ...] = ()
     missing_information: tuple[ChargeSheetReviewItem, ...] = ()
     annexures: tuple[IF5Row, ...] = ()
     final_opinion: ChargeSheetField
     signature: ChargeSheetField
+    is_draft_dataset: bool = False
+    draft_banner: str | None = None
 
     @property
     def content_hash(self) -> str:

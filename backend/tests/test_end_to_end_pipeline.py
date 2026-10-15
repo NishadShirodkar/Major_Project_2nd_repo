@@ -10,7 +10,13 @@ from src.domain.common import SourceReference
 from src.extraction.ocr_client import OCRClient
 from src.extraction.ocr_result import OCRMetadata, OCRPage, OCRResult
 from src.intake.upload_manager import IncomingUpload
-from src.legal.legal_rules import LegalJurisdiction, LegalReference, LegalReferenceProvider, LegalReferenceSource
+from src.legal.legal_rules import (
+    Element,
+    LegalJurisdiction,
+    LegalReference,
+    LegalReferenceProvider,
+    LegalReferenceSource,
+)
 from src.parsers.base_parser import ParserClient, ParserError
 from src.validation.evidence_validator import EvidenceValidator
 from src.validation.validation_models import ValidationDisposition, ValidationReport
@@ -44,12 +50,47 @@ class FixtureParserClient(ParserClient):
     def generate_json(self, prompt: str) -> dict:
         if self.fail:
             raise ParserError("fixture parser failure")
-        return {"report_number": "MLC-1", "patient_name": "Asha Devi", "doctor_name": "Dr. Sen", "observations": ["documented injury"], "confidence": 0.9}
+        return {
+            "report_number": "MLC-1",
+            "patient_name": "Asha Devi",
+            "doctor_name": "Dr. Sen",
+            "observations": ["documented injury"],
+            "report_date": "2024-08-01",
+            "confidence": 0.9,
+        }
 
 
 class FixtureLegalProvider(LegalReferenceProvider):
     def references_for(self, context):
-        return (LegalReference(section_id=uuid4(), section_number="S-1", offence_name="Fixture offence", description="Fixture offence supported by documented injury", required_elements=("documented injury",), jurisdiction=LegalJurisdiction.INDIA, effective_from=date(2024, 7, 1), source=LegalReferenceSource(publisher="Fixture", citation="Fixture reference", uri="https://example.test/reference"), version="fixture-v1", source_reference=SourceReference(document_id=uuid4())),)
+        el = Element(
+            id="injury",
+            type="result",
+            description="Documented injury",
+            fact_tags=("injury.documented",),
+            required=True,
+            officer_judgment=False,
+        )
+        return (
+            LegalReference(
+                section_id=uuid4(),
+                key="BNS:S-1",
+                law_code="BNS",
+                section_number="S-1",
+                offence_name="Fixture offence",
+                description="Fixture offence supported by documented injury",
+                required_elements=("injury",),
+                elements=(el,),
+                jurisdiction=LegalJurisdiction.INDIA,
+                effective_from=date(2024, 7, 1),
+                source=LegalReferenceSource(
+                    publisher="Fixture",
+                    citation="Fixture reference",
+                    uri="https://example.test/reference",
+                ),
+                version="fixture-v1",
+                source_reference=SourceReference(document_id=uuid4()),
+            ),
+        )
 
 
 class FailingLegalProvider(LegalReferenceProvider):

@@ -21,6 +21,7 @@ class CanonicalFact(DomainModel):
     confidence: float | None = Field(default=None, ge=0, le=1)
     extraction_method: str = Field(min_length=1)
     timestamp: datetime
+    tags: tuple[str, ...] = ()
 
 
 class ConflictSeverity(StrEnum):

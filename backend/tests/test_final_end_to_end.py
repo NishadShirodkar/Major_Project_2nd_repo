@@ -80,16 +80,17 @@ class FinalEndToEndTests(TestCase):
     def production_result(self, root: Path, *, ocr=None, parser=None):
         uploads = write_fixture_files(root / "fixtures")
         context = create_workflow_context(uuid4(), uploads)
-        registry = create_production_registry(root / "output", ocr_client=ocr or FixtureOCR(), parser_client=parser or FixtureParser(), legal_reference_path=DATASET, legal_reference_version=DATASET_VERSION)
+        registry = create_production_registry(root / "output", ocr_client=ocr or FixtureOCR(), parser_client=parser or FixtureParser(), legal_reference_path=DATASET, legal_reference_version=DATASET_VERSION, allow_draft_legal=True)
         return WorkflowEngine(registry).run(context), root / "output"
 
     def test_complete_production_fixture_to_approved_final_pdf(self):
         with TemporaryDirectory() as directory:
             result, output = self.production_result(Path(directory))
             self.assertTrue(result.report.successful)
-            self.assertEqual(tuple(record.status for record in result.report.stage_records), (StageStatus.COMPLETED,) * 9)
+            self.assertEqual(len(result.report.stage_records), 10)
+            self.assertEqual(tuple(record.status for record in result.report.stage_records), (StageStatus.COMPLETED,) * 10)
             artifacts = {item.name: output / item.storage_key for item in result.context.generated_artifacts}
-            for name in ("upload_manifest", "ocr_result", "parsed_document", "investigation_graph", "canonical_investigation", "validation_report", "case_context", "legal_findings", "chargesheet_data", "chargesheet_draft", "chargesheet_review_state"):
+            for name in ("upload_manifest", "ocr_result", "parsed_document", "investigation_graph", "canonical_investigation", "fact_tags", "validation_report", "case_context", "legal_findings", "chargesheet_data", "chargesheet_draft", "chargesheet_review_state"):
                 self.assertIn(name, artifacts)
             review, data = result.context.officer_review, result.context.chargesheet_data
             self.assertEqual(review.status, ReviewStatus.REVIEW_REQUIRED)
