@@ -27,6 +27,9 @@ Investigation knowledge graph
 Canonical investigation projection
       |
       v
+Controlled fact tagging
+      |
+      v
 Evidence/provenance validation
       |
       v
@@ -42,17 +45,18 @@ ChargeSheetData + validation
 ReportLab review PDF + JSON + review state
 ```
 
-The active production composition is defined in `src/workflow/production.py`. It registers these stages in this fixed order:
+The active production composition is defined in `src/workflow/production.py`. The current implementation is the Phase 1-11E typed pipeline, and it registers these stages in this fixed order:
 
 1. `document_intake`
 2. `ocr`
 3. `document_parsing`
 4. `investigation_knowledge_graph`
 5. `canonical_investigation`
-6. `evidence_validation`
-7. `case_context`
-8. `legal_reasoning`
-9. `chargesheet_population`
+6. `fact_tagging`
+7. `evidence_validation`
+8. `case_context`
+9. `legal_reasoning`
+10. `chargesheet_population`
 
 The workflow passes an immutable Pydantic-based `WorkflowContext` between stages. Stages return a new context rather than mutating the previous one. Document IDs, SHA-256 checksums, graph provenance, source references, confidence, validation status, and legal status are retained across boundaries.
 
@@ -61,7 +65,7 @@ Gemini is deliberately limited to:
 - raw OCR;
 - document-local structured extraction into typed parser schemas.
 
-The normal production legal reasoner, graph builder, canonicalizer, validator, charge-sheet populator, formatter, renderer, and review lifecycle are deterministic Python code. An optional injected legal client is constrained by the local legal-reference dataset and an evidence allow-list.
+The normal production legal reasoner, graph builder, canonicalizer, fact tagger, validator, charge-sheet populator, formatter, renderer, and review lifecycle are deterministic Python code. An optional injected legal client is constrained by the local legal-reference dataset and an evidence allow-list.
 
 ## 2. Running the backend
 
@@ -92,6 +96,7 @@ py -3.13 -m pip install -r requirements.txt
 | `GEMINI_MODEL` | Yes in practice | Gemini model used by OCR/parser clients |
 | `LEGAL_REFERENCE_PATH` | Yes | Local legal-reference JSON path |
 | `LEGAL_REFERENCE_VERSION` | Yes | Exact version pin for the legal dataset |
+| `ALLOW_DRAFT_LEGAL_REFERENCES` | No | Allows draft legal records for review/test workflows; default `false` |
 | `MAX_UPLOAD_FILE_SIZE_BYTES` | No | Per-file upload limit; default 100 MiB |
 | `MAX_CASE_UPLOAD_SIZE_BYTES` | No | Aggregate case limit; default 500 MiB |
 | `LLM_PROVIDER` | Legacy only | Provider selection for `src/llm.py` |
@@ -106,6 +111,8 @@ Example non-secret settings:
 LEGAL_REFERENCE_PATH=references/legal/bns_sections.json
 LEGAL_REFERENCE_VERSION=bns-2023-2024-07-01
 GEMINI_MODEL=<model-available-to-your-account>
+# Review/test mode only; draft references are not verified legal data
+ALLOW_DRAFT_LEGAL_REFERENCES=false
 ```
 
 ### Run a case
@@ -213,7 +220,7 @@ These JSON files belong to the retained legacy pipeline rather than the active t
 
 #### `references/legal/bns_sections.json`
 
-Local legal-reference dataset. `LocalLegalReferenceProvider` validates this file and pins every record to `LEGAL_REFERENCE_VERSION`. The current repository dataset is intentionally small and must not be treated as a complete legal corpus.
+Local legal-reference dataset. `LocalLegalReferenceProvider` validates this schema-version-2.0 file and pins every record to `LEGAL_REFERENCE_VERSION`. The current dataset contains 30 BNS references plus a controlled fact-tag vocabulary. All current records have `review.status: "draft"`, and the dataset status says they are not production-ready until verified. It is a version-pinned modelling/reference dataset, not a complete or verified legal corpus. By default draft records are filtered out; set `ALLOW_DRAFT_LEGAL_REFERENCES=true` only for review/test workflows.
 
 ## 4. Source file reference
 
@@ -280,7 +287,7 @@ These models are the typed boundaries that prevent arbitrary dictionaries from s
 | `upload_manager.py` | Validates uploads, calculates checksums, detects duplicates, copies originals, creates `SourceDocument` values, and writes manifests. |
 | `upload_manifest.py` | Manifest schemas and accepted/rejected/duplicate entry statuses. |
 
-The intake layer rejects unsafe filenames/path traversal, applies file and case-size limits, and treats duplicate bytes as duplicates using SHA-256 rather than filename alone. The validator can accept PDF/JPEG/PNG/DOCX/MP4/MOV/WAV, but the active Gemini OCR client supports PDF/JPEG/PNG.
+The intake layer rejects unsafe filenames/path traversal, applies file and case-size limits, and treats duplicate bytes as duplicates using SHA-256 rather than filename alone. PDF/JPEG/PNG are OCR-capable. DOCX/MP4/MOV/WAV can pass intake validation, but are preserved as deferred/unsupported media and do not receive active Gemini OCR processing.
 
 ### 4.5 `src/extraction/`
 
@@ -354,7 +361,22 @@ A document node is created for every parsed document. Non-empty parser fields ar
 
 Normalization is deterministic. It does not fill missing values with guesses. A canonical value should retain source document IDs and source references so later validation and presentation can explain where it came from.
 
-### 4.9 `src/validation/`
+### 4.9 `src/tagging/`
+
+Fact tagging runs after canonicalization and before evidence validation. It adds controlled vocabulary tags to canonical facts so the legal layer can evaluate statutory elements without relying on free-text section matching.
+
+| File | Responsibility |
+|---|---|
+| `__init__.py` | Tagging package exports. |
+| `deterministic_tagger.py` | Rule-based tagging of accused, injury, forensic, evidence/property, vehicle, timeline, and document facts. Tags are filtered against the legal dataset vocabulary. |
+| `prose_tagger.py` | Optional LLM tag proposal path; every proposed tag must belong to the vocabulary and include a verbatim quote found in OCR text. |
+| `tagging_stage.py` | Runs deterministic tagging, optionally runs verified prose tagging, writes `processed/legal/fact_tags.json`, and records tag metrics. |
+
+The production composition injects the legal reference provider but no prose LLM client, so the normal path is deterministic. Tags include examples such as `accused.identified`, `injury.documented`, `injury.grievous`, `weapon.recovered`, `vehicle.involved`, `accident.occurred`, `negligence.indicators`, and `threat.communicated`. The stage preserves the canonical model while updating its tagged facts.
+
+`fact_tags.json` contains a tag-count summary and a bounded list of tagged facts with source paths, values, and tags.
+
+### 4.10 `src/validation/`
 
 | File | Responsibility |
 |---|---|
@@ -371,7 +393,7 @@ Normalization is deterministic. It does not fill missing values with guesses. A 
 
 A fact with no valid source document ID/reference is treated as unsupported. Critical unsupported facts produce `final_blocked`. Other errors, conflicts, chronology issues, unresolved entities, or low-confidence conditions generally produce `review_required`. Clean supported data can produce `draft_allowed`.
 
-### 4.10 `src/context/`
+### 4.11 `src/context/`
 
 | File | Responsibility |
 |---|---|
@@ -383,28 +405,40 @@ A fact with no valid source document ID/reference is treated as unsupported. Cri
 
 `CaseContext` is a derived working view, not the source of truth. It includes metadata, FIR/occurrence facts, complainants, victims, accused, witnesses, officers, doctors, locations, vehicles, evidence, recovered property, medical/forensic findings, investigation actions, documents, legal references, validation findings, conflicts, missing information, and provenance.
 
-### 4.11 `src/legal/`
+### 4.12 `src/legal/`
 
 | File | Responsibility |
 |---|---|
 | `__init__.py` | Legal package exports. |
 | `legal_rules.py` | Legal-reference models, local version-pinned provider, and fixture provider. |
+| `date_gate.py` | Extracts the offence date and selects/filter references for BNS or IPC based on the statutory effective date. |
 | `evidence_mapper.py` | Builds the finite allow-list of evidence that can support legal findings. |
 | `legal_findings.py` | Legal finding, status, confidence, evidence strength, and evidence-mapping models. |
 | `legal_reasoner.py` | Deterministic legal reasoning plus constrained optional-client handling. |
 | `legal_artifacts.py` | Writes legal findings and evidence mappings. |
 | `legal_stage.py` | Workflow adapter for legal reasoning. |
 
-The provider refuses missing/unversioned legal data. The deterministic reasoner preserves uncertainty:
+The provider refuses missing/unversioned legal data. It filters out draft records unless `ALLOW_DRAFT_LEGAL_REFERENCES=true` or `allow_draft=True` is explicitly supplied. Draft mode adds a review warning and does not make the references verified.
 
-- `supported` means required evidence text/elements were found;
+`date_gate.py` extracts occurrence dates from timeline events, FIR facts, and document date attributes. It applies the statutory boundary as follows:
+
+- offence date before July 1, 2024 → `IPC`;
+- offence date on or after July 1, 2024 → `BNS`;
+- missing or multiple distinct dates → no automatic law selection and officer review;
+- references are filtered using `effective_from` and `effective_to` against the offence date, not the FIR filing date.
+
+The deterministic reasoner uses the fact-tag map and evaluates each legal reference's required elements. Element states can be `satisfied`, `unknown`, `contradicted`, or `officer_review`; officer-judgment elements never become automatically satisfied. Candidate sections are selected from FIR section references, trigger fact tags, IPC concordance, or a chargeable-reference fallback. Relations such as mutually exclusive, alternative charge, and may-combine-with are surfaced as warnings/suggestions.
+
+The reasoner preserves uncertainty:
+
+- `supported` means all required non-officer elements were satisfied, while officer-judgment elements may still require review;
 - `insufficient_evidence` means required support is missing;
 - `conflicted` means context conflicts affect the finding;
 - `review_required` flags findings needing officer review.
 
 Legal reasoning must not upgrade unsupported data into a conclusive charge. The local legal file is an allow-list/reference dataset, not legal advice and not a complete statutory corpus.
 
-### 4.12 `src/chargesheet/`
+### 4.13 `src/chargesheet/`
 
 | File | Responsibility |
 |---|---|
@@ -418,7 +452,7 @@ Legal reasoning must not upgrade unsupported data into a conclusive charge. The 
 
 This package is the direct bridge between validated investigation data and the rendered charge sheet. It must remain presentation-only: it may decide how to display a value, but it must not invent or upgrade evidence, confidence, legal status, or provenance.
 
-### 4.13 `src/rendering/`
+### 4.14 `src/rendering/`
 
 | File | Responsibility |
 |---|---|
@@ -431,7 +465,7 @@ This package is the direct bridge between validated investigation data and the r
 
 The active renderer builds an A4 PDF with escaped text, section headings, case information, evidence/legal tables, annexures, repeated table headers, and page header/footer chrome. The renderer receives charge-sheet data, not raw LLM responses, so it cannot alter upstream facts.
 
-### 4.14 `src/review/`
+### 4.15 `src/review/`
 
 | File | Responsibility |
 |---|---|
@@ -441,7 +475,7 @@ The active renderer builds an A4 PDF with escaped text, section headings, case i
 
 The intended lifecycle is `DRAFT -> REVIEW_REQUIRED -> APPROVED/REJECTED -> FINALIZED`. Approval and finalization must use the same case/version/content hash. Finalized artifacts cannot be silently overwritten.
 
-### 4.15 `src/scene/`
+### 4.16 `src/scene/`
 
 This is an adjacent visualization/3D reconstruction subsystem, not a stage in the active charge-sheet workflow.
 
@@ -452,7 +486,7 @@ This is an adjacent visualization/3D reconstruction subsystem, not a stage in th
 | `asset_registry.py` | Selects semantic GLB assets and fallback assets. |
 | `trellis_generator.py` | Optional Hugging Face/Gradio TRELLIS asset generation. |
 
-### 4.16 `src/evidence_graph/`, `src/infrastructure/`, and `src/repositories/`
+### 4.17 `src/evidence_graph/`, `src/infrastructure/`, and `src/repositories/`
 
 | File | Responsibility |
 |---|---|
@@ -612,7 +646,19 @@ The canonical model contains case metadata, complainants, victims, accused, witn
 
 Every supported fact should carry source document IDs/references. Missing data stays missing. The stage writes canonical artifacts under `processed/canonical/`.
 
-### Step 7: EvidenceValidator determines whether a draft is allowed
+### Step 7: FactTaggingStage adds controlled evidence tags
+
+`FactTaggingStage` receives the canonical investigation and the legal provider's `fact_tag_vocabulary`.
+
+1. `DeterministicTagger` tags accused identities and counts, medical injury findings, forensic findings, evidence/recovered property, vehicles, timeline events, and selected document attributes.
+2. `_tag_fact()` filters every generated tag against the controlled vocabulary, preventing arbitrary tags from entering legal evaluation.
+3. If a `ProseTaggingClient` is injected, `ProseTagger` may propose additional tags, but each tag must be in the vocabulary and its verbatim quote must occur in the OCR text before it is attached.
+4. The stage writes `processed/legal/fact_tags.json`, containing tag counts and bounded source-path/value/tag entries.
+5. The tagged canonical investigation remains in the workflow context for validation and legal reasoning.
+
+The normal production composition does not inject a prose client, so the standard run uses deterministic tagging only.
+
+### Step 8: EvidenceValidator determines whether a draft is allowed
 
 `EvidenceValidationStage` calls `EvidenceValidator` without mutating the canonical investigation.
 
@@ -636,7 +682,7 @@ The disposition gates later presentation:
 
 Validation artifacts are written under `processed/validation/`.
 
-### Step 8: CaseContextBuilder prepares downstream data
+### Step 9: CaseContextBuilder prepares downstream data
 
 `CaseContextStage` creates a compact context from canonical data and the validation report.
 
@@ -656,7 +702,7 @@ This context is intentionally compact for legal and presentation use, but it is 
 
 `processed/context/case_context.json` is written.
 
-### Step 9: LegalReasoner creates status-preserving findings
+### Step 10: LegalReasoner creates date-gated, status-preserving findings
 
 `LegalReasoningStage` loads the local dataset through `LocalLegalReferenceProvider`.
 
@@ -679,7 +725,7 @@ Normal deterministic reasoning:
 
 The reasoner does not turn absence of evidence into a factual allegation. `processed/legal/legal_findings.json` and `processed/legal/evidence_mapping.json` are written.
 
-### Step 10: ChargeSheetPopulator builds typed IF-5 data
+### Step 11: ChargeSheetPopulator builds typed IF-5 data
 
 `ChargeSheetStage` requires both `CaseContext` and `LegalFindings`. It calls `ChargeSheetPopulator.populate()`.
 
@@ -706,7 +752,7 @@ The schema rejects:
 - values placed into unavailable/not-applicable fields;
 - invalid legal/evidence mappings.
 
-### Step 11: Final charge-sheet validation
+### Step 12: Final charge-sheet validation
 
 `ChargeSheetValidator` performs a second validation pass after population. This protects the final presentation boundary even if an upstream context object was incomplete or a mapping was wrong.
 
@@ -714,7 +760,7 @@ If validation returns errors, `ChargeSheetStage` raises an exception and does no
 
 `ChargeSheetData.content_hash` is calculated from stable serialized data and version. The hash is later used by review/approval operations to prevent approval of changed content.
 
-### Step 12: JSON artifact and PDF rendering
+### Step 13: JSON artifact and PDF rendering
 
 For data that is not `final_blocked`:
 
@@ -727,9 +773,9 @@ For data that is not `final_blocked`:
 7. `ReviewService` creates a draft review record and submits it for review.
 8. `review_state.json` stores the review state, events, version, and content hash.
 
-The PDF is marked as a draft/review copy. Rendering is not allowed to upgrade `insufficient_evidence`, `conflicted`, or `review_required` findings into conclusive claims.
+The PDF is marked as a draft/review copy. The normal CLI stage does not produce a final PDF; `ReviewService.finalize()` produces the final artifact only after approval. Rendering is not allowed to upgrade `insufficient_evidence`, `conflicted`, or `review_required` findings into conclusive claims.
 
-### Step 13: Officer review and finalization
+### Step 14: Officer review and finalization
 
 The production stage creates the draft and review state. A later caller must use `ReviewService` to transition it:
 
@@ -775,6 +821,7 @@ output/
         ├── context/
         │   └── case_context.json
         ├── legal/
+      │   ├── fact_tags.json
         │   ├── legal_findings.json
         │   └── evidence_mapping.json
         └── chargesheet/
@@ -799,6 +846,8 @@ These files are generated evidence, not source code. Do not edit them to fix app
 
 ## 7. Tests and what they protect
 
+The backend currently contains 21 pytest modules. The normal suite uses injected/fake providers; the Gemini SDK smoke test is opt-in.
+
 | Test file | Main coverage |
 |---|---|
 | `test_domain_models.py` | Model immutability, hashes, filenames, provenance, confidence. |
@@ -811,6 +860,8 @@ These files are generated evidence, not source code. Do not edit them to fix app
 | `test_knowledge_graph.py` | Identity merging, roles, graph relationships, provenance. |
 | `test_canonical_investigation.py` | Canonical projection, conflicts, evidence, timeline. |
 | `test_evidence_validation.py` | Completeness, support, provenance, conflict, chronology, confidence. |
+| `test_date_gate.py` | Offence-date extraction, BNS/IPC boundary selection, ambiguity, and effective-date filtering. |
+| `test_fact_tagging.py` | Deterministic vocabulary tags, optional quote-verified prose tags, and tagging artifacts. |
 | `test_case_context_and_legal.py` | Context selection, evidence allow-list, legal status constraints. |
 | `test_legal_reference_provider.py` | Legal dataset structure and strict version pinning. |
 | `test_chargesheet.py` | Population, formatting, field provenance, renderer, blocked output. |
@@ -819,6 +870,7 @@ These files are generated evidence, not source code. Do not edit them to fix app
 | `test_workflow_engine.py` | Stage order, skipping, critical/non-critical failure semantics. |
 | `test_end_to_end_pipeline.py` | Full typed fixture workflow and failure gates. |
 | `test_final_end_to_end.py` | Production composition through approved/final PDF behavior. |
+| `test_golden_case_001.py` | Golden-case regression for the ten-stage workflow, fact tags, legal output, and artifacts. |
 
 ## 8. Legacy versus active code
 
