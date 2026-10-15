@@ -1,0 +1,56 @@
+{
+  "accused_statement": {
+    "statement_id": "AS/PSDW/0912/001",
+    "date_of_recording": "2024-12-07",
+    "time_of_recording": "18:00",
+    "place": "PS Dwarka Sector 23",
+    "recorded_by": "Inspector Anil Kumar Chauhan",
+    "witness_to_recording": "ASI Karan Singh, PS Dwarka Sector 23",
+    "accused_details": {
+      "accused_id": "ACC-001",
+      "name": "Sanjay Sharma",
+      "age": 42,
+      "father_name": "Late Suresh Sharma",
+      "mother_name": "Kamla Sharma",
+      "occupation": "Property Dealer (business in losses)",
+      "education": "B.Com",
+      "marital_status": "Married",
+      "address": "C-78, Sector 24, Dwarka, New Delhi - 110075",
+      "native_place": "Sonipat, Haryana",
+      "aadhar_number": "7234 5678 9012",
+      "contact": "9811223388"
+    },
+    "rights_read": {
+      "article_20_3_read": true,
+      "right_to_silence": true,
+      "right_to_legal_counsel": true,
+      "accused_understood_rights": true,
+      "legal_aid_counsel_provided": "Adv. Rakesh Tyagi, DLSA empanelled"
+    },
+    "statement_text": "I, Sanjay Sharma, son of Late Suresh Sharma, state that I am a property dealer by profession. My business has been running into losses for the last 2 years and I have heavy debts. I needed money urgently. There was our ancestral property in Sonipat which was currently in the name of my elder brother's widow Meena Devi, since my brother Suresh Sharma was the eldest son and had inherited it. My brother died in 2018. I asked Meena Bhabhi multiple times to sell the property and give me my share but she always refused saying the property would go to her daughters. I became desperate when my creditors started threatening me. On 5th December 2024, I went to Meena Bhabhi's house in the night through the back gate because I knew she would not let me in through the front. I had a duplicate key which my brother had given me many years ago. I entered the house around 9:15 PM. Meena Bhabhi was watching TV. I asked her one final time to sign the property sale papers. She refused and started shouting at me, saying she would never give me anything. We had a big argument. I lost my temper. I saw a kitchen knife on the dining table and I picked it up. I don't know what came over me. I attacked her with the knife. She tried to defend herself with her hands but I stabbed her multiple times. I remember stabbing her in the neck and chest. She fell down. I got scared when I saw blood everywhere. I wiped the knife on the curtain, wrapped it in a cloth, and ran away through the back gate. I went to my cousin's house in Gurugram the same night. I am full of remorse for what I have done. I should not have taken such a drastic step. I am ready to accept whatever punishment the court gives me.",
+    "confession_elements": {
+      "admits_murder": true,
+      "admits_motive": "Property dispute and financial desperation",
+      "admits_presence_at_scene": true,
+      "admits_using_knife": true,
+      "admits_escape_route": true,
+      "shows_remorse": true,
+      "declines_to_name_accomplices": "Worked alone, no accomplices"
+    },
+    "memorandum_statement": {
+      "recorded_under": "Section 27 Indian Evidence Act",
+      "time": "19:30",
+      "leads_to_recovery": [
+        "Kitchen knife used in murder (recovered from accused's cousin's house in Gurugram)",
+        "Bloodstained clothes of accused (recovered from his residence)",
+        "Duplicate keys of victim's house (recovered from accused's possession)"
+      ]
+    },
+    "statement_read_back": true,
+    "accused_confirmed_statement": true,
+    "signature_accused": "Sanjay Sharma (Signed in Hindi)",
+    "witness_signature": "ASI Karan Singh",
+    "io_signature": "Anil Kumar Chauhan, Inspector",
+    "remarks": "Voluntary statement recorded in presence of witness and DLSA counsel. Accused was fully informed of his rights. Statement led to recovery of critical evidence including the murder weapon. No coercion used."
+  }
+}

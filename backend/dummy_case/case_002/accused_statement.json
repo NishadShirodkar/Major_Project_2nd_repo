@@ -1,0 +1,44 @@
+{
+  "accused_statement": {
+    "statement_id": "AS/PSKB/0534/001",
+    "date_of_recording": "2024-11-22",
+    "time_of_recording": "16:30",
+    "place": "PS Karol Bagh (after arrest)",
+    "recorded_by": "Inspector Rajesh Kumar Yadav",
+    "witness_to_recording": "ASI Ram Singh, PS Karol Bagh",
+    "accused_details": {
+      "accused_id": "ACC-001",
+      "name": "Ravi Shankar Yadav @ Ravi",
+      "age": 34,
+      "father_name": "Ram Shankar Yadav",
+      "mother_name": "Kamla Devi",
+      "occupation": "Unemployed (former security guard)",
+      "education": "8th Pass",
+      "marital_status": "Married",
+      "address": "Jhuggi No. 45, Rehgar Pura, Karol Bagh, New Delhi - 110005",
+      "native_place": "Village Karanpur, Post Doiwala, Distt. Dehradun, Uttarakhand",
+      "aadhar_number": "8456 2317 9045",
+      "contact": "9871123456"
+    },
+    "rights_read": {
+      "article_20_3_read": true,
+      "right_to_silence": true,
+      "right_to_legal_counsel": true,
+      "accused_understood_rights": true
+    },
+    "statement_text": "I, Ravi Shankar Yadav, s/o Ram Shankar Yadav, state that I was working as security guard at Rishi Apartments until September 2024 when I was dismissed by the RWA Secretary Rajiv Chawla on false allegations of theft. I was very angry because I had worked there for two years. After dismissal, I could not find another job and my family was facing financial problems. I knew the routine of all residents of the building. I knew that the Malhotra family on the third floor went to their jewellery shop every morning and returned only in the evening. I also knew from my time as security guard that they kept gold ornaments at home. On 20th November 2024, I took my motorcycle and went to Rishi Apartments at around 2:15 PM. I told the new guard Mahesh that I had come to meet Ranjit in maintenance. I went up to the third floor with an iron rod that I had brought from home. I broke the lock of Flat 302 and entered. I used the iron rod to break open the steel almirah. I took gold ornaments, silver items and cash. I put everything in a black bag and left. I went straight to my house in Rehgar Pura. I sold some of the ornaments to a jeweller in Sadar Bazar and used the cash for my family expenses. I admit I committed this theft because I was angry at being dismissed and needed money. I am sorry for what I did. I will cooperate with the police and return whatever is left with me.",
+    "confession_elements": {
+      "admits_house_breaking": true,
+      "admits_theft": true,
+      "states_motive": "Revenge for dismissal + financial distress",
+      "shows_remorse": true,
+      "offers_return_stolen_items": true
+    },
+    "statement_read_back": true,
+    "accused_confirmed_statement": true,
+    "signature_accused": "Ravi Shankar Yadav (Signed in Hindi)",
+    "witness_signature": "ASI Ram Singh",
+    "io_signature": "Rajesh Kumar Yadav, Inspector",
+    "remarks": "Statement recorded voluntarily in presence of witness. Accused was given time to consult legal aid counsel provided by DLSA but declined. Statement led to recovery of stolen ornaments worth ₹6,80,000, cash ₹85,000, iron rod used in the crime, and motorcycle DL4SBK7890."
+  }
+}

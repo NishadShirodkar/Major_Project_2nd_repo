@@ -1,0 +1,87 @@
+{
+  "site_plan": {
+    "plan_id": "SP/PSKB/0534/2024",
+    "date_prepared": "2024-11-21",
+    "prepared_by": "Inspector Rajesh Kumar Yadav, IO",
+    "drawn_to_scale": "Scale 1:100",
+    "orientation": "North at top",
+    "legend": {
+      "symbols": {
+        "star_red": "Entry point (broken padlock)",
+        "arrow_entry": "Accused's entry path",
+        "arrow_exit": "Accused's exit path",
+        "star_blue": "Almirah (broken open)",
+        "circle_fp": "Fingerprint locations",
+        "square_rod": "Iron rod found location",
+        "triangle_cam": "CCTV camera locations",
+        "X_marks": "Ransacked areas"
+      }
+    },
+    "building_layout": {
+      "name": "Rishi Apartments",
+      "floors": 4,
+      "flats_per_floor": 2,
+      "main_gate_direction": "South, faces Ajmal Khan Road",
+      "staircase": "Centre of building, 2 staircases (east and west)",
+      "lift": "One lift, near east staircase",
+      "security_cabin": "Adjacent to main gate"
+    },
+    "flat_302_layout": {
+      "entrance_door": "North-East corner of flat, wooden door with padlock",
+      "living_room": "8m x 5m, immediately upon entering",
+      "master_bedroom": "5m x 4m, at south-east of flat, contains steel almirah",
+      "second_bedroom": "4m x 3.5m, at west",
+      "kitchen": "3.5m x 3m, at north-west",
+      "almirah_location": "North wall of master bedroom, built-in steel almirah (Godrej, 2-door)",
+      "bed_position": "Opposite wall to almirah",
+      "window": "East-facing window in master bedroom"
+    },
+    "flat_302_measurements": {
+      "total_area": "1300 sq ft (approximately)",
+      "main_door_to_lift": "12m",
+      "main_door_to_staircase": "8m",
+      "almirah_to_bedroom_door": "2.8m",
+      "almirah_dimensions": "6ft height x 4ft width x 2ft depth",
+      "living_room_ransack_area": "Sofa and coffee table region (3m x 2m)",
+      "bedroom_ransack_area": "Wardrobe and bedside area (4m x 3m)"
+    },
+    "evidence_locations": {
+      "broken_padlock": "Ground at main door, 30cm inside from threshold",
+      "iron_rod": "Master bedroom floor, 1.5m from almirah, at 2 o'clock direction",
+      "fingerprints": [
+        "Main door handle (outer side): 1 impression",
+        "Almirah right handle: 2 impressions",
+        "Almirah left handle: 1 impression",
+        "Bedroom door handle (inner): 2 impressions",
+        "Bedroom window latch: 1 impression",
+        "Living room cabinet handle: 1 impression",
+        "Others: 4 partial prints"
+      ],
+      "footprint": "Balcony floor, right foot impression, chevron sole pattern, size 9",
+      "fibre_recovery": "Near broken almirah, 3 black fibres on floor"
+    },
+    "entry_exit_route": {
+      "premises_entry": "Main gate at 14:20:15, lobby, lift",
+      "flat_entry": "Lift to 3rd floor, walk to Flat 302, break padlock at 14:30",
+      "movement_inside": "Enters flat, ransacks living room, moves to master bedroom, breaks almirah, extracts valuables",
+      "flat_exit": "Same door, back to lift",
+      "premises_exit": "Lift to ground, exit main gate at 14:52:40, walks to motorcycle"
+    },
+    "nearby_landmarks": [
+      {"landmark": "Karol Bagh Metro Station Gate 2", "distance": "150m NW"},
+      {"landmark": "Malhotra Jewellers", "distance": "250m N, owner's business"},
+      {"landmark": "Karol Bagh Police Station", "distance": "800m NE"},
+      {"landmark": "Aggarwal Sweets Shop", "distance": "20m S"},
+      {"landmark": "Bank of Baroda ATM", "distance": "60m E"}
+    ],
+    "coordinates_system": {
+      "datum": "WGS84",
+      "building_main_gate": "28.6519, 77.1902",
+      "crime_scene_flat_door": "28.6520, 77.1902",
+      "motorcycle_parking": "28.6517, 77.1903",
+      "measurements_accuracy": "±1m"
+    },
+    "notes": "Site plan drawn based on spot panchnama, CCTV footage analysis, and revisiting the scene. The layout accurately depicts the movement of accused through the building based on CCTV and physical evidence.",
+    "signature": "Inspector Rajesh Kumar Yadav, IO"
+  }
+}

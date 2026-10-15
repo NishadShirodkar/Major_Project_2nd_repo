@@ -1,0 +1,39 @@
+{
+  "evidence_inventory": {
+    "case_reference": "FIR/2024/DL/PSDW/0912",
+    "total_evidence_items": 25,
+    "evidence_custodian": "MHC(M) - PS Dwarka Sector 23",
+    "list_prepared_by": "Inspector Anil Kumar Chauhan, IO",
+    "date": "2025-01-18",
+    "items": [
+      {"evidence_id": "EVD-0912-001", "type": "Biological", "description": "Blood sample from crime scene (EDTA vial)", "collected_from": "Living room floor", "collected_by": "IO", "date_time_collection": "2024-12-06, 02:30", "status": "In FSL custody"},
+      {"evidence_id": "EVD-0912-002", "type": "Biological", "description": "Bloodstained bedsheet", "collected_from": "Living room sofa", "collected_by": "IO", "date_time_collection": "2024-12-06, 02:45", "status": "In Malkhana"},
+      {"evidence_id": "EVD-0912-003", "type": "Biological", "description": "Victim's bloodstained clothing (salwar kameez)", "collected_from": "Victim's body at hospital", "collected_by": "IO", "date_time_collection": "2024-12-06, 03:30", "status": "In Malkhana"},
+      {"evidence_id": "EVD-0912-004", "type": "Physical", "description": "Broken bangles (struggle evidence)", "collected_from": "Living room near victim", "collected_by": "IO", "date_time_collection": "2024-12-06, 03:00", "status": "In Malkhana"},
+      {"evidence_id": "EVD-0912-005", "type": "Forensic", "description": "18 fingerprint lift sheets", "collected_from": "Window, dining table, TV remote, etc.", "collected_by": "Fingerprint Expert", "date_time_collection": "2024-12-06, 03:15", "status": "In FSL custody"},
+      {"evidence_id": "EVD-0912-006", "type": "Forensic", "description": "Footwear impression cast", "collected_from": "Back window entry point", "collected_by": "Forensic team", "date_time_collection": "2024-12-06, 03:45", "status": "In FSL custody"},
+      {"evidence_id": "EVD-0912-007", "type": "Digital", "description": "Photographs of crime scene (45 frames)", "collected_by": "HC Sanjay Kumar", "date_time_collection": "2024-12-06", "status": "In Malkhana + Server backup"},
+      {"evidence_id": "EVD-0912-008", "type": "Digital", "description": "CCTV DVR from Ramesh Chand's house", "collected_from": "B-143 Sector 23", "collected_by": "IO", "date_time_collection": "2024-12-06, 09:00", "status": "In Malkhana"},
+      {"evidence_id": "EVD-0912-009", "type": "Digital", "description": "CCTV Pen Drive from Shanti Kunj Park", "collected_from": "Park control room", "collected_by": "IO", "date_time_collection": "2024-12-06, 09:30", "status": "In Malkhana"},
+      {"evidence_id": "EVD-0912-010", "type": "Digital", "description": "Victim's mobile phone (Redmi Note 10)", "collected_from": "Living room sofa", "collected_by": "IO", "date_time_collection": "2024-12-06, 02:50", "status": "In Malkhana - Extracted"},
+      {"evidence_id": "EVD-0912-011", "type": "Documentary", "description": "Property documents of Sonipat land", "collected_from": "Victim's study table", "collected_by": "IO", "date_time_collection": "2024-12-06, 03:20", "status": "In case file"},
+      {"evidence_id": "EVD-0912-012", "type": "Physical", "description": "Victim's broken spectacles", "collected_from": "Near victim's body", "collected_by": "IO", "date_time_collection": "2024-12-06, 03:05", "status": "In Malkhana"},
+      {"evidence_id": "EVD-0912-013", "type": "Physical - Murder Weapon", "description": "Kitchen knife (8 inch blade, wooden handle) with blood stains", "collected_from": "Cousin Arun Sharma's house, Gurugram", "collected_by": "IO", "date_time_collection": "2024-12-07, 15:00", "status": "In FSL custody, analyzed"},
+      {"evidence_id": "EVD-0912-014", "type": "Biological", "description": "Accused's bloodstained grey sweater and black jeans", "collected_from": "Accused's residence", "collected_by": "IO", "date_time_collection": "2024-12-07, 15:45", "status": "In Malkhana, FSL analyzed"},
+      {"evidence_id": "EVD-0912-015", "type": "Physical", "description": "Duplicate set of keys of victim's house", "collected_from": "Accused's wallet at arrest", "collected_by": "IO", "date_time_collection": "2024-12-07, 06:15", "status": "In Malkhana"},
+      {"evidence_id": "EVD-0912-016", "type": "Documentary", "description": "Bus ticket Delhi to Jaipur (07-12-2024)", "collected_from": "Accused's wallet", "collected_by": "IO", "date_time_collection": "2024-12-07, 06:15", "status": "In case file"},
+      {"evidence_id": "EVD-0912-017", "type": "Physical - Vehicle", "description": "White Maruti Swift DL3CCW1234 (escape vehicle)", "collected_from": "Kherki Daula Toll Plaza", "collected_by": "IO", "date_time_collection": "2024-12-06, 23:00", "status": "In Malkhana yard"},
+      {"evidence_id": "EVD-0912-018", "type": "Digital", "description": "Accused's mobile phone (OnePlus Nord CE 2)", "collected_from": "Personal search at arrest", "collected_by": "IO", "date_time_collection": "2024-12-07, 06:15", "status": "In Malkhana - Extracted"},
+      {"evidence_id": "EVD-0912-019", "type": "Forensic Reference", "description": "Accused's fingerprint card", "collected_at": "PS Dwarka Sector 23", "date_time_collection": "2024-12-07", "status": "In FSL custody"},
+      {"evidence_id": "EVD-0912-020", "type": "Biological", "description": "Victim's blood sample from postmortem", "collected_from": "Safdarjung Hospital Mortuary", "collected_by": "IO", "date_time_collection": "2024-12-07", "status": "In FSL custody"},
+      {"evidence_id": "EVD-0912-021", "type": "Documentary", "description": "Sonipat Court order dismissing accused's civil suit", "collected_from": "Sonipat Civil Court", "collected_by": "IO", "date_time_collection": "2024-12-11", "status": "In case file"},
+      {"evidence_id": "EVD-0912-022", "type": "Documentary", "description": "Accused's bank statements showing debts", "collected_from": "Multiple banks", "collected_by": "IO", "date_time_collection": "2024-12-11", "status": "In case file"},
+      {"evidence_id": "EVD-0912-023", "type": "Digital", "description": "WhatsApp chat transcript (threatening messages)", "extracted_from": "Both victim's and accused's phones", "collected_by": "IT Cell", "date_time_collection": "2024-12-15", "status": "In case file"},
+      {"evidence_id": "EVD-0912-024", "type": "Biological", "description": "Victim's nail clippings (with DNA under nails)", "collected_from": "Postmortem", "collected_by": "Medical Officer", "date_time_collection": "2024-12-06, 11:30", "status": "In FSL custody"},
+      {"evidence_id": "EVD-0912-025", "type": "Physical", "description": "Bloodstained knife cloth (used to wrap knife)", "collected_from": "Arun Sharma's house", "collected_by": "IO", "date_time_collection": "2024-12-07, 15:00", "status": "In Malkhana"}
+    ],
+    "evidence_summary": "Total 25 evidence items. Physical: 5 (including murder weapon). Biological: 5. Forensic: 3. Digital: 5. Documentary: 4. Vehicle: 1. Reference: 1. Chain of custody documented for all items. The evidence collectively establishes accused's presence, motive, weapon used, and physical struggle.",
+    "io_declaration": "I certify that all evidence listed above was collected under my supervision following proper procedure and is material to this case.",
+    "signature": "Anil Kumar Chauhan, Inspector"
+  }
+}

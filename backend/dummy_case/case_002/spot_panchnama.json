@@ -1,0 +1,98 @@
+{
+  "spot_panchnama": {
+    "panchnama_id": "PN/PSKB/0534/2024",
+    "date": "2024-11-20",
+    "time_started": "21:15",
+    "time_completed": "23:00",
+    "place": "Flat 302, Third Floor, Rishi Apartments, Ajmal Khan Road, Karol Bagh, New Delhi",
+    "prepared_by": {
+      "name": "Inspector Rajesh Kumar Yadav",
+      "badge": "DCP/CD/5124",
+      "designation": "SHO, PS Karol Bagh"
+    },
+    "panch_witnesses": [
+      {"name": "Vikram Malhotra", "age": 52, "occupation": "Businessman"},
+      {"name": "Sunita Kapoor", "age": 45, "occupation": "Housewife"}
+    ],
+    "location_details": {
+      "building": "Rishi Apartments, 4-storey residential building",
+      "flat": "302, Third Floor",
+      "entry_door": "Main door with single-leaf wooden frame and Godrej padlock (broken)",
+      "exit_route": "Same main door, staircase, main gate",
+      "police_station_distance": "800m North-West"
+    },
+    "weather_conditions": {
+      "sky": "Clear",
+      "temperature": "22°C",
+      "road_surface": "Dry",
+      "visibility": "Good"
+    },
+    "flat_layout_observed": {
+      "entrance": "Opens into living room",
+      "rooms": ["Living room", "Master bedroom", "Second bedroom", "Kitchen", "Two bathrooms"],
+      "almirah_location": "Master bedroom, Godrej steel almirah (built-in)",
+      "ransacking_observation": "Living room sofa cushions displaced, kitchen cabinet drawers open, master bedroom wardrobe doors open, almirah broken open"
+    },
+    "damage_observed": [
+      {"item": "Main door padlock", "damage": "Broken with force, cut marks"},
+      {"item": "Main door frame", "damage": "Slight damage on hinge side"},
+      {"item": "Steel Almirah lock", "damage": "Forcibly broken open"},
+      {"item": "Steel Almirah door", "damage": "Bent slightly"},
+      {"item": "Wardrobe", "damage": "Doors open, no physical damage"},
+      {"item": "Drawer in bedside table", "damage": "Pulled out and emptied"}
+    ],
+    "evidence_at_scene": [
+      {"id": "SC-001", "type": "Iron Rod", "location": "Master bedroom floor, near almirah", "description": "20-inch long iron rod, likely used to break the almirah"},
+      {"id": "SC-002", "type": "Fingerprint", "location": "Main door handle", "description": "Latent prints lifted on gelatin sheet"},
+      {"id": "SC-003", "type": "Fingerprint", "location": "Almirah handle", "description": "Partial prints lifted"},
+      {"id": "SC-004", "type": "Fingerprint", "location": "Bedroom door handle", "description": "Two clear impressions"},
+      {"id": "SC-005", "type": "Footprint", "location": "Balcony floor", "description": "Single right foot impression (size 9, chevron sole pattern)"},
+      {"id": "SC-006", "type": "Tool Marks", "location": "Padlock hasp", "description": "Leverage marks consistent with iron rod"},
+      {"id": "SC-007", "type": "Tool Marks", "location": "Almirah door edge", "description": "Pry marks matching iron rod tip"},
+      {"id": "SC-008", "type": "Fibre", "location": "Broken almirah area", "description": "Black fibre particles - likely from bag or clothing"}
+    ],
+    "photographs_taken": {
+      "total_photographs": 35,
+      "photographer": "HC Ramesh Kumar, Photography Section, PS Karol Bagh",
+      "camera": "Nikon D5300 Digital Camera",
+      "photograph_details": [
+        "Frame 001-006: Exterior view of Rishi Apartments, main gate, staircase",
+        "Frame 007-010: Main door with broken padlock (wide and close-up)",
+        "Frame 011-015: Living room showing ransacking",
+        "Frame 016-020: Master bedroom with broken almirah",
+        "Frame 021-025: Close-up of broken almirah lock and door",
+        "Frame 026-028: Iron rod with measurement scale",
+        "Frame 029-031: Bedroom and kitchen showing ransacking",
+        "Frame 032-035: Overall view of flat layout"
+      ]
+    },
+    "cctv_data_retrieved": {
+      "apartment_main_gate_camera": {
+        "camera_id": "CAM-RISHI-MAIN-01",
+        "coverage": "Main entrance gate, lobby, staircase entrance",
+        "footage_timestamp_extracted": "14:00 to 15:30 on 20-11-2024",
+        "key_observations": [
+          "14:20:15 - Male in black t-shirt enters gate, faces camera briefly",
+          "14:52:40 - Same male exits with black bag, walks quickly towards road"
+        ]
+      },
+      "street_camera": {
+        "camera_id": "MCD-KB-STREET-34",
+        "coverage": "Ajmal Khan Road street (managed by MCD)",
+        "footage_extracted": "14:00 to 15:00 on 20-11-2024",
+        "observations": "Black Hero Splendor DL4SBK7890 parked 30m from building between 14:15-14:55"
+      }
+    },
+    "measurements_reference_points": {
+      "reference_1_building_main_gate": "Fixed reference point at main gate",
+      "reference_2_flat_door": "12m from lift, 3rd floor",
+      "reference_3_almirah": "2.5m from bedroom window, 1.8m from bed"
+    },
+    "panchnama_conclusion": "The scene reveals forced entry through main door, targeted theft focused on master bedroom almirah. Physical evidence indicates single perpetrator using iron rod. Time window of crime 14:30-14:52. CCTV footage corroborates entry and exit times of suspect matching the accused's description.",
+    "signatures": {
+      "panch_1": "Vikram Malhotra",
+      "panch_2": "Sunita Kapoor",
+      "io": "Rajesh Kumar Yadav, Inspector"
+    }
+  }
+}

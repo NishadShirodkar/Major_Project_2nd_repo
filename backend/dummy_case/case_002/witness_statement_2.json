@@ -1,0 +1,27 @@
+{
+  "witness_statement": {
+    "statement_id": "WS/PSKB/0534/002",
+    "date_of_recording": "2024-11-20",
+    "time_of_recording": "22:00",
+    "place": "PS Karol Bagh",
+    "recorded_by": "Inspector Rajesh Kumar Yadav",
+    "witness_details": {
+      "witness_id": "WIT-002",
+      "name": "Mahesh Kumar",
+      "age": 38,
+      "father_name": "Shri Balbir Singh",
+      "occupation": "Security Guard, Rishi Apartments (current)",
+      "address": "Security Quarters, Rishi Apartments, Ajmal Khan Road, Karol Bagh, New Delhi - 110005",
+      "contact": "9811223366"
+    },
+    "statement_under_section": "Section 161 of Code of Criminal Procedure, 1973",
+    "statement_text": "My name is Mahesh Kumar, and I have been working as the security guard at Rishi Apartments for the past four months. I took over this job after Ravi Shankar Yadav, the previous guard, was dismissed by the RWA in September 2024 for theft of small items and misbehaving with residents. Today on 20th November 2024, I was on duty at the main gate from morning. Around 2:20 PM, I saw Ravi Shankar Yadav, the former guard, entering the building. I stopped him and asked why he was coming. He told me that he had come to meet his old colleague Ranjit who works in the building's maintenance. I let him go as I did not want any argument. At about 2:50 PM, I saw him coming down with a black bag and rushing. I called out to him but he did not stop and quickly went out. Around 3:00 PM, Madam Sunita from Flat 301 called on my intercom and asked if I had let someone in. She told me she had seen Ravi entering and suspected something wrong. I immediately went to the third floor and saw that the lock of Flat 302 was broken. I tried to call the Malhotra family but they were not picking up. I informed the RWA Secretary. When the family returned at 7:00 PM, they saw the damage and we called the police. I also want to state that Ravi had been seen loitering near the building 2-3 times in the last month. He had also threatened me once in October when I asked him to leave. I can identify Ravi if needed. I have also given the RWA secretary the CCTV footage of the main gate which clearly shows Ravi entering at 2:20 PM and leaving at 2:52 PM with the black bag.",
+    "identification_of_accused": {
+      "can_identify": true,
+      "identification_details": "Ravi Shankar Yadav - the former security guard, well known to me personally"
+    },
+    "statement_verified": true,
+    "witness_signature": "Mahesh Kumar (Signed)",
+    "io_signature": "Rajesh Kumar Yadav, Inspector"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "complaint": {
+    "date": "2024-11-20",
+    "time": "19:45",
+    "police_station": "Karol Bagh Police Station",
+    "section": "Section 154 of Code of Criminal Procedure, 1973",
+    "complainant_details": {
+      "name": "Vikram Malhotra",
+      "age": 52,
+      "occupation": "Businessman (Owner, Malhotra Jewellers, Karol Bagh)",
+      "address": "Flat 302, Rishi Apartments, Plot No. 14, Ajmal Khan Road, Karol Bagh, New Delhi - 110005",
+      "contact": "9811223344"
+    },
+    "complaint_text": "Respected Sir, I Vikram Malhotra, son of Late Mohan Lal Malhotra, resident of Flat 302, Rishi Apartments, Ajmal Khan Road, Karol Bagh, New Delhi, do hereby state that today i.e. on 20th November 2024, my family and I had left our home at around 8:30 AM to attend to our business at Malhotra Jewellers, Ajmal Khan Road. My wife, my son, and I returned home at approximately 7:00 PM. On reaching the third floor, we were shocked to find that the main door lock of our flat was broken and the door was slightly ajar. Inside the flat, we found that the entire house had been ransacked. The steel almirah in the bedroom was broken open. On checking, we discovered that the following items were missing from our flat: (1) Gold Necklace 22K 45 grams, (2) 4 Gold Bangles 22K totaling 120 grams, (3) 3 Gold Rings 22K totaling 30 grams, (4) Pair of Diamond Earrings, (5) 10 Silver Coins, (6) Silver Puja Thali, (7) Cash of approximately ₹2,00,000 which was kept in the almirah for our business. The total approximate value of the stolen items is ₹18,45,000. I suspect this is the handiwork of someone who knew our daily routine. The former security guard of our building, one Ravi Shankar Yadav, who was dismissed three months ago, had been seen loitering near the building on several occasions. I request you to register an FIR and take strict legal action against the culprit. The facts stated above are true to my knowledge.",
+    "verbal_complaint_recorded_by": "SI Mohan Lal, Duty Officer, PS Karol Bagh",
+    "complaint_read_and_verified": true,
+    "time_of_complaint": "19:45 hours",
+    "signature_thumb_impression": "Signed by Complainant - Vikram Malhotra",
+    "witness_to_complaint": [
+      {
+        "name": "Sunita Kapoor",
+        "designation": "Neighbor, Resident of Flat 301"
+      }
+    ]
+  }
+}

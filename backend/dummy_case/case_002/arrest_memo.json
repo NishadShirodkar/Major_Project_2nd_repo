@@ -1,0 +1,98 @@
+{
+  "arrest_memo": {
+    "arrest_id": "ARR/PSKB/2024/0534",
+    "date_of_arrest": "2024-11-22",
+    "time_of_arrest": "11:00",
+    "place_of_arrest": "Jhuggi No. 45, Rehgar Pura, Karol Bagh, New Delhi - 110005",
+    "arresting_officer": {
+      "name": "Inspector Rajesh Kumar Yadav",
+      "badge": "DCP/CD/5124",
+      "designation": "Station House Officer",
+      "police_station": "Karol Bagh"
+    },
+    "arrest_witnesses": [
+      {
+        "name": "Mahesh Kumar",
+        "occupation": "Security Guard, Rishi Apartments",
+        "address": "Security Quarters, Rishi Apartments"
+      },
+      {
+        "name": "Ranjit Singh",
+        "occupation": "Maintenance Staff, Rishi Apartments",
+        "address": "Rehgar Pura, Karol Bagh"
+      }
+    ],
+    "arrested_person": {
+      "name": "Ravi Shankar Yadav @ Ravi",
+      "alias": "Ravi",
+      "age": 34,
+      "gender": "Male",
+      "father_name": "Ram Shankar Yadav",
+      "address": "Jhuggi No. 45, Rehgar Pura, Karol Bagh, New Delhi - 110005",
+      "physical_description": {
+        "height": "5 feet 6 inches",
+        "build": "Medium",
+        "complexion": "Dark",
+        "identification_marks": "Tattoo 'Om' on right forearm, scar on chin",
+        "clothes_at_arrest": "Black t-shirt, Blue track pants, Chappals"
+      }
+    },
+    "grounds_of_arrest": {
+      "offence": "House-breaking during day, theft in dwelling house",
+      "sections": ["Section 305 BNS", "Section 329 BNS", "Section 324 BNS"],
+      "reason_for_arrest": "Identified through CCTV footage by two witnesses, financial motive established, recoverable stolen property, prior criminal record, flight risk",
+      "cognizable_offence": true,
+      "non_bailable": false
+    },
+    "rights_informed": {
+      "right_to_bail": true,
+      "right_to_legal_counsel": true,
+      "right_to_inform_family": true,
+      "grounds_of_arrest_informed": true
+    },
+    "arrest_details": {
+      "arrest_effected_by": "Inspector Rajesh Kumar Yadav with SI Rajveer Singh and HC Devendra",
+      "resistance_offered": false,
+      "use_of_force": false,
+      "personal_search_conducted": true,
+      "items_found": [
+        "Mobile Phone: Redmi 9A, Dark Blue, IMEI: 862345678901234",
+        "Wallet containing ₹3,200 cash, Aadhar Card photocopy",
+        "Bike Keys (Hero Splendor)",
+        "One Iron Rod (20 inches)",
+        "Black rexine bag"
+      ]
+    },
+    "medical_examination": {
+      "conducted": true,
+      "time": "13:30",
+      "hospital": "Safdarjung Hospital",
+      "doctor": "Dr. Manish Taneja",
+      "mlc_number": "MLC/SJH/2024/9234",
+      "findings": "No external injury. Vital signs normal. No signs of intoxication."
+    },
+    "family_informed": {
+      "time": "12:15",
+      "mode": "Phone call",
+      "number_called": "9871123457 (Kamla Devi - Mother)",
+      "informed_by": "SI Rajveer Singh"
+    },
+    "recovery_made": {
+      "recovery_done": true,
+      "recovery_memo_no": "REC/PSKB/2024/0534",
+      "recovered_items": [
+        "Gold Bangles 4 pieces totaling 95 grams (from accused's residence)",
+        "Gold Rings 3 pieces totaling 28 grams (from accused's residence)",
+        "Silver Coins 6 pieces (from accused's residence)",
+        "Cash ₹85,000 (from accused's residence)",
+        "Iron rod used in offence (recovered from his possession)",
+        "Hero Splendor motorcycle DL4SBK7890 (parked at his residence)"
+      ],
+      "recovery_witnesses": ["Mahesh Kumar", "Ranjit Singh"]
+    },
+    "signature_arresting_officer": "Rajesh Kumar Yadav, Inspector",
+    "signature_witness_1": "Mahesh Kumar",
+    "signature_witness_2": "Ranjit Singh",
+    "signature_arrested": "Ravi Shankar Yadav (Signed in Hindi)"
+  }
+}

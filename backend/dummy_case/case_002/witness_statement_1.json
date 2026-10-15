@@ -1,0 +1,27 @@
+{
+  "witness_statement": {
+    "statement_id": "WS/PSKB/0534/001",
+    "date_of_recording": "2024-11-20",
+    "time_of_recording": "21:30",
+    "place": "PS Karol Bagh",
+    "recorded_by": "Inspector Rajesh Kumar Yadav",
+    "witness_details": {
+      "witness_id": "WIT-001",
+      "name": "Sunita Kapoor",
+      "age": 45,
+      "father_husband_name": "W/o Anil Kapoor",
+      "occupation": "Housewife",
+      "address": "Flat 301, Rishi Apartments, Ajmal Khan Road, Karol Bagh, New Delhi - 110005",
+      "contact": "9811223355"
+    },
+    "statement_under_section": "Section 161 of Code of Criminal Procedure, 1973",
+    "statement_text": "My name is Sunita Kapoor, and I live in Flat 301 which is adjacent to Flat 302 of the Malhotra family. Today, on 20th November 2024, I was at home the entire day as I was not keeping well. At around 2:25 PM, I heard some footsteps on the staircase but did not think much as I assumed it was someone from the building. Around 2:30 PM, I clearly heard a loud metallic banging sound from the direction of Flat 302. I came out of my flat to check and saw a man in dark clothes bending over the door of Flat 302. When I called out to him asking what he was doing, he mumbled something and said he was from the plumber's team. I got suspicious but went back inside as he seemed to be in a hurry. About 20-25 minutes later, around 2:55 PM, I again heard footsteps and peeped out of the door. I saw the same man carrying a black bag and rushing down the stairs. This time I clearly saw his face. I recognized him - he was Ravi, the former security guard of our building who had been dismissed about two months back. I immediately called the current security guard Mahesh on the intercom to inform him, but the man had already left by then. I did not have Vikram bhai's contact number so I waited for the family to return. When they returned around 7:00 PM and I heard their shocked voices, I came out and told them about what I had seen. I accompanied them when they went to file the complaint at the police station. I can identify the man Ravi if shown to me. He was wearing a black t-shirt and dark blue jeans, and was carrying a black rexine bag. Whatever I have stated is true to the best of my knowledge.",
+    "identification_of_accused": {
+      "can_identify": true,
+      "identification_details": "Ravi, the former security guard - dark complexion, medium height, wearing black t-shirt and dark blue jeans"
+    },
+    "statement_verified": true,
+    "witness_signature": "Sunita Kapoor (Signed)",
+    "io_signature": "Rajesh Kumar Yadav, Inspector"
+  }
+}

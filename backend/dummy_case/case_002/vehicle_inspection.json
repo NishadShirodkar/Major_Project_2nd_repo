@@ -1,0 +1,61 @@
+{
+  "vehicle_inspection_report": {
+    "report_id": "VIR/PSKB/0534/2024",
+    "date_of_inspection": "2024-11-22",
+    "time": "17:00 to 18:00",
+    "place": "PS Karol Bagh Vehicle Yard",
+    "inspected_by": {
+      "name": "ASI Rajender Prasad",
+      "designation": "Motor Transport Section, PS Karol Bagh",
+      "assisted_by": "Constable Mohan Singh"
+    },
+    "witnesses": [
+      {"name": "Mahesh Kumar", "designation": "Security Guard"},
+      {"name": "Ravi Shankar Yadav", "role": "Owner/Accused"}
+    ],
+    "vehicle": {
+      "evidence_id": "EVD-0534-014",
+      "type": "Motorcycle",
+      "make": "Hero MotoCorp",
+      "model": "Splendor Plus",
+      "year_of_manufacture": 2018,
+      "registration": "DL4SBK7890",
+      "color": "Black",
+      "chassis_number": "MBLHAW086JGE12345",
+      "engine_number": "HA10AJGEHC12345",
+      "odometer_reading": "62,341 km",
+      "owner": "Ravi Shankar Yadav (Accused)",
+      "insurance": "Bajaj Allianz, Policy BAJ/MV/2024/123456, Valid till 15-07-2025",
+      "fitness_certificate": "Valid till 10-08-2027",
+      "pollution_certificate": "PUC valid till 31-01-2025",
+      "external_examination": {
+        "body": "Good condition, minor scratches",
+        "tank": "Black with visible scratches on right side",
+        "seat": "Standard, black, good condition",
+        "tyres": "Both tyres MRF Nylogrip, tread 4.0mm front / 5.0mm rear (good condition)",
+        "headlight": "Functional",
+        "indicators": "Functional",
+        "number_plates": "Both present, HSRP type"
+      },
+      "mechanical_examination": {
+        "engine": "Starts in one kick, runs smooth",
+        "gearbox": "All 4 gears engaging properly",
+        "brakes": "Front drum and rear drum functional",
+        "clutch": "Functional",
+        "chain_sprocket": "Chain adjusted, sprocket wear normal",
+        "electrical": "All systems functional"
+      },
+      "forensic_findings": {
+        "fuel_level": "Half tank",
+        "distance_travelled_estimate": "20-30 km since last refuel - consistent with round trip to crime scene (from Rehgar Pura to Karol Bagh and back = approximately 12 km)",
+        "dust_pattern": "Even dust pattern consistent with recent use on paved roads",
+        "no_physical_evidence_recovered": "No blood, no stolen items in vehicle"
+      },
+      "role_in_crime": "Used by accused to travel to and from crime scene. Corroborated by CCTV footage and Google Maps timeline.",
+      "damage_summary": "No accident-related damage. Vehicle in working condition.",
+      "opinion": "The motorcycle DL4SBK7890 was used by the accused for commuting to and from the scene of crime. The vehicle itself does not carry physical evidence of the crime but its presence at the crime scene is established through CCTV footage and its ownership is confirmed through RTO records."
+    },
+    "signature": "ASI Rajender Prasad, Motor Transport Section",
+    "date": "2024-11-22"
+  }
+}

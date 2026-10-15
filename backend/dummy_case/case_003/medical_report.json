@@ -1,0 +1,26 @@
+{
+  "medical_report": {
+    "status": "Not Applicable",
+    "reason": "Victim was brought dead to hospital. No medical treatment was possible. A postmortem examination was conducted at Safdarjung Hospital Mortuary - refer to postmortem_report.json for details.",
+    "hospital_record": {
+      "hospital": "Deen Dayal Upadhyay Hospital",
+      "date_of_arrival": "2024-12-06",
+      "time_of_arrival": "00:15",
+      "declared_dead_on_arrival": true,
+      "time_of_declaration": "00:20",
+      "declaring_doctor": "Dr. R. K. Verma, MBBS, MD",
+      "mlc_number": "MLC/DDUH/2024/8123",
+      "condition_on_arrival": "Cold to touch, pupils fixed and dilated, no pulse, no respiration, no heart sounds. Rigor mortis not yet set in.",
+      "brought_by": "PCR Van Z-56 and complainant Rekha Sharma"
+    },
+    "accused_medical_examination": {
+      "note": "Separate medical examination of accused conducted at time of arrest",
+      "hospital": "DDU Hospital",
+      "mlc_number": "MLC/DDUH/2024/8156",
+      "findings": "Scratch marks on right forearm (fresh, 2-3 days old) consistent with defensive struggle. Small cut on left thumb (healing). No other injuries.",
+      "significance": "Forearm scratches consistent with victim's defensive struggle (matching defensive wounds on victim's palms)"
+    },
+    "generated_by": "Inspector Anil Kumar Chauhan, IO",
+    "date": "2024-12-07"
+  }
+}

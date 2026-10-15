@@ -1,0 +1,9 @@
+{
+  "medical_report": {
+    "status": "Not Applicable",
+    "reason": "No physical injuries sustained by any person in this case. It is a property crime (house theft) with no bodily harm.",
+    "note": "The complainant and witnesses are physically unharmed. The accused was given routine medical examination at time of arrest per procedure (see arrest_memo.json - MLC/SJH/2024/9234) which showed no injuries.",
+    "generated_by": "Inspector Rajesh Kumar Yadav, IO",
+    "date": "2024-11-22"
+  }
+}
