@@ -1,0 +1,80 @@
+{
+  "first_information_report": {
+    "fir_number": "FIR/2024/DL/PSKB/0534",
+    "fir_book_serial_no": 534,
+    "date_of_fir": "2024-11-20",
+    "time_of_fir": "20:00",
+    "police_station": {
+      "name": "Karol Bagh Police Station",
+      "address": "Ajmal Khan Road, Karol Bagh, New Delhi - 110005",
+      "district": "Central Delhi",
+      "state": "Delhi",
+      "phone": "011-28751234",
+      "email": "sho-kbagh-dl@delhipolice.gov.in"
+    },
+    "act_and_sections": {
+      "bns": ["Section 305", "Section 329", "Section 324"],
+      "mv_act": [],
+      "other_acts": []
+    },
+    "occurrence_of_offence": {
+      "date_from": "2024-11-20",
+      "date_to": "2024-11-20",
+      "time_from": "14:30",
+      "time_to": "14:52",
+      "place_of_occurrence": "Flat 302, Third Floor, Rishi Apartments, Plot No. 14, Ajmal Khan Road, Karol Bagh, New Delhi",
+      "distance_from_ps": "800 meters South",
+      "direction_from_ps": "South",
+      "beat_number": "Beat No. 8, Karol Bagh"
+    },
+    "complainant_informant": {
+      "name": "Vikram Malhotra",
+      "father_husband_name": "S/o Late Mohan Lal Malhotra",
+      "age": 52,
+      "occupation": "Businessman (Owner, Malhotra Jewellers)",
+      "address": "Flat 302, Rishi Apartments, Plot No. 14, Ajmal Khan Road, Karol Bagh, New Delhi - 110005",
+      "contact": "9811223344",
+      "nationality": "Indian"
+    },
+    "victim_details": {
+      "name": "Vikram Malhotra",
+      "age": 52,
+      "occupation": "Businessman",
+      "address": "Flat 302, Rishi Apartments, Karol Bagh",
+      "injury_type": "None (Property crime)",
+      "hospital": "Not Applicable",
+      "status": "No injury"
+    },
+    "accused_details": [
+      {
+        "name": "Ravi Shankar Yadav @ Ravi",
+        "father_name": "Ram Shankar Yadav",
+        "age": 34,
+        "occupation": "Former Security Guard",
+        "address": "Jhuggi No. 45, Rehgar Pura, Karol Bagh, New Delhi - 110005",
+        "vehicle": "Hero Splendor Plus DL4SBK7890",
+        "arrest_status": "Arrested on 2024-11-22 at 11:00 hours from Rehgar Pura"
+      }
+    ],
+    "brief_facts": "On 20-11-2024 at about 14:30 hours, the accused Ravi Shankar Yadav, a former security guard of Rishi Apartments who was dismissed on 05-09-2024, entered the building premises and using an iron rod, broke open the Godrej padlock of Flat 302 belonging to complainant Vikram Malhotra, and committed house-breaking and theft of gold ornaments, silver articles, and cash totaling approximately ₹18,45,000. The accused was captured on CCTV cameras of the building. During investigation, the accused was arrested on 22-11-2024 and stolen gold ornaments worth ₹6,80,000, cash ₹85,000, and iron rod used in offence were recovered from his possession and at his instance. Case registered.",
+    "action_taken": "Case registered under relevant sections. Accused arrested. Stolen property partially recovered. Forensic examination conducted. CCTV footage seized.",
+    "io_details": {
+      "name": "Inspector Rajesh Kumar Yadav",
+      "rank": "Inspector",
+      "badge": "DCP/CD/5124",
+      "date_of_taking_investigation": "2024-11-20",
+      "contact": "9810098200"
+    },
+    "fir_contents_checked_by": "SI Mohan Lal, Duty Officer",
+    "fir_forwarded_to": [
+      "Ld. Metropolitan Magistrate, Tis Hazari Courts",
+      "ACP, Karol Bagh Sub-Division",
+      "DCP, Central District"
+    ],
+    "signature": {
+      "complainant_signature": true,
+      "duty_officer_signature": true,
+      "io_signature": true
+    }
+  }
+}

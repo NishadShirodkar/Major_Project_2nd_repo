@@ -1,0 +1,82 @@
+{
+  "spot_panchnama": {
+    "panchnama_id": "PN/PSDW/0912/2024",
+    "date": "2024-12-06",
+    "time_started": "01:30",
+    "time_completed": "04:00",
+    "place": "House No. B-142, Sector 23, Dwarka, New Delhi - Living Room (Ground Floor)",
+    "prepared_by": {
+      "name": "Inspector Anil Kumar Chauhan",
+      "badge": "DCP/SWD/6045",
+      "designation": "SHO, PS Dwarka Sector 23"
+    },
+    "panch_witnesses": [
+      {"name": "Ramesh Chand", "age": 48, "occupation": "Bank Manager, Neighbour"},
+      {"name": "Rekha Sharma", "age": 34, "occupation": "Software Engineer, Daughter"}
+    ],
+    "location_details": {
+      "building": "Independent two-storey house, front and back entrances",
+      "living_room": "Ground floor, 6m x 5m",
+      "entry_used_by_accused": "Back window (forced entry - window latch broken)",
+      "exit_used_by_accused": "Side gate (kitchen door)",
+      "police_station_distance": "1.2 km South"
+    },
+    "weather_conditions": {
+      "sky": "Clear",
+      "temperature": "12°C",
+      "wind": "Calm"
+    },
+    "scene_description": {
+      "victim_position": "Lying face-down in living room, head towards dining area, feet towards sofa",
+      "blood_pool": "Approximately 3 feet x 2 feet around victim's head and upper body",
+      "blood_splatter": "Blood splatter on sofa backrest, TV cabinet, and wall adjacent to victim - indicating violent struggle",
+      "weapon_at_scene": "None - weapon removed by accused",
+      "ransacking": "Minimal - dining table chair overturned, kitchen knife missing from knife block"
+    },
+    "evidence_at_scene": [
+      {"id": "SC-001", "type": "Blood Sample", "location": "Living room floor", "description": "Victim's blood, collected in EDTA vial"},
+      {"id": "SC-002", "type": "Blood Stain", "location": "Sofa fabric", "description": "Blood splatter 40cm x 30cm"},
+      {"id": "SC-003", "type": "Blood Stain", "location": "TV cabinet", "description": "Drops of blood"},
+      {"id": "SC-004", "type": "Fingerprint", "location": "Window sill (entry point)", "description": "Partial print matching accused"},
+      {"id": "SC-005", "type": "Fingerprint", "location": "Dining table edge", "description": "Fresh prints - later matched to accused"},
+      {"id": "SC-006", "type": "Fingerprint", "location": "TV remote", "description": "Victim's prints plus one partial print of accused"},
+      {"id": "SC-007", "type": "Footwear impression", "location": "Back window entrance area", "description": "Size 10 chevron pattern - later matched to accused's shoes"},
+      {"id": "SC-008", "type": "Broken bangles", "location": "Near victim's body", "description": "Glass bangles broken - struggle evidence"},
+      {"id": "SC-009", "type": "Spectacles", "location": "Near victim's body", "description": "Victim's spectacles, frames bent, one lens broken"},
+      {"id": "SC-010", "type": "Defensive wound evidence", "location": "Victim's body", "description": "Cut marks on both palms indicating defensive struggle"},
+      {"id": "SC-011", "type": "Empty knife space", "location": "Kitchen knife block", "description": "One knife missing from set - later identified as murder weapon"},
+      {"id": "SC-012", "type": "Blood drops", "location": "Back lane near side gate", "description": "Trail of blood drops - likely from accused leaving"}
+    ],
+    "photographs_taken": {
+      "total_photographs": 45,
+      "photographer": "HC Sanjay Kumar, Photography Section",
+      "camera": "Canon EOS 90D",
+      "categories": [
+        "Overall crime scene views (8 frames)",
+        "Victim's body position with scale (5 frames)",
+        "Blood splatter patterns (6 frames)",
+        "Evidence items in situ (10 frames)",
+        "Entry/exit points (6 frames)",
+        "Fingerprint locations (5 frames)",
+        "Footwear impression (3 frames)",
+        "Wide-angle scene (2 frames)"
+      ]
+    },
+    "time_of_death_estimation": {
+      "based_on": "Body temperature, rigor mortis, blood coagulations, witness statements",
+      "estimated": "Between 21:30 and 22:00 hours on 05-12-2024",
+      "confirming_evidence": "Neighbour's account of scream at 21:45, CCTV of accused entering 21:15 and exiting 22:00"
+    },
+    "measurements_reference_points": {
+      "reference_point_a": "Front gate of house B-142",
+      "reference_point_b": "Corner of Shanti Kunj Park",
+      "victim_position_from_a": "12m South-East, 6m inside house"
+    },
+    "panchnama_conclusion": "The crime scene examination reveals a violent struggle. Victim was attacked with a sharp-edged weapon (knife) in living room. Multiple stab wounds evident. Blood trail from victim to back window/side gate establishes escape route. Missing kitchen knife from knife block correlates with the murder weapon later recovered. Fresh fingerprints and footwear impressions at entry points establish accused's physical presence. Time of death corresponds with window when accused was present based on CCTV.",
+    "signatures": {
+      "panch_1": "Ramesh Chand",
+      "panch_2": "Rekha Sharma",
+      "io": "Anil Kumar Chauhan, Inspector"
+    }
+  }
+}

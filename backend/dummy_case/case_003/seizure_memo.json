@@ -1,0 +1,51 @@
+{
+  "seizure_memo": {
+    "memo_id": "SZ/PSDW/0912/2024",
+    "date": "2024-12-06",
+    "time": "02:30",
+    "place": "House No. B-142, Sector 23, Dwarka, New Delhi",
+    "seizing_officer": {
+      "name": "Inspector Anil Kumar Chauhan",
+      "badge": "DCP/SWD/6045",
+      "designation": "SHO"
+    },
+    "witnesses_to_seizure": [
+      {"name": "Rekha Sharma", "role": "Complainant/Deceased's daughter"},
+      {"name": "Ramesh Chand", "role": "Neighbour"}
+    ],
+    "seized_articles": [
+      {"item_no": 1, "evidence_id": "EVD-0912-001", "description": "Blood sample from crime scene (from floor)", "collected_from": "Living room floor", "preservation": "EDTA vial, sealed"},
+      {"item_no": 2, "evidence_id": "EVD-0912-002", "description": "Bloodstained bedsheet", "collected_from": "Living room sofa", "condition": "Blood stained"},
+      {"item_no": 3, "evidence_id": "EVD-0912-003", "description": "Victim's bloodstained clothes (salwar kameez)", "collected_from": "Victim's body at hospital", "condition": "Blood soaked, torn"},
+      {"item_no": 4, "evidence_id": "EVD-0912-004", "description": "Broken bangles", "collected_from": "Near victim's body", "description": "Broken glass bangles suggesting struggle"},
+      {"item_no": 5, "evidence_id": "EVD-0912-005", "description": "Fingerprint lift sheets (18 sheets)", "collected_from": "Window sill, dining table, knife handle area, TV remote", "by": "Fingerprint expert ASI Naveen"},
+      {"item_no": 6, "evidence_id": "EVD-0912-006", "description": "Footwear impression cast", "collected_from": "Back window entry point", "method": "Plaster of Paris cast"},
+      {"item_no": 7, "evidence_id": "EVD-0912-007", "description": "Photographs of crime scene (45 digital frames)", "by": "HC Sanjay Kumar, Photography Section"},
+      {"item_no": 8, "evidence_id": "EVD-0912-008", "description": "CCTV DVR from neighbor's house (Ramesh Chand)", "source": "B-143, Sector 23", "coverage": "Back lane and street view"},
+      {"item_no": 9, "evidence_id": "EVD-0912-009", "description": "CCTV footage from Shanti Kunj Park entrance", "collected_from": "Park CCTV control room", "timestamp": "21:00 to 22:30"},
+      {"item_no": 10, "evidence_id": "EVD-0912-010", "description": "Victim's mobile phone (Redmi Note 10, Black)", "collected_from": "Living room sofa", "IMEI": "865432109876543"},
+      {"item_no": 11, "evidence_id": "EVD-0912-011", "description": "Victim's landline diary and property documents", "collected_from": "Study table", "relevance": "Establishes property dispute motive"},
+      {"item_no": 12, "evidence_id": "EVD-0912-012", "description": "Broken spectacles of victim", "collected_from": "Near body", "description": "Frames bent, one lens broken"}
+    ],
+    "recovery_memo": {
+      "memo_id": "REC/PSDW/2024/0912",
+      "date": "2024-12-07",
+      "time": "15:00",
+      "place": "House of Arun Sharma, Sector 108, Gurugram (Cousin of accused)",
+      "recovered_articles": [
+        {"item_no": 1, "evidence_id": "EVD-0912-013", "description": "Kitchen knife (murder weapon) - 8 inch blade, wooden handle, bloodstained", "recovered_from": "Under the kitchen sink, wrapped in cloth", "significance": "Murder weapon"},
+        {"item_no": 2, "evidence_id": "EVD-0912-014", "description": "Bloodstained grey sweater and black jeans (accused's clothes)", "recovered_from": "Accused's residence, C-78 Sector 24 Dwarka", "significance": "Victim's blood on accused's clothes"},
+        {"item_no": 3, "evidence_id": "EVD-0912-015", "description": "Duplicate set of keys of victim's house", "recovered_from": "Accused's wallet", "significance": "Establishes entry"},
+        {"item_no": 4, "evidence_id": "EVD-0912-016", "description": "Bus ticket Delhi to Jaipur (07-12-2024)", "recovered_from": "Accused's wallet", "significance": "Flight attempt evidence"}
+      ],
+      "recovery_witnesses": ["Arun Sharma (Cousin)", "HC Satbir Singh"],
+      "recovery_certificate": "The above items were recovered at the instance of the accused Sanjay Sharma following his voluntary disclosure statement under Section 27 of Indian Evidence Act. Accused accompanied the police team and identified the location of the murder weapon."
+    },
+    "seizure_declaration": "The above articles were seized in presence of independent witnesses as they are material to the investigation of case FIR No. 912/2024. All items properly sealed with seal 'AKC' (Anil Kumar Chauhan), labeled, and sent to FSL for examination.",
+    "signatures": {
+      "seizing_officer": "Anil Kumar Chauhan, Inspector",
+      "witness_1": "Rekha Sharma",
+      "witness_2": "Ramesh Chand"
+    }
+  }
+}

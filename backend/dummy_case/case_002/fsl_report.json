@@ -1,0 +1,94 @@
+{
+  "forensic_science_laboratory_report": {
+    "fsl_report_number": "FSL/DL/2024/BIO/6721",
+    "date_of_receipt": "2024-11-22",
+    "date_of_examination": "2024-11-25 to 2024-12-15",
+    "date_of_report": "2024-12-20",
+    "laboratory": "Forensic Science Laboratory, Rohini, New Delhi",
+    "examining_officer": {
+      "name": "Dr. Meenakshi Sundaram",
+      "designation": "Assistant Director (Biology & Serology)",
+      "qualification": "M.Sc., Ph.D. Forensic Science"
+    },
+    "case_reference": {
+      "fir_number": "FIR/2024/DL/PSKB/0534",
+      "police_station": "Karol Bagh",
+      "forwarding_authority": "Inspector Rajesh Kumar Yadav"
+    },
+    "exhibits_received": [
+      {"exhibit_no": "EX-01", "evidence_id": "EVD-0534-001", "description": "Broken Godrej padlock"},
+      {"exhibit_no": "EX-02", "evidence_id": "EVD-0534-002", "description": "Iron rod"},
+      {"exhibit_no": "EX-03", "evidence_id": "EVD-0534-003", "description": "12 fingerprint lift sheets"},
+      {"exhibit_no": "EX-04", "evidence_id": "EVD-0534-004", "description": "Footprint cast"},
+      {"exhibit_no": "EX-05", "evidence_id": "EVD-0534-006", "description": "CCTV DVR Hard Disk (Rishi Apartments)"},
+      {"exhibit_no": "EX-06", "evidence_id": "EVD-0534-013", "description": "Iron rod recovered from accused"},
+      {"exhibit_no": "EX-07", "evidence_id": "EVD-0534-015", "description": "Black rexine bag"},
+      {"exhibit_no": "EX-08", "evidence_id": "REF-ACC-01", "description": "Accused's fingerprint card (10 prints) for comparison"},
+      {"exhibit_no": "EX-09", "evidence_id": "REF-VIC-01", "description": "Victim's fingerprint card for elimination"},
+      {"exhibit_no": "EX-10", "evidence_id": "REF-WIT-01", "description": "Witness Sunita Kapoor's fingerprint card"}
+    ],
+    "examinations_conducted": {
+      "fingerprint_analysis": {
+        "method": "Comparison using IAFIS database and manual Henry classification",
+        "findings": [
+          "Fingerprint from main door handle: MATCHES right thumb of accused Ravi Shankar Yadav (12-point match)",
+          "Fingerprint from almirah handle: MATCHES right index finger of accused (14-point match)",
+          "Fingerprint from bedroom door: MATCHES left middle finger of accused (11-point match)",
+          "All 3 fingerprints do not match victim or witness prints",
+          "Two additional partial prints (insufficient for identification) from almirah area"
+        ],
+        "conclusion": "Three clear fingerprint impressions from the crime scene conclusively match the accused Ravi Shankar Yadav, establishing his physical presence at the scene."
+      },
+      "tool_mark_analysis": {
+        "method": "Comparison microscopy of tool marks on padlock and almirah with iron rod",
+        "findings": [
+          "Pry marks on padlock hasp: consistent with iron rod tip pattern",
+          "Cut marks on padlock body: fine striations match iron rod edge",
+          "Almirah door edge marks: match iron rod tip width (matching both crime scene rod and recovered rod)",
+          "Both iron rods (crime scene and recovered) show identical tip deformation - one is likely a duplicate or the tool was used consistently"
+        ],
+        "conclusion": "The iron rod found at scene and the iron rod recovered from accused exhibit identical tool marks to those found on the broken padlock and almirah. This conclusively links both rods to the crime and to the accused."
+      },
+      "footprint_analysis": {
+        "method": "Comparative analysis of plaster cast with accused's footwear",
+        "findings": [
+          "Size 9 chevron pattern sole impression",
+          "Accused's seized footwear (one pair dark sports shoes size 9) matches the sole pattern and wear marks",
+          "23-point match on tread pattern"
+        ],
+        "conclusion": "The footprint at scene matches accused's footwear."
+      },
+      "cctv_enhancement": {
+        "method": "Digital enhancement and face comparison analysis",
+        "findings": [
+          "14:20:15 footage: Individual entering building - face partially captured",
+          "Facial features (nose, chin, eyebrow shape) consistent with accused's photograph",
+          "Body features: height ~5'6\", medium build, dark complexion, black t-shirt with visible logo",
+          "14:52:40 footage: Same individual exiting with black bag",
+          "Gait analysis: unique limp on right leg (accused has documented history of right knee injury from 2019)"
+        ],
+        "conclusion": "CCTV footage clearly identifies accused Ravi Shankar Yadav entering and exiting building at time of crime. Gait analysis provides additional positive identification."
+      },
+      "trace_evidence": {
+        "method": "Microscopic analysis of fibre evidence",
+        "findings": [
+          "Black fibre fragments recovered from broken almirah area match material of accused's seized bag",
+          "No other significant trace evidence"
+        ]
+      }
+    },
+    "final_opinion": {
+      "summary": "Forensic analysis provides conclusive evidence linking accused Ravi Shankar Yadav to the crime scene through multiple independent scientific parameters - fingerprint match, tool mark match, footwear match, and CCTV identification.",
+      "chain_of_evidence": [
+        "Fingerprints: Conclusively match accused",
+        "Tool marks: Iron rod recovered from accused matches crime scene marks",
+        "Footwear: Sole pattern matches accused's footwear",
+        "CCTV: Visual identification + gait analysis",
+        "Trace fibres: Match accused's bag"
+      ],
+      "expert_opinion": "In the considered opinion of the undersigned, the accused Ravi Shankar Yadav was physically present at the crime scene (Flat 302, Rishi Apartments) on 20-11-2024 between 14:20 and 14:52 hours and used the seized iron rod to commit house-breaking and theft as described in the FIR."
+    },
+    "signature": "Dr. Meenakshi Sundaram, Assistant Director (Biology & Serology), FSL Rohini, Delhi",
+    "seal": "Forensic Science Laboratory, Government of NCT of Delhi"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "forensic_science_laboratory_report": {
+    "fsl_report_number": "FSL/DL/2024/SER/9845",
+    "date_of_receipt": "2024-12-08",
+    "date_of_examination": "2024-12-10 to 2025-01-05",
+    "date_of_report": "2025-01-08",
+    "laboratory": "Forensic Science Laboratory, Rohini, New Delhi",
+    "examining_officer": {
+      "name": "Dr. Sunil Kumar Verma",
+      "designation": "Senior Scientific Officer (Serology & DNA)",
+      "qualification": "M.Sc., Ph.D. Forensic Science"
+    },
+    "case_reference": {
+      "fir_number": "FIR/2024/DL/PSDW/0912",
+      "police_station": "Dwarka Sector 23",
+      "forwarding_authority": "Inspector Anil Kumar Chauhan"
+    },
+    "exhibits_received": [
+      {"exhibit_no": "EX-01", "evidence_id": "EVD-0912-001", "description": "Blood sample from crime scene (EDTA vial)"},
+      {"exhibit_no": "EX-02", "evidence_id": "EVD-0912-002", "description": "Bloodstained bedsheet"},
+      {"exhibit_no": "EX-03", "evidence_id": "EVD-0912-003", "description": "Victim's bloodstained clothing"},
+      {"exhibit_no": "EX-04", "evidence_id": "EVD-0912-005", "description": "18 fingerprint lift sheets"},
+      {"exhibit_no": "EX-05", "evidence_id": "EVD-0912-006", "description": "Footwear impression cast"},
+      {"exhibit_no": "EX-06", "evidence_id": "EVD-0912-010", "description": "Victim's mobile phone"},
+      {"exhibit_no": "EX-07", "evidence_id": "EVD-0912-013", "description": "Kitchen knife (murder weapon)"},
+      {"exhibit_no": "EX-08", "evidence_id": "EVD-0912-014", "description": "Accused's bloodstained clothes (sweater, jeans)"},
+      {"exhibit_no": "EX-09", "evidence_id": "REF-ACC-01", "description": "Accused's blood sample for DNA"},
+      {"exhibit_no": "EX-10", "evidence_id": "REF-VIC-01", "description": "Victim's blood sample (from postmortem) for DNA"}
+    ],
+    "examinations_conducted": {
+      "serology": {
+        "method": "Presumptive and confirmatory tests for blood, human origin, blood grouping",
+        "findings": [
+          "Blood on crime scene bedsheet: Human blood, Group A+ - matches victim",
+          "Blood on victim's clothing: Human blood, Group A+",
+          "Blood on knife blade: Human blood, Group A+ - matches victim",
+          "Blood on accused's sweater: Human blood, Group A+ - MATCHES VICTIM, not accused (accused is O+)",
+          "Blood on accused's jeans: Faint blood stains, Human blood, Group A+ - matches victim"
+        ],
+        "conclusion": "Victim's blood (A+) was found on the accused's clothing and on the recovered murder weapon. This conclusively establishes accused's physical involvement in the attack."
+      },
+      "dna_profiling": {
+        "method": "STR analysis using 15 autosomal markers + Y-STR",
+        "findings": [
+          "DNA from bloodstained knife handle: Mixed profile - major component matches accused Sanjay Sharma",
+          "DNA from blood on accused's sweater: Victim's DNA profile (complete match with 15/15 loci)",
+          "DNA from victim's nails: Foreign DNA recovered under right-hand fingernails - MATCHES ACCUSED at 14/15 loci",
+          "DNA from window sill (entry point): Skin cell DNA matches accused"
+        ],
+        "conclusion": "Multiple independent DNA matches establish that: (1) Accused held the knife (handle DNA), (2) Victim's blood is on accused's clothing, (3) Accused's skin cells were under victim's fingernails indicating physical contact/struggle, (4) Accused entered through the window."
+      },
+      "fingerprint_analysis": {
+        "method": "IAFIS database comparison and manual Henry classification",
+        "findings": [
+          "Fingerprint on window sill: MATCHES accused's left index finger (13-point match)",
+          "Fingerprint on dining table edge: MATCHES accused's right thumb (11-point match)",
+          "Fingerprint on TV remote: MATCHES accused's left thumb (10-point match)",
+          "Partial print on knife handle area: Insufficient for identification but DNA analysis confirms",
+          "All matching prints do not correspond to victim or any other person"
+        ],
+        "conclusion": "Three clear fingerprints from the crime scene match the accused's prints, establishing his physical presence at the scene."
+      },
+      "footwear_analysis": {
+        "method": "Comparative cast analysis",
+        "findings": [
+          "Footwear impression from window entry: Size 10, chevron pattern, matches accused's seized shoes",
+          "Sole pattern 22-point match, wear pattern consistent"
+        ]
+      },
+      "ballistics_and_weapon_analysis": {
+        "method": "Examination of recovered knife for class and individual characteristics",
+        "findings": [
+          "Kitchen knife (8 inch blade, wooden handle)",
+          "Blood on entire blade length",
+          "Handle has victim's blood and accused's DNA",
+          "Wound pattern of victim's injuries matches this type of blade - depth, width, and edge profile consistent"
+        ],
+        "conclusion": "The recovered kitchen knife is the murder weapon used to inflict injuries on the deceased."
+      },
+      "digital_forensics": {
+        "method": "Mobile phone extraction and analysis",
+        "findings": [
+          "Accused's phone: Deleted WhatsApp messages recovered showing argument with victim about property",
+          "Victim's phone: Last call from daughter at 23:35 (unanswered)",
+          "Both phones GPS location: Accused's phone was in the vicinity of crime scene between 21:00-22:15 on 05-12-2024",
+          "Accused's phone was at his residence after 22:30"
+        ]
+      }
+    },
+    "final_opinion": {
+      "summary": "The forensic evidence conclusively establishes the following chain: (1) The accused was present at the crime scene on the night of the murder (fingerprints, DNA, footwear impressions, GPS data); (2) The victim's blood was found on the accused's clothing and the recovered kitchen knife; (3) The accused held the murder weapon (DNA on handle); (4) The accused physically struggled with the victim (victim's nail DNA evidence); (5) The kitchen knife recovered is the actual murder weapon.",
+      "conclusive_evidence_points": [
+        "Victim's blood on accused's clothing",
+        "Accused's DNA on murder weapon handle",
+        "Accused's DNA under victim's fingernails (physical struggle)",
+        "Fingerprints at scene match accused",
+        "Wounds match recovered knife"
+      ]
+    },
+    "signature": "Dr. Sunil Kumar Verma, Senior Scientific Officer (Serology & DNA), FSL Rohini, Delhi",
+    "seal": "Forensic Science Laboratory, Government of NCT of Delhi"
+  }
+}

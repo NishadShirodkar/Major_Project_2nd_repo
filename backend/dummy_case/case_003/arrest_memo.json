@@ -1,0 +1,88 @@
+{
+  "arrest_memo": {
+    "arrest_id": "ARR/PSDW/2024/0912",
+    "date_of_arrest": "2024-12-07",
+    "time_of_arrest": "06:00",
+    "place_of_arrest": "Near Kherki Daula Toll Plaza, Delhi-Gurugram Border",
+    "arresting_officer": {
+      "name": "Inspector Anil Kumar Chauhan",
+      "badge": "DCP/SWD/6045",
+      "designation": "Station House Officer",
+      "police_station": "Dwarka Sector 23"
+    },
+    "arrest_witnesses": [
+      {"name": "ASI Karan Singh", "badge": "DCP/SWD/4123", "designation": "PS Dwarka Sector 23"},
+      {"name": "HC Satbir Singh", "badge": "DCP/SWD/5678", "designation": "PS Dwarka Sector 23"}
+    ],
+    "arrested_person": {
+      "name": "Sanjay Sharma",
+      "age": 42,
+      "gender": "Male",
+      "father_name": "Late Suresh Sharma",
+      "address": "C-78, Sector 24, Dwarka, New Delhi - 110075 (residence)",
+      "found_at": "Cousin's residence, Sector 108, Gurugram (was attempting to flee to Rajasthan)",
+      "physical_description": {
+        "height": "5 feet 9 inches",
+        "build": "Medium",
+        "complexion": "Fair",
+        "identification_marks": "Tattoo on left forearm (Hanuman Chalisa), mole on right cheek",
+        "clothes_at_arrest": "Grey sweater, Black jeans, Brown shoes"
+      }
+    },
+    "grounds_of_arrest": {
+      "offence": "Murder (Section 103(1) BNS)",
+      "sections": ["Section 103(1) BNS", "Section 61 BNS", "Section 238 BNS", "Section 329 BNS"],
+      "reason_for_arrest": "Identified through CCTV, witness Ramesh Chand's statement, fingerprint match on murder weapon, blood stains on clothes, confession, flight risk, prior threat to victim, recovered murder weapon at his instance",
+      "cognizable_offence": true,
+      "non_bailable": true
+    },
+    "rights_informed": {
+      "right_to_bail": true,
+      "right_to_legal_counsel": true,
+      "right_to_inform_family": true,
+      "grounds_of_arrest_informed": true,
+      "legal_aid_provided": "Adv. Rakesh Tyagi, DLSA"
+    },
+    "arrest_details": {
+      "arrest_effected_by": "Inspector Anil Kumar Chauhan with SI Rajesh and Constables Balraj, Satpal",
+      "resistance_offered": false,
+      "use_of_force": false,
+      "personal_search_conducted": true,
+      "items_found": [
+        "Mobile Phone: OnePlus Nord CE 2, Blue, IMEI: 861234567890123",
+        "Wallet containing ₹8,500 cash, Aadhar Card, PAN Card, DL, ATM cards",
+        "Set of keys (later identified as duplicate keys of victim's house)",
+        "Bus ticket Delhi to Jaipur (dated 07-12-2024)"
+      ]
+    },
+    "medical_examination": {
+      "conducted": true,
+      "time": "08:30",
+      "hospital": "DDU Hospital",
+      "doctor": "Dr. Naveen Chandra",
+      "mlc_number": "MLC/DDUH/2024/8156",
+      "findings": "Scratch marks on right forearm (fresh, 2-3 days old) consistent with defensive struggle. Small cut on left thumb (healing). No other injuries. Vital signs normal."
+    },
+    "family_informed": {
+      "time": "07:15",
+      "mode": "Phone call",
+      "number_called": "9811223389 (Priya Sharma - Wife)",
+      "informed_by": "ASI Karan Singh"
+    },
+    "recovery_made": {
+      "recovery_done": true,
+      "recovery_memo_no": "REC/PSDW/2024/0912",
+      "recovered_items": [
+        "Kitchen knife with blood stains (murder weapon) - recovered from cousin Arun Sharma's house in Sector 108, Gurugram",
+        "Bloodstained grey sweater and black jeans (accused's clothes on day of crime) - recovered from accused's residence",
+        "Duplicate set of keys of victim's house - recovered from accused's possession",
+        "Bus ticket Delhi to Jaipur - recovered from accused's possession"
+      ],
+      "recovery_witnesses": ["Arun Sharma (Cousin)", "Neighbour of Arun Sharma"]
+    },
+    "signature_arresting_officer": "Anil Kumar Chauhan, Inspector",
+    "signature_witness_1": "ASI Karan Singh",
+    "signature_witness_2": "HC Satbir Singh",
+    "signature_arrested": "Sanjay Sharma (Signed in Hindi)"
+  }
+}

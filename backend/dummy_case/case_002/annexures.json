@@ -1,0 +1,33 @@
+{
+  "annexures_list": {
+    "case_reference": "FIR/2024/DL/PSKB/0534",
+    "total_documents": 20,
+    "prepared_by": "Inspector Rajesh Kumar Yadav, IO",
+    "date": "2024-12-28",
+    "documents": [
+      {"annexure_no": "A-1", "document_name": "First Information Report", "document_id": "FIR/2024/DL/PSKB/0534", "pages": 3, "filed_in_court": true, "exhibit_mark": "PW-1/A"},
+      {"annexure_no": "A-2", "document_name": "Complaint under Section 154 CrPC", "pages": 2, "filed_in_court": true, "exhibit_mark": "PW-2/A"},
+      {"annexure_no": "A-3", "document_name": "Arrest Memo", "pages": 3, "filed_in_court": true, "exhibit_mark": "PW-3/A"},
+      {"annexure_no": "A-4", "document_name": "Seizure Memo", "pages": 4, "filed_in_court": true, "exhibit_mark": "PW-3/B"},
+      {"annexure_no": "A-5", "document_name": "Recovery Memo", "pages": 3, "filed_in_court": true, "exhibit_mark": "PW-3/C"},
+      {"annexure_no": "A-6", "document_name": "Spot Panchnama", "pages": 6, "filed_in_court": true, "exhibit_mark": "PW-4/A"},
+      {"annexure_no": "A-7", "document_name": "Site Plan", "pages": 2, "filed_in_court": true, "exhibit_mark": "PW-4/B"},
+      {"annexure_no": "A-8", "document_name": "Witness Statement - Sunita Kapoor", "pages": 2, "filed_in_court": true, "exhibit_mark": "PW-5/A"},
+      {"annexure_no": "A-9", "document_name": "Witness Statement - Mahesh Kumar", "pages": 2, "filed_in_court": true, "exhibit_mark": "PW-6/A"},
+      {"annexure_no": "A-10", "document_name": "Accused Statement", "pages": 3, "filed_in_court": true, "exhibit_mark": "PW-7/A"},
+      {"annexure_no": "A-11", "document_name": "Supplementary Statement of Complainant", "pages": 2, "filed_in_court": true, "exhibit_mark": "PW-2/B"},
+      {"annexure_no": "A-12", "document_name": "FSL Report", "document_id": "FSL/DL/2024/BIO/6721", "pages": 12, "filed_in_court": true, "exhibit_mark": "PW-8/A"},
+      {"annexure_no": "A-13", "document_name": "CCTV Analysis Report", "pages": 8, "filed_in_court": true, "exhibit_mark": "PW-9/A"},
+      {"annexure_no": "A-14", "document_name": "Vehicle Inspection Report", "pages": 4, "filed_in_court": true, "exhibit_mark": "PW-10/A"},
+      {"annexure_no": "A-15", "document_name": "CCTV Footage Digital Evidence", "filed_in_court": true, "exhibit_mark": "M-1, M-2, M-3"},
+      {"annexure_no": "A-16", "document_name": "Photographs (35 frames)", "filed_in_court": true, "exhibit_mark": "M-4"},
+      {"annexure_no": "A-17", "document_name": "Evidence List", "pages": 5, "filed_in_court": true, "exhibit_mark": "PW-3/D"},
+      {"annexure_no": "A-18", "document_name": "Case Diary", "pages": 10, "filed_in_court": true, "exhibit_mark": "Court Record"},
+      {"annexure_no": "A-19", "document_name": "Timeline Reconstruction", "pages": 6, "filed_in_court": true, "exhibit_mark": "PW-11/A"},
+      {"annexure_no": "A-20", "document_name": "Master Case File", "filed_in_court": false}
+    ],
+    "certification": "Total pages: 79 plus digital evidence. All documents filed with chargesheet.",
+    "signature": "Rajesh Kumar Yadav, Inspector",
+    "date": "2024-12-28"
+  }
+}

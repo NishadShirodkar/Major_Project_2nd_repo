@@ -1,0 +1,94 @@
+{
+  "seizure_memo": {
+    "memo_id": "SZ/PSKB/0534/2024",
+    "date": "2024-11-20",
+    "time": "21:30",
+    "place": "Flat 302, Rishi Apartments, Karol Bagh",
+    "seizing_officer": {
+      "name": "Inspector Rajesh Kumar Yadav",
+      "badge": "DCP/CD/5124",
+      "designation": "SHO"
+    },
+    "witnesses_to_seizure": [
+      {"name": "Vikram Malhotra", "role": "Complainant"},
+      {"name": "Sunita Kapoor", "role": "Neighbour"}
+    ],
+    "seized_articles": [
+      {
+        "item_no": 1,
+        "evidence_id": "EVD-0534-001",
+        "description": "Broken Godrej padlock with hasp",
+        "condition": "Broken, cut marks visible",
+        "collected_from": "Main door of Flat 302",
+        "belongs_to": "Vikram Malhotra"
+      },
+      {
+        "item_no": 2,
+        "evidence_id": "EVD-0534-002",
+        "description": "Iron rod (approximately 20 inches) - later found to match with accused's tool",
+        "condition": "Rusted at ends, fingerprints lifted",
+        "collected_from": "Flat 302 bedroom floor near almirah"
+      },
+      {
+        "item_no": 3,
+        "evidence_id": "EVD-0534-003",
+        "description": "Latent fingerprint impressions (lifted on 12 gelatin sheets)",
+        "collected_from": "Main door handle, almirah handle, bedroom door"
+      },
+      {
+        "item_no": 4,
+        "evidence_id": "EVD-0534-004",
+        "description": "Foot print cast (plaster of paris)",
+        "collected_from": "Balcony entrance"
+      },
+      {
+        "item_no": 5,
+        "evidence_id": "EVD-0534-005",
+        "description": "Photographs of ransacked flat (35 digital frames)",
+        "photographer": "HC Ramesh Kumar, Photography Section"
+      },
+      {
+        "item_no": 6,
+        "evidence_id": "EVD-0534-006",
+        "description": "CCTV DVR Hard Disk from Rishi Apartments main gate camera",
+        "source": "Security Room, Rishi Apartments",
+        "time_stamp_extracted": "14:00 to 15:30, 20-11-2024"
+      },
+      {
+        "item_no": 7,
+        "evidence_id": "EVD-0534-007",
+        "description": "Purchase receipts of stolen jewellery",
+        "documents": ["Malhotra Jewellers invoices for 2019-2023 purchases"]
+      },
+      {
+        "item_no": 8,
+        "evidence_id": "EVD-0534-008",
+        "description": "RWA register with details of former security guard Ravi Shankar Yadav",
+        "collected_from": "RWA Office, Rishi Apartments"
+      }
+    ],
+    "recovery_memo": {
+      "memo_id": "REC/PSKB/2024/0534",
+      "date": "2024-11-22",
+      "time": "15:00",
+      "place": "Jhuggi No. 45, Rehgar Pura, Karol Bagh",
+      "recovered_articles": [
+        {"item_no": 1, "evidence_id": "EVD-0534-009", "description": "4 Gold Bangles (22K, 95g total)", "recovered_from": "Iron trunk in accused's house"},
+        {"item_no": 2, "evidence_id": "EVD-0534-010", "description": "3 Gold Rings (22K, 28g total)", "recovered_from": "Iron trunk"},
+        {"item_no": 3, "evidence_id": "EVD-0534-011", "description": "6 Silver Coins", "recovered_from": "Iron trunk"},
+        {"item_no": 4, "evidence_id": "EVD-0534-012", "description": "Cash ₹85,000 (in denominations of ₹500 and ₹2000)", "recovered_from": "Under mattress"},
+        {"item_no": 5, "evidence_id": "EVD-0534-013", "description": "Iron rod used in offence", "recovered_from": "Under bed"},
+        {"item_no": 6, "evidence_id": "EVD-0534-014", "description": "Hero Splendor motorcycle DL4SBK7890", "recovered_from": "Parked outside jhuggi"},
+        {"item_no": 7, "evidence_id": "EVD-0534-015", "description": "Black rexine bag used in crime", "recovered_from": "Inside jhuggi"}
+      ],
+      "recovery_witnesses": ["Mahesh Kumar", "Ranjit Singh"],
+      "recovery_certificate": "The above items were recovered at the instance of the accused during investigation. Accused's memorandum statement under Section 27 Indian Evidence Act recorded before recovery."
+    },
+    "seizure_declaration": "The above articles were seized in presence of independent witnesses as they are material to the investigation of case FIR No. 534/2024. All items properly packed, sealed with seal 'RKY' (Rajesh Kumar Yadav), and labeled.",
+    "signatures": {
+      "seizing_officer": "Rajesh Kumar Yadav, Inspector",
+      "witness_1": "Vikram Malhotra",
+      "witness_2": "Sunita Kapoor"
+    }
+  }
+}

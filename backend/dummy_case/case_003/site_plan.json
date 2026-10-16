@@ -1,0 +1,92 @@
+{
+  "site_plan": {
+    "plan_id": "SP/PSDW/0912/2024",
+    "date_prepared": "2024-12-07",
+    "prepared_by": "Inspector Anil Kumar Chauhan, IO",
+    "drawn_to_scale": "Scale 1:50 for house interior, 1:200 for neighborhood",
+    "orientation": "North at top",
+    "legend": {
+      "symbols": {
+        "red_circle": "Victim's body position",
+        "blue_star": "Blood pool",
+        "red_splatter": "Blood splatter areas",
+        "yellow_square": "Broken bangles location",
+        "blue_triangle": "Spectacles location",
+        "green_line": "Blood trail",
+        "X_window": "Back window entry point",
+        "X_gate": "Side gate exit point",
+        "fingerprint_icon": "Fingerprint lift locations",
+        "shoe_icon": "Footwear impression"
+      }
+    },
+    "house_layout": {
+      "name": "House B-142, Sector 23, Dwarka",
+      "type": "Independent 2-storey house, ground floor + first floor",
+      "ground_floor": {
+        "living_room": "6m x 5m, entrance from main door",
+        "dining_area": "Adjacent to living room, 4m x 3m",
+        "kitchen": "3m x 2.5m, behind dining area",
+        "bedroom": "5m x 4m, off living room",
+        "bathroom": "2m x 1.5m",
+        "main_door": "Front, wooden, opens from main road side",
+        "back_window": "Living room back wall, 4ft x 3ft, opens to back lane",
+        "side_gate": "From kitchen exit, opens to back lane",
+        "boundary_wall": "6ft height"
+      },
+      "first_floor": "Vacant (Rekha's bedroom), not accessed by accused"
+    },
+    "crime_scene_details": {
+      "entry_point": "Back window of living room. Window was found open with latch forced.",
+      "exit_point": "Side gate from kitchen area",
+      "struggle_zone": "From dining area to TV cabinet (approx 3m x 2m area)",
+      "victim_final_position": "Middle of living room, head towards dining area, feet towards sofa",
+      "blood_distribution": {
+        "main_pool": "Around head, approximately 3ft x 2ft",
+        "splatter_1": "Sofa backrest - 40cm x 30cm",
+        "splatter_2": "TV cabinet and wall - multiple small drops",
+        "trail": "From victim to kitchen exit (blood drops on floor)"
+      },
+      "evidence_locations": [
+        {"item": "Fingerprint (window sill)", "location": "Back window, outer side"},
+        {"item": "Fingerprint (dining table)", "location": "Dining table East edge"},
+        {"item": "Fingerprint (TV remote)", "location": "On sofa armrest"},
+        {"item": "Broken bangles", "location": "Scattered on living room floor, near victim"},
+        {"item": "Spectacles", "location": "20cm from victim's head"},
+        {"item": "Footwear impression", "location": "Below back window, inside"},
+        {"item": "Knife block missing", "location": "Kitchen counter"}
+      ]
+    },
+    "neighborhood_context": {
+      "adjacent_houses": [
+        {"house": "B-143", "occupant": "Ramesh Chand (witness)", "distance": "12m East"},
+        {"house": "B-141", "occupant": "Vacant"},
+        {"house": "C-78 Sector 24", "occupant": "Sanjay Sharma (accused)", "distance": "1.5 km"}
+      ],
+      "street_layout": "Sector 23 residential block, quiet street, few visitors at night",
+      "back_lane": "Narrow lane behind houses, no lighting at 21:00+ (though streetlight exists at junction)"
+    },
+    "measurements": {
+      "window_height_from_ground": "1.2m",
+      "distance_from_window_to_dining_area": "3.5m",
+      "distance_from_window_to_kitchen": "6m",
+      "distance_from_victim_to_side_gate": "7m",
+      "distance_from_house_to_park": "180m",
+      "distance_from_house_to_accused_residence": "1.5 km"
+    },
+    "nearby_landmarks": [
+      {"landmark": "Shanti Kunj Park", "distance": "180m"},
+      {"landmark": "Sector 23 Market", "distance": "400m"},
+      {"landmark": "Dwarka Sector 23 Police Station", "distance": "1.2 km"},
+      {"landmark": "Sector 23 Metro Station", "distance": "700m"}
+    ],
+    "coordinates_system": {
+      "datum": "WGS84",
+      "house_center": "28.5645, 77.0567",
+      "back_window": "28.5646, 77.0566",
+      "side_gate": "28.5644, 77.0568",
+      "park": "28.5629, 77.0580"
+    },
+    "notes": "Site plan drawn based on spot panchnama and revisiting scene. Plan shows the exact route taken by accused from back window entry to side gate exit, along with victim's final position and blood distribution. All measurements verified on-site.",
+    "signature": "Inspector Anil Kumar Chauhan, IO"
+  }
+}

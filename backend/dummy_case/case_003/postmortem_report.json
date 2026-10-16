@@ -1,0 +1,145 @@
+{
+  "postmortem_report": {
+    "postmortem_number": "PM/SJH/2024/12456",
+    "hospital": "Safdarjung Hospital, Department of Forensic Medicine",
+    "date_of_postmortem": "2024-12-06",
+    "time_of_postmortem": "11:30",
+    "postmortem_conducted_by": {
+      "name": "Dr. Ashok Kumar Sharma",
+      "qualification": "MBBS, MD (Forensic Medicine)",
+      "designation": "Senior Medical Officer, Department of Forensic Medicine",
+      "registration_number": "DMC/FM/2008/2345"
+    },
+    "deceased_details": {
+      "name": "Meena Devi Sharma",
+      "age": 58,
+      "gender": "Female",
+      "identified_by": "Rekha Sharma (Daughter), Ramesh Chand (Neighbour)",
+      "police_reference": "FIR/2024/DL/PSDW/0912, PS Dwarka Sector 23"
+    },
+    "identification_marks": [
+      "Mole on left cheek",
+      "Old surgical scar on right knee (knee replacement surgery 2019)"
+    ],
+    "external_examination": {
+      "height": "5 feet 3 inches",
+      "build": "Medium",
+      "complexion": "Wheatish",
+      "postmortem_changes": {
+        "rigor_mortis": "Present in all limbs, jaw - corresponds to 8-10 hours after death",
+        "livor_mortis": "Fixed, on dependent parts (back and legs) - indicates body was in supine position",
+        "body_temperature": "12°C ambient, body temperature 28°C - confirms death 8-12 hours prior",
+        "decomposition": "Not started"
+      },
+      "clothing": "Bloodstained salwar kameez (maroon and cream), torn at multiple places indicating struggle"
+    },
+    "injuries": [
+      {
+        "injury_no": 1,
+        "type": "Incised wound",
+        "location": "Right side of neck",
+        "size": "8 cm x 3 cm x 6 cm deep",
+        "description": "Clean-cut incised wound extending from right side of neck crossing midline. Carotid artery and jugular vein completely severed. Trachea partially cut.",
+        "nature": "Antemortem",
+        "cause": "Sharp-edged weapon",
+        "fatal": true
+      },
+      {
+        "injury_no": 2,
+        "type": "Stab wound",
+        "location": "Left anterior chest, 4th intercostal space, 2 cm from midline",
+        "size": "3 cm x 1.5 cm",
+        "description": "Penetrating wound entering left thoracic cavity, puncturing left lung upper lobe. No cardiac involvement.",
+        "nature": "Antemortem",
+        "cause": "Sharp-pointed weapon",
+        "fatal": false
+      },
+      {
+        "injury_no": 3,
+        "type": "Stab wound",
+        "location": "Right upper chest, below clavicle",
+        "size": "2.5 cm x 1 cm x 4 cm deep",
+        "description": "Superficial - did not penetrate thoracic cavity",
+        "nature": "Antemortem",
+        "cause": "Sharp-edged weapon",
+        "fatal": false
+      },
+      {
+        "injury_no": 4,
+        "type": "Defence wounds - Incised",
+        "location": "Right palm and inner forearm",
+        "size": "Three separate cuts: 5 cm, 4 cm, 3 cm",
+        "description": "Clean-cut defensive wounds, consistent with victim grabbing blade of knife to defend herself",
+        "nature": "Antemortem",
+        "cause": "Sharp-edged weapon",
+        "fatal": false
+      },
+      {
+        "injury_no": 5,
+        "type": "Defence wounds - Incised",
+        "location": "Left palm and fingers",
+        "size": "Two cuts: 4 cm and 2 cm",
+        "description": "Additional defensive wounds",
+        "nature": "Antemortem",
+        "cause": "Sharp-edged weapon",
+        "fatal": false
+      },
+      {
+        "injury_no": 6,
+        "type": "Fracture",
+        "location": "Right wrist (radius)",
+        "description": "Simple fracture of distal radius - consistent with severe twisting or fall during struggle",
+        "nature": "Antemortem",
+        "fatal": false
+      },
+      {
+        "injury_no": 7,
+        "type": "Contusion",
+        "location": "Back of head (occipital region)",
+        "size": "4 cm x 3 cm",
+        "description": "Blunt injury, likely from fall on hard surface after stabbing",
+        "nature": "Antemortem",
+        "fatal": false
+      }
+    ],
+    "internal_examination": {
+      "neck": "Deep incised wound fully cutting through right sternocleidomastoid muscle, common carotid artery, internal jugular vein, and vagus nerve. Blood in surrounding tissues.",
+      "chest": "Left lung with 2cm puncture wound. Right lung normal. Heart normal. Approximately 500ml blood in left pleural cavity.",
+      "abdomen": "Normal, no injuries to abdominal organs",
+      "head": "No skull fracture. Brain normal. Small subarachnoid hemorrhage due to hypotension"
+    },
+    "cause_of_death": {
+      "immediate_cause": "Hemorrhagic shock due to severance of right common carotid artery and jugular vein (Injury No. 1)",
+      "contributing_causes": [
+        "Left lung laceration with hemothorax (Injury No. 2)",
+        "Multiple stab wounds"
+      ],
+      "manner_of_death": "Homicide",
+      "time_since_death": "8-12 hours before postmortem"
+    },
+    "toxicology": {
+      "blood_alcohol": "Negative",
+      "common_poisons": "Negative",
+      "drugs_screen": "Negative"
+    },
+    "samples_preserved": [
+      "Blood (2 vials) for DNA",
+      "Vitreous humor",
+      "Nail clippings from both hands (may contain accused's DNA under nails from struggle)",
+      "Scalp hair with root",
+      "Stomach contents",
+      "Skin tissue from wound edges"
+    ],
+    "forensic_opinion": {
+      "weapon_type": "Sharp-edged, pointed weapon (kitchen knife as recovered matches wound pattern)",
+      "manner_of_infliction": "All injuries antemortem, inflicted while victim was alive and struggling",
+      "sequence_of_injuries": "Defence wounds on hands first (while defending), then multiple stabs to chest, finally the fatal neck wound",
+      "number_of_attackers": "Single attacker based on wound pattern and trajectory",
+      "position_of_victim": "Victim likely standing/sitting during initial attack, collapsed and died on floor",
+      "duration_of_survival": "Victim survived approximately 5-10 minutes after fatal wound"
+    },
+    "opinion_note": "The injuries described above are sufficient to cause death in the ordinary course of nature. The nature, number, and location of injuries are consistent with a homicidal attack. The defensive wounds clearly indicate the victim tried to protect herself. Death was caused by the incised wound on the neck which severed major blood vessels, resulting in rapid hemorrhagic shock.",
+    "signature": "Dr. Ashok Kumar Sharma, MBBS, MD (Forensic Medicine), Reg. No. DMC/FM/2008/2345",
+    "date": "2024-12-07"
+  }
+}

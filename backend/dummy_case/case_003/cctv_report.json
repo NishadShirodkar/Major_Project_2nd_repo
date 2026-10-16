@@ -1,0 +1,77 @@
+{
+  "cctv_analysis_report": {
+    "report_id": "CCTV/PSDW/0912/2024",
+    "date_of_collection": "2024-12-06",
+    "date_of_analysis": "2024-12-06 to 2024-12-08",
+    "analyzed_by": {
+      "name": "SI Ravi Shankar",
+      "designation": "Technical Cell, PS Dwarka Sector 23"
+    },
+    "cctv_sources": [
+      {
+        "source_id": "CCTV-001",
+        "location": "Ramesh Chand's house (B-143) - Back view camera",
+        "camera_id": "CAM-RC-BACK-01",
+        "camera_type": "Hikvision dome camera 4MP",
+        "coverage_area": "Back lane and side gates of B-142 and B-143",
+        "footage_obtained": "18:00 to 23:00, 05-12-2024",
+        "storage": "DVR Hard Disk (EVD-0912-008)"
+      },
+      {
+        "source_id": "CCTV-002",
+        "location": "Shanti Kunj Park entrance",
+        "camera_id": "CAM-SKP-MAIN-01",
+        "camera_type": "PTZ camera 2MP",
+        "coverage_area": "Park entrance, road to Sector 23 residential block",
+        "footage_obtained": "20:30 to 22:30, 05-12-2024",
+        "storage": "DVR copy on Pen Drive"
+      },
+      {
+        "source_id": "CCTV-003",
+        "location": "MCD street camera at Sector 23 market",
+        "camera_id": "MCD-DWK23-MKT-04",
+        "camera_type": "Fixed camera 2MP",
+        "coverage_area": "Street view 60m stretch",
+        "footage_obtained": "20:45 to 22:30, 05-12-2024"
+      }
+    ],
+    "detailed_timeline_from_cctv": {
+      "cctv_001_ramesh_back_camera": [
+        {"timestamp": "20:32:15", "observation": "Rekha Sharma (victim's daughter) exits through front gate, walks towards main road with car keys, drives away"},
+        {"timestamp": "20:35:00", "observation": "Maid Sunita Yadav exits through front gate, walks towards jhuggi cluster"},
+        {"timestamp": "21:12:30", "observation": "Male figure (wearing grey sweater) enters frame from left side of back lane, walking towards B-142 side gate"},
+        {"timestamp": "21:13:45", "observation": "Male figure stops at B-142 side gate, appears to use a key, enters through gate"},
+        {"timestamp": "21:14:00", "observation": "Male proceeds towards back window of B-142 house. Begins climbing through window."},
+        {"timestamp": "21:15:00", "observation": "Male fully enters through back window. Clear view of face briefly - face matches accused Sanjay Sharma"},
+        {"timestamp": "21:45:00", "observation": "Lights inside living room turn off briefly then on again. Visible shadow movements through window"},
+        {"timestamp": "21:47:00", "observation": "Movement stops - no visible activity for next 10 minutes"},
+        {"timestamp": "21:58:00", "observation": "Male figure emerges from back window, climbs down, walks quickly towards side gate"},
+        {"timestamp": "22:00:30", "observation": "Male exits side gate carrying a cloth-wrapped object. Walks fast in direction of park."},
+        {"timestamp": "22:01:15", "observation": "Male clearly visible under streetlight - face matches accused Sanjay Sharma. Grey sweater now appears to have dark stains on chest area."}
+      ],
+      "cctv_002_park": [
+        {"timestamp": "21:05:20", "observation": "Accused Sanjay Sharma seen walking on road towards Sector 23, coming from direction of Sector 24"},
+        {"timestamp": "22:04:30", "observation": "Accused seen walking away in opposite direction, carrying cloth-wrapped object, walking fast"},
+        {"timestamp": "22:06:00", "observation": "Accused gets into a white Maruti Swift car (DL3CCW1234) parked near park gate, drives away"}
+      ],
+      "cctv_003_market": [
+        {"timestamp": "22:10:00", "observation": "White Maruti Swift DL3CCW1234 drives through Sector 23 market area towards outer ring road"}
+      ]
+    },
+    "vehicle_registration_verification": {
+      "vehicle": "White Maruti Swift, DL3CCW1234",
+      "owner": "Arun Sharma (Cousin of accused)",
+      "address": "Sector 108, Gurugram",
+      "relevance": "Vehicle used by accused to escape after the murder"
+    },
+    "identification_notes": {
+      "facial_recognition": "Face match confirmed at 3 different timestamps - entering at 21:15, at window at 21:12-21:15, and exiting at 22:00-22:01",
+      "clothing_match": "Grey sweater worn by individual in footage matches accused's sweater seized from residence (bloodstained)",
+      "gait_analysis": "Distinctive walk pattern (slight side-to-side) matches accused's gait"
+    },
+    "conclusion": "CCTV footage conclusively establishes the following: (1) Accused Sanjay Sharma approached victim's house at 21:12 via back lane; (2) Entered through back window at 21:15; (3) Was inside for approximately 45 minutes; (4) Between 21:45-21:58 the crime occurred (scream heard by neighbour at 21:45); (5) Exited at 21:58-22:00 carrying cloth-wrapped object (murder weapon); (6) Escaped in vehicle owned by his cousin. The footage corroborates the entire timeline established through other evidence.",
+    "certification": "I hereby certify that the above CCTV analysis is true and correct based on the footage examined. All timestamps verified and consistent.",
+    "signature": "SI Ravi Shankar, Technical Cell, PS Dwarka Sector 23",
+    "date": "2024-12-08"
+  }
+}

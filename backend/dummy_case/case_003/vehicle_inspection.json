@@ -1,0 +1,52 @@
+{
+  "vehicle_inspection_report": {
+    "report_id": "VIR/PSDW/0912/2024",
+    "date_of_inspection": "2024-12-08",
+    "time": "10:00 to 11:30",
+    "place": "PS Dwarka Sector 23 Yard",
+    "inspected_by": {
+      "name": "ASI Balraj Singh",
+      "designation": "Motor Transport Section",
+      "assisted_by": "Constable Satpal"
+    },
+    "vehicle": {
+      "evidence_id": "EVD-0912-017",
+      "type": "Car",
+      "make": "Maruti Suzuki",
+      "model": "Swift VXi",
+      "year_of_manufacture": 2019,
+      "registration": "DL3CCW1234",
+      "color": "White",
+      "chassis_number": "MA3EJKD1S00345678",
+      "engine_number": "K12MN1234567",
+      "odometer_reading": "42,876 km",
+      "owner": "Arun Sharma (Cousin of accused)",
+      "insurance": "Maruti Insurance, Policy MI/2024/MV/234567, Valid till 12-08-2025",
+      "role_in_crime": "Used by accused for escape after murder",
+      "external_examination": {
+        "condition": "Clean, no visible damage",
+        "left_side": "Normal",
+        "right_side": "Normal",
+        "front": "Normal",
+        "rear": "Normal"
+      },
+      "interior_examination": {
+        "driver_seat": "Normal",
+        "passenger_seat": "Faint blood stains found on passenger seat edge (dark red)",
+        "rear_seat": "Normal",
+        "floor_mats": "Normal",
+        "trunk": "Contains shopping bag, jerry can, no evidence of crime"
+      },
+      "forensic_findings": {
+        "blood_traces": "Faint blood stain on passenger seat edge - collected on sterile swab and sent to FSL",
+        "fingerprints": "Two usable prints from steering wheel and one from door handle - both matched to accused (as recorded in FSL report)",
+        "trace_evidence": "Fibre from grey sweater matched to accused's seized sweater"
+      },
+      "gps_data_extraction": "Vehicle infotainment system GPS data shows the following journey on 05-12-2024: Left accused's house (C-78 Sector 24 Dwarka) at 20:50, reached Sector 23 at 21:05, parked near Shanti Kunj Park from 21:05 to 22:05, drove back via Outer Ring Road to Sector 108 Gurugram by 22:45",
+      "damage_summary": "No structural damage to vehicle. Vehicle used for escape and transport of accused after crime.",
+      "opinion": "Vehicle DL3CCW1234 was used by the accused Sanjay Sharma on the night of the murder to travel to the crime scene and escape. The vehicle contains trace evidence (faint blood stain, fibre) linking the accused to the crime scene. GPS data confirms the journey timeline."
+    },
+    "signature": "ASI Balraj Singh, Motor Transport Section",
+    "date": "2024-12-08"
+  }
+}

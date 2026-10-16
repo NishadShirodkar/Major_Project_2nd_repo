@@ -1,0 +1,80 @@
+{
+  "first_information_report": {
+    "fir_number": "FIR/2024/DL/PSDW/0912",
+    "fir_book_serial_no": 912,
+    "date_of_fir": "2024-12-06",
+    "time_of_fir": "01:30",
+    "police_station": {
+      "name": "Dwarka Sector 23 Police Station",
+      "address": "Sector 23, Dwarka, New Delhi - 110075",
+      "district": "South West Delhi",
+      "state": "Delhi",
+      "phone": "011-28032345",
+      "email": "sho-dwarka23-dl@delhipolice.gov.in"
+    },
+    "act_and_sections": {
+      "bns": ["Section 103(1)", "Section 61", "Section 238", "Section 329"],
+      "other_acts": []
+    },
+    "occurrence_of_offence": {
+      "date_from": "2024-12-05",
+      "date_to": "2024-12-05",
+      "time_from": "21:15",
+      "time_to": "22:00",
+      "place_of_occurrence": "House No. B-142, Sector 23, Dwarka, New Delhi - Living Room, Ground Floor",
+      "distance_from_ps": "1.2 km North",
+      "beat_number": "Beat No. 4, Sector 23 Dwarka"
+    },
+    "complainant_informant": {
+      "name": "Rekha Sharma",
+      "father_husband_name": "D/o Late Suresh Sharma",
+      "age": 34,
+      "occupation": "Software Engineer",
+      "address": "B-142, Sector 23, Dwarka, New Delhi - 110075",
+      "contact": "9810667789",
+      "nationality": "Indian",
+      "relation_to_victim": "Daughter"
+    },
+    "victim_details": {
+      "name": "Meena Devi Sharma",
+      "father_name": "Late Ram Singh",
+      "age": 58,
+      "occupation": "Retired Government Teacher",
+      "address": "B-142, Sector 23, Dwarka",
+      "injury_type": "Grievous - Fatal",
+      "hospital": "DDU Hospital (brought dead)",
+      "status": "Deceased - Homicide"
+    },
+    "accused_details": [
+      {
+        "name": "Sanjay Sharma",
+        "father_name": "Late Suresh Sharma",
+        "age": 42,
+        "occupation": "Property Dealer",
+        "address": "C-78, Sector 24, Dwarka, New Delhi - 110075",
+        "relationship": "Brother-in-law of deceased (husband's younger brother)",
+        "arrest_status": "Arrested on 2024-12-07 at 06:00 hours from Delhi-Haryana border (near Gurugram)"
+      }
+    ],
+    "brief_facts": "On the night of 05-12-2024, between 21:15 and 22:00 hours, the accused Sanjay Sharma, brother-in-law of the deceased, entered the house of the deceased Meena Devi Sharma through the back window and murdered her with a kitchen knife by inflicting multiple stab wounds including a deep incised wound on her neck that severed the carotid artery. The murder was the culmination of a long-standing property dispute - the accused wanted the victim to sell the ancestral property in Sonipat and give him the money to clear his business debts, which the victim had refused. The accused was identified through CCTV footage, witness statements, and recovery of the murder weapon from his possession. Case registered.",
+    "action_taken": "Case registered under Section 103(1) BNS and connected sections. Accused arrested on 07-12-2024. Murder weapon recovered. All evidence collected and sent to FSL. Postmortem conducted at Safdarjung Hospital.",
+    "io_details": {
+      "name": "Inspector Anil Kumar Chauhan",
+      "rank": "Inspector",
+      "badge": "DCP/SWD/6045",
+      "date_of_taking_investigation": "2024-12-06",
+      "contact": "9810098300"
+    },
+    "fir_contents_checked_by": "SI Dinesh Kumar, Duty Officer",
+    "fir_forwarded_to": [
+      "Ld. Sessions Judge, Dwarka Courts",
+      "ACP, Dwarka Sub-Division",
+      "DCP, South West District"
+    ],
+    "signature": {
+      "complainant_signature": true,
+      "duty_officer_signature": true,
+      "io_signature": true
+    }
+  }
+}

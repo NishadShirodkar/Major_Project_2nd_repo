@@ -1,0 +1,184 @@
+{
+  "case_identifier": {
+    "fir_number": "FIR/2024/DL/PSKB/0534",
+    "crime_number": "CR/2024/DL/PSKB/0412",
+    "ps_case_number": "PSKB/2024/INV/347"
+  },
+  "police_station": {
+    "name": "Karol Bagh Police Station",
+    "district": "Central Delhi",
+    "state": "Delhi",
+    "police_station_code": "PSKB",
+    "jurisdiction": "Karol Bagh, Dev Nagar, Rehgar Pura, Ajmal Khan Road"
+  },
+  "incident_details": {
+    "date": "2024-11-20",
+    "day": "Wednesday",
+    "time": "14:30:00",
+    "timezone": "IST",
+    "weather": "Clear, dry",
+    "lighting": "Daylight (break-in during absence of residents)",
+    "location": {
+      "address": "Flat 302, Third Floor, Rishi Apartments, Plot No. 14, Ajmal Khan Road, Karol Bagh",
+      "landmark": "Opposite Karol Bagh Metro Station Gate No. 2",
+      "area": "Karol Bagh",
+      "city": "New Delhi",
+      "pincode": "110005",
+      "latitude": 28.6519,
+      "longitude": 77.1902,
+      "property_type": "Residential Apartment (3BHK)",
+      "entry_point": "Main door lock broken with iron rod"
+    }
+  },
+  "persons_involved": {
+    "victim": {
+      "person_id": "VIC-001",
+      "full_name": "Vikram Malhotra",
+      "age": 52,
+      "gender": "Male",
+      "occupation": "Owner, Malhotra Jewellers, Karol Bagh",
+      "address": "Flat 302, Rishi Apartments, Plot No. 14, Ajmal Khan Road, Karol Bagh, New Delhi - 110005",
+      "contact": "+91-9811223344",
+      "aadhar_number": "4523 6789 1234"
+    },
+    "accused": {
+      "person_id": "ACC-001",
+      "full_name": "Ravi Shankar Yadav",
+      "alias": "Ravi",
+      "age": 34,
+      "gender": "Male",
+      "occupation": "Former Security Guard (dismissed from Rishi Apartments in Sept 2024)",
+      "address": "Jhuggi No. 45, Rehgar Pura, Karol Bagh, New Delhi - 110005",
+      "contact": "+91-9871123456",
+      "previous_records": "One prior conviction for house theft in 2019 (Neb Sarai PS)"
+    },
+    "investigating_officer": {
+      "person_id": "IO-001",
+      "full_name": "Inspector Rajesh Kumar Yadav",
+      "badge_number": "DCP/CD/5124",
+      "rank": "Inspector",
+      "designation": "Station House Officer",
+      "police_station": "Karol Bagh",
+      "contact": "+91-9810098200"
+    },
+    "complainant": {
+      "person_id": "COM-001",
+      "full_name": "Vikram Malhotra",
+      "age": 52,
+      "gender": "Male",
+      "relation_to_victim": "Self",
+      "address": "Flat 302, Rishi Apartments, Ajmal Khan Road, Karol Bagh",
+      "contact": "+91-9811223344",
+      "occupation": "Businessman"
+    },
+    "witnesses": [
+      {
+        "witness_id": "WIT-001",
+        "full_name": "Sunita Kapoor",
+        "age": 45,
+        "gender": "Female",
+        "occupation": "Housewife, Resident of Flat 301",
+        "address": "Flat 301, Rishi Apartments, Karol Bagh",
+        "contact": "+91-9811223355"
+      },
+      {
+        "witness_id": "WIT-002",
+        "full_name": "Mahesh Kumar",
+        "age": 38,
+        "gender": "Male",
+        "occupation": "Current Security Guard, Rishi Apartments",
+        "address": "Security Quarters, Rishi Apartments, Karol Bagh",
+        "contact": "+91-9811223366"
+      }
+    ]
+  },
+  "vehicles": [
+    {
+      "vehicle_id": "VEH-001",
+      "type": "Two-wheeler",
+      "make_model": "Hero Splendor Plus",
+      "registration": "DL4SBK7890",
+      "color": "Black",
+      "ownership": "Ravi Shankar Yadav (Accused)",
+      "role": "Used for escape/transport of stolen items",
+      "position": "Recovered from accused's residence"
+    }
+  ],
+  "hospital": {
+    "name": "Not Applicable",
+    "reason": "No injuries sustained - property crime only"
+  },
+  "injuries": {
+    "victim_injuries": ["None - no physical injuries"],
+    "accused_injuries": ["None"]
+  },
+  "stolen_property": {
+    "total_value_estimated": "₹18,45,000",
+    "items": [
+      {"item": "Gold Necklace (22K, 45g)", "value": 315000},
+      {"item": "Gold Bangles (22K, 4 pieces, 120g)", "value": 840000},
+      {"item": "Gold Rings (22K, 3 pieces, 30g)", "value": 210000},
+      {"item": "Silver Coins (10 pieces)", "value": 45000},
+      {"item": "Diamond Earrings (Pair)", "value": 180000},
+      {"item": "Cash (Indian Rupees)", "value": 200000},
+      {"item": "Silver Puja Thali", "value": 55000}
+    ]
+  },
+  "legal_sections": {
+    "bharatiya_nyaya_sanhita": [
+      {"section": "331", "description": "House-breaking by night (note: occurred during day, so 305)"},
+      {"section": "305", "description": "Theft in dwelling house"},
+      {"section": "329", "description": "House-trespass"},
+      {"section": "324", "description": "Mischief causing damage"},
+      {"section": "317", "description": "Receiving stolen property (if applicable)"}
+    ],
+    "other_acts": [
+      {"act": "Indian Evidence Act", "section": "27", "description": "Discovery of facts"}
+    ]
+  },
+  "evidence_summary": {
+    "physical_evidence": [
+      "Iron rod used for breaking lock",
+      "Broken padlock (Godrej)",
+      "Fingerprint impressions from door handle and almirah",
+      "Footprint impressions (size 9, sole pattern)",
+      "CCTV footage from building and street",
+      "Recovered gold ornaments (partially)",
+      "Cash ₹85,000 recovered from accused",
+      "Accused's motorcycle DL4SBK7890"
+    ],
+    "digital_evidence": [
+      "CCTV from Rishi Apartments main gate",
+      "CCTV from street camera (Karol Bagh MCD camera)",
+      "Accused's mobile phone (CDR analysis)",
+      "Call detail records"
+    ],
+    "documentary_evidence": [
+      "FIR Copy",
+      "Complaint",
+      "Witness statements",
+      "Recovery memo",
+      "FSL fingerprint report",
+      "Jeweller's purchase receipts (victim's)"
+    ]
+  },
+  "timeline_key_events": [
+    {"time": "08:30", "event": "Vikram Malhotra leaves for jewellery shop with family"},
+    {"time": "14:25", "event": "CCTV captures accused entering building premises"},
+    {"time": "14:30", "event": "Accused breaks lock of Flat 302 and enters"},
+    {"time": "14:52", "event": "Accused exits with bag, escapes on motorcycle"},
+    {"time": "19:15", "event": "Malhotra family returns, finds lock broken"},
+    {"time": "19:22", "event": "PCR call made by neighbor Sunita Kapoor"},
+    {"time": "19:35", "event": "Police arrives at scene"},
+    {"time": "20:00", "event": "FIR registered at PS Karol Bagh"},
+    {"time": "21:00", "event": "Forensic team arrives, spot inspection"},
+    {"time": "2024-11-22 11:00", "event": "Accused arrested from Rehgar Pura"},
+    {"time": "2024-11-22 15:00", "event": "Recovery of stolen ornaments and cash"}
+  ],
+  "investigation_status": {
+    "status": "Investigation Complete",
+    "io_finding": "Prima facie case established against accused Ravi Shankar Yadav under BNS Sections 305, 329, 324",
+    "recommendation": "Filing of chargesheet before Hon'ble Metropolitan Magistrate",
+    "supervisory_remarks": "Approved by ACP, Karol Bagh Sub-Division on 2024-12-28"
+  }
+}

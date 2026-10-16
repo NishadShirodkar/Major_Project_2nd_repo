@@ -1,0 +1,176 @@
+{
+  "case_identifier": {
+    "fir_number": "FIR/2024/DL/PSDW/0912",
+    "crime_number": "CR/2024/DL/PSDW/0781",
+    "ps_case_number": "PSDW/2024/INV/689"
+  },
+  "police_station": {
+    "name": "Dwarka Sector 23 Police Station",
+    "district": "South West Delhi",
+    "state": "Delhi",
+    "police_station_code": "PSDW",
+    "jurisdiction": "Dwarka Sector 23, Sector 22, Sector 24, Bijwasan"
+  },
+  "incident_details": {
+    "date": "2024-12-05",
+    "day": "Thursday",
+    "time": "21:45:00",
+    "timezone": "IST",
+    "weather": "Cold, clear night, temperature 12°C",
+    "lighting": "Street lights functional, night time",
+    "location": {
+      "address": "House No. B-142, Sector 23, Dwarka, New Delhi",
+      "landmark": "Near Shanti Kunj Park, Sector 23 Dwarka",
+      "area": "Dwarka Sector 23",
+      "city": "New Delhi",
+      "pincode": "110075",
+      "latitude": 28.5645,
+      "longitude": 77.0567,
+      "property_type": "Independent residential house (ground floor + 1)",
+      "scene_of_crime": "Living room, ground floor"
+    }
+  },
+  "persons_involved": {
+    "victim": {
+      "person_id": "VIC-001",
+      "full_name": "Meena Devi Sharma",
+      "age": 58,
+      "gender": "Female",
+      "blood_group": "A+",
+      "occupation": "Retired Government Teacher",
+      "marital_status": "Widow",
+      "address": "B-142, Sector 23, Dwarka, New Delhi - 110075",
+      "contact": "+91-9810667788",
+      "aadhar_number": "5623 8912 4567"
+    },
+    "accused": {
+      "person_id": "ACC-001",
+      "full_name": "Sanjay Sharma",
+      "age": 42,
+      "gender": "Male",
+      "blood_group": "O+",
+      "occupation": "Property Dealer (small-time)",
+      "relationship_to_victim": "Brother-in-law (husband's younger brother)",
+      "address": "C-78, Sector 24, Dwarka, New Delhi - 110075",
+      "contact": "+91-9811223388",
+      "motive": "Property dispute - wanted victim to sell ancestral house to fund his business losses"
+    },
+    "investigating_officer": {
+      "person_id": "IO-001",
+      "full_name": "Inspector Anil Kumar Chauhan",
+      "badge_number": "DCP/SWD/6045",
+      "rank": "Inspector",
+      "designation": "Station House Officer",
+      "police_station": "Dwarka Sector 23",
+      "contact": "+91-9810098300"
+    },
+    "complainant": {
+      "person_id": "COM-001",
+      "full_name": "Rekha Sharma",
+      "age": 34,
+      "gender": "Female",
+      "relation_to_victim": "Daughter",
+      "occupation": "Software Engineer, Gurugram",
+      "address": "B-142, Sector 23, Dwarka, New Delhi (currently staying)",
+      "contact": "+91-9810667789"
+    },
+    "witnesses": [
+      {
+        "witness_id": "WIT-001",
+        "full_name": "Ramesh Chand",
+        "age": 48,
+        "gender": "Male",
+        "occupation": "Neighbour (House No. B-143)",
+        "address": "B-143, Sector 23, Dwarka",
+        "contact": "+91-9811223399"
+      },
+      {
+        "witness_id": "WIT-002",
+        "full_name": "Sunita Yadav",
+        "age": 28,
+        "gender": "Female",
+        "occupation": "Maid at victim's house for 4 years",
+        "address": "Jhuggi Cluster, Sector 22, Dwarka",
+        "contact": "+91-9811223400"
+      }
+    ]
+  },
+  "vehicles": [],
+  "hospital": {
+    "name": "Deen Dayal Upadhyay Hospital",
+    "address": "Hari Nagar, New Delhi - 110064",
+    "mlc_number": "MLC/DDUH/2024/8123",
+    "declared_dead_on_arrival": true,
+    "doctor": "Dr. R. K. Verma, MBBS, MD",
+    "postmortem_conducted": true,
+    "postmortem_hospital": "Safdarjung Hospital, Mortuary"
+  },
+  "injuries": {
+    "victim_injuries": [
+      "Deep incised wound on right side of neck (carotid artery severed)",
+      "Two stab wounds on chest - one on left side (5cm depth), one on right upper chest",
+      "Defence wounds on both hands (cut marks on palms and forearms)",
+      "Fracture of right wrist (from defensive blocking)",
+      "Blunt injury on back of head (contusion)"
+    ],
+    "accused_injuries": [
+      "Scratch marks on right forearm (defensive struggle evidence)",
+      "Small cut on left hand thumb"
+    ]
+  },
+  "legal_sections": {
+    "bharatiya_nyaya_sanhita": [
+      {"section": "103(1)", "description": "Murder - punishable under Section 103(1) BNS"},
+      {"section": "61", "description": "Criminal conspiracy"},
+      {"section": "238", "description": "Causing disappearance of evidence"},
+      {"section": "329", "description": "House-trespass (for night entry)"}
+    ]
+  },
+  "evidence_summary": {
+    "physical_evidence": [
+      "Bloodstained kitchen knife (murder weapon) recovered from accused's house",
+      "Bloodstained clothes of accused",
+      "Blood samples from scene",
+      "Victim's bloodied clothes",
+      "Fingerprints on knife handle",
+      "Fingerprints on window (accused's entry)",
+      "Footprint impressions at scene"
+    ],
+    "digital_evidence": [
+      "CCTV from neighbour's house",
+      "CCTV from Shanti Kunj Park entrance",
+      "Victim's mobile phone (last calls)",
+      "Accused's mobile phone (CDR, GPS)",
+      "WhatsApp chats showing property dispute"
+    ],
+    "documentary_evidence": [
+      "FIR Copy",
+      "Complaint by daughter",
+      "Witness statements",
+      "Postmortem report",
+      "Property documents showing dispute",
+      "Bank statements of accused showing debts"
+    ]
+  },
+  "timeline_key_events": [
+    {"time": "20:30", "event": "Victim's daughter Rekha leaves for night shift at office in Gurugram"},
+    {"time": "20:35", "event": "Maid Sunita Yadav leaves after finishing work"},
+    {"time": "21:15", "event": "Accused Sanjay Sharma reaches victim's house via back lane"},
+    {"time": "21:30", "event": "Argument heard by neighbor Ramesh Chand"},
+    {"time": "21:45", "event": "Screaming heard, then silence"},
+    {"time": "22:00", "event": "Accused seen leaving through side gate by neighbor"},
+    {"time": "23:30", "event": "Daughter Rekha returns home, finds mother dead"},
+    {"time": "23:42", "event": "PCR call made by Rekha"},
+    {"time": "23:55", "event": "Police team arrives"},
+    {"time": "2024-12-06 01:30", "event": "FIR registered"},
+    {"time": "2024-12-06 03:00", "event": "Body sent for postmortem"},
+    {"time": "2024-12-07 06:00", "event": "Accused arrested from Delhi-Haryana border"},
+    {"time": "2024-12-07 15:00", "event": "Murder weapon recovered at accused's instance"}
+  ],
+  "investigation_status": {
+    "status": "Investigation Complete",
+    "io_finding": "Prima facie case established against accused Sanjay Sharma under BNS Section 103(1) - Murder",
+    "recommendation": "Filing of chargesheet before Hon'ble Sessions Court (since murder is triable by Sessions)",
+    "supervisory_remarks": "Approved by ACP, Dwarka Sub-Division on 2025-01-18"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "evidence_inventory": {
+    "case_reference": "FIR/2024/DL/PSKB/0534",
+    "total_evidence_items": 20,
+    "evidence_custodian": "MHC(M) - PS Karol Bagh",
+    "list_prepared_by": "Inspector Rajesh Kumar Yadav, IO",
+    "date": "2024-12-28",
+    "items": [
+      {"evidence_id": "EVD-0534-001", "type": "Physical", "description": "Broken Godrej Padlock with hasp", "collected_from": "Main door of Flat 302", "collected_by": "Inspector Rajesh Kumar Yadav", "date_time_collection": "2024-11-20, 21:30", "status": "In FSL custody, analysis complete", "current_location": "Malkhana PS Karol Bagh"},
+      {"evidence_id": "EVD-0534-002", "type": "Physical - Weapon", "description": "Iron rod (20 inch) found at crime scene", "collected_from": "Master bedroom floor", "collected_by": "Inspector Rajesh Kumar Yadav", "date_time_collection": "2024-11-20, 21:45", "status": "In Malkhana", "current_location": "Malkhana PS Karol Bagh"},
+      {"evidence_id": "EVD-0534-003", "type": "Forensic", "description": "12 fingerprint lift sheets from crime scene", "collected_from": "Main door, almirah, bedroom door", "collected_by": "Fingerprint Expert ASI Narender", "date_time_collection": "2024-11-20, 22:00", "status": "Analyzed by FSL, matched accused"},
+      {"evidence_id": "EVD-0534-004", "type": "Forensic", "description": "Footprint plaster cast", "collected_from": "Balcony floor", "collected_by": "Forensic team", "date_time_collection": "2024-11-20, 22:30", "status": "Analyzed, matched accused"},
+      {"evidence_id": "EVD-0534-005", "type": "Digital", "description": "Photographs of ransacked flat (35 frames)", "collected_from": "Spot", "collected_by": "HC Ramesh Kumar", "date_time_collection": "2024-11-20", "status": "In Malkhana"},
+      {"evidence_id": "EVD-0534-006", "type": "Digital", "description": "CCTV DVR from Rishi Apartments main gate", "collected_from": "Hospital", "collected_by": "Inspector Rajesh", "date_time_collection": "2024-11-20, 23:00", "status": "Analyzed, working copy in IT Cell"},
+      {"evidence_id": "EVD-0534-007", "type": "Documentary", "description": "Purchase receipts of stolen jewellery", "collected_from": "Complainant", "collected_by": "Inspector Rajesh", "date_time_collection": "2024-11-21, 10:00", "status": "In case file"},
+      {"evidence_id": "EVD-0534-008", "type": "Documentary", "description": "RWA register with former security guard details", "collected_from": "RWA office", "collected_by": "IO", "date_time_collection": "2024-11-21, 11:00", "status": "In case file"},
+      {"evidence_id": "EVD-0534-009", "type": "Recovered Property", "description": "4 Gold Bangles (22K, 95g total)", "collected_from": "Accused's residence", "collected_by": "Inspector Rajesh", "date_time_collection": "2024-11-22, 15:00", "status": "In Malkhana - to be returned on court order"},
+      {"evidence_id": "EVD-0534-010", "type": "Recovered Property", "description": "3 Gold Rings (22K, 28g total)", "collected_from": "Accused's residence", "collected_by": "IO", "date_time_collection": "2024-11-22, 15:00", "status": "In Malkhana"},
+      {"evidence_id": "EVD-0534-011", "type": "Recovered Property", "description": "6 Silver Coins", "collected_from": "Accused's residence", "collected_by": "IO", "date_time_collection": "2024-11-22, 15:00", "status": "In Malkhana"},
+      {"evidence_id": "EVD-0534-012", "type": "Recovered Property", "description": "Cash ₹85,000", "collected_from": "Accused's residence", "collected_by": "IO", "date_time_collection": "2024-11-22, 15:00", "status": "In Malkhana"},
+      {"evidence_id": "EVD-0534-013", "type": "Physical - Weapon", "description": "Iron rod recovered from accused", "collected_from": "Accused's residence", "collected_by": "IO", "date_time_collection": "2024-11-22, 15:00", "status": "In Malkhana"},
+      {"evidence_id": "EVD-0534-014", "type": "Physical - Vehicle", "description": "Hero Splendor Plus motorcycle DL4SBK7890", "collected_from": "Accused's residence", "collected_by": "IO", "date_time_collection": "2024-11-22, 15:30", "status": "In Malkhana yard"},
+      {"evidence_id": "EVD-0534-015", "type": "Physical", "description": "Black rexine bag used in crime", "collected_from": "Accused's residence", "collected_by": "IO", "date_time_collection": "2024-11-22, 15:00", "status": "In Malkhana"},
+      {"evidence_id": "EVD-0534-016", "type": "Digital", "description": "Accused's Mobile Phone (Redmi 9A)", "collected_from": "Personal search at arrest", "collected_by": "IO", "date_time_collection": "2024-11-22, 11:15", "status": "In Malkhana", "digital_forensics_status": "CDR and GPS extracted"},
+      {"evidence_id": "EVD-0534-017", "type": "Recovered Property", "description": "Gold Necklace 22K 45g (from jeweller)", "collected_from": "Soni Jewellers, Sadar Bazar", "collected_by": "IO", "date_time_collection": "2024-12-02, 11:00", "status": "In Malkhana"},
+      {"evidence_id": "EVD-0534-018", "type": "Recovered Property", "description": "Diamond Earrings (Pair) from jeweller", "collected_from": "Soni Jewellers", "collected_by": "IO", "date_time_collection": "2024-12-02, 11:00", "status": "In Malkhana"},
+      {"evidence_id": "EVD-0534-019", "type": "Forensic Reference", "description": "Accused's fingerprint card (10 prints)", "collected_by": "Fingerprint expert", "date_time_collection": "2024-11-22", "status": "Submitted to FSL"},
+      {"evidence_id": "EVD-0534-020", "type": "Documentary", "description": "Jeweller's purchase register (Soni Jewellers)", "collected_from": "Soni Jewellers", "collected_by": "IO", "date_time_collection": "2024-12-02", "status": "In case file"}
+    ],
+    "evidence_summary": "Total 20 evidence items. Physical: 4 items. Recovered property: 6 items worth approx ₹14.75 lakh. Digital: 3 items. Forensic: 3 items. Documentary: 3 items. Reference: 1 item. All properly sealed, chained of custody documented.",
+    "io_declaration": "I certify that all evidence listed above was collected by me or under my supervision and is material to this case.",
+    "signature": "Rajesh Kumar Yadav, Inspector"
+  }
+}

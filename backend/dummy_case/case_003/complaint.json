@@ -1,0 +1,25 @@
+{
+  "complaint": {
+    "date": "2024-12-06",
+    "time": "00:45",
+    "police_station": "Dwarka Sector 23 Police Station",
+    "section": "Section 154 of Code of Criminal Procedure, 1973",
+    "complainant_details": {
+      "name": "Rekha Sharma",
+      "age": 34,
+      "occupation": "Software Engineer",
+      "address": "B-142, Sector 23, Dwarka, New Delhi - 110075",
+      "contact": "9810667789",
+      "relation_to_victim": "Daughter"
+    },
+    "complaint_text": "Respected Sir, I Rekha Sharma, daughter of Late Suresh Sharma, resident of B-142, Sector 23, Dwarka, do hereby state that I work as a Software Engineer with an IT company in Gurugram and I am currently posted on night shift. I live with my mother Smt. Meena Devi Sharma, aged 58, who is a retired government school teacher and my only family. My father expired in 2018 and since then my mother and I live together in our Sector 23 house. Today, i.e. on 5th December 2024, I left home at around 8:30 PM for my night shift duty. My mother was alone at home after our maid Sunita left at 8:35 PM. At around 11:35 PM I tried calling my mother on her mobile to check on her, but she did not pick up the call despite multiple attempts. I got worried. I requested my team lead for permission to leave early and reached home around 11:30 PM. When I entered the house through the main door, I found the lights of the living room on and my mother lying on the floor in a pool of blood. I immediately checked her pulse but she was not responding. I called the PCR immediately at 11:42 PM. The police arrived within 10-12 minutes with an ambulance. My mother was declared brought dead at DDU Hospital. I have strong suspicion on my uncle Sanjay Sharma, who is my father's younger brother and lives in Sector 24 Dwarka. He had been quarrelling with my mother for the last 6 months regarding the sale of our ancestral property in Sonipat. He had been demanding that my mother sell the property and give him a share, but she always refused. He had even threatened my mother once in October. I have seen him arguing with my mother on multiple occasions. I request you to register an FIR against Sanjay Sharma and take strict legal action. My mother's murder cannot go unpunished. The facts stated are true to my knowledge.",
+    "verbal_complaint_recorded_by": "SI Dinesh Kumar, Duty Officer, PS Dwarka Sector 23",
+    "complaint_read_and_verified": true,
+    "time_of_complaint": "00:45 hours",
+    "signature_thumb_impression": "Signed by Complainant - Rekha Sharma",
+    "witness_to_complaint": [
+      {"name": "Ramesh Chand", "designation": "Neighbour"},
+      {"name": "SI Dinesh Kumar", "designation": "Duty Officer"}
+    ]
+  }
+}

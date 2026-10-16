@@ -1,0 +1,35 @@
+{
+  "annexures_list": {
+    "case_reference": "FIR/2024/DL/PSDW/0912",
+    "total_documents": 22,
+    "prepared_by": "Inspector Anil Kumar Chauhan, IO",
+    "date": "2025-01-18",
+    "documents": [
+      {"annexure_no": "A-1", "document_name": "First Information Report", "document_id": "FIR/2024/DL/PSDW/0912", "pages": 3, "filed_in_court": true, "exhibit_mark": "PW-1/A"},
+      {"annexure_no": "A-2", "document_name": "Complaint under Section 154 CrPC", "pages": 3, "filed_in_court": true, "exhibit_mark": "PW-2/A"},
+      {"annexure_no": "A-3", "document_name": "Arrest Memo", "pages": 4, "filed_in_court": true, "exhibit_mark": "PW-3/A"},
+      {"annexure_no": "A-4", "document_name": "Seizure Memo", "pages": 5, "filed_in_court": true, "exhibit_mark": "PW-3/B"},
+      {"annexure_no": "A-5", "document_name": "Recovery Memo", "pages": 3, "filed_in_court": true, "exhibit_mark": "PW-3/C"},
+      {"annexure_no": "A-6", "document_name": "Spot Panchnama", "pages": 8, "filed_in_court": true, "exhibit_mark": "PW-4/A"},
+      {"annexure_no": "A-7", "document_name": "Site Plan", "pages": 3, "filed_in_court": true, "exhibit_mark": "PW-4/B"},
+      {"annexure_no": "A-8", "document_name": "Postmortem Report", "document_id": "PM/SJH/2024/12456", "pages": 8, "filed_in_court": true, "exhibit_mark": "PW-5/A"},
+      {"annexure_no": "A-9", "document_name": "Witness Statement - Ramesh Chand", "pages": 3, "filed_in_court": true, "exhibit_mark": "PW-6/A"},
+      {"annexure_no": "A-10", "document_name": "Witness Statement - Sunita Yadav", "pages": 2, "filed_in_court": true, "exhibit_mark": "PW-7/A"},
+      {"annexure_no": "A-11", "document_name": "Accused Statement", "pages": 4, "filed_in_court": true, "exhibit_mark": "PW-8/A"},
+      {"annexure_no": "A-12", "document_name": "Memorandum Statement under Section 27 IEA", "pages": 2, "filed_in_court": true, "exhibit_mark": "PW-8/B"},
+      {"annexure_no": "A-13", "document_name": "FSL Report", "document_id": "FSL/DL/2024/SER/9845", "pages": 15, "filed_in_court": true, "exhibit_mark": "PW-9/A"},
+      {"annexure_no": "A-14", "document_name": "CCTV Analysis Report", "pages": 10, "filed_in_court": true, "exhibit_mark": "PW-10/A"},
+      {"annexure_no": "A-15", "document_name": "Vehicle Inspection Report", "pages": 4, "filed_in_court": true, "exhibit_mark": "PW-11/A"},
+      {"annexure_no": "A-16", "document_name": "Mobile Forensics Report", "pages": 6, "filed_in_court": true, "exhibit_mark": "PW-12/A"},
+      {"annexure_no": "A-17", "document_name": "Property Dispute Documents (Sonipat property)", "pages": 8, "filed_in_court": true, "exhibit_mark": "PW-13/A"},
+      {"annexure_no": "A-18", "document_name": "Financial Records of Accused (Bank statements)", "pages": 12, "filed_in_court": true, "exhibit_mark": "PW-13/B"},
+      {"annexure_no": "A-19", "document_name": "WhatsApp Chats Transcript", "pages": 5, "filed_in_court": true, "exhibit_mark": "PW-12/B"},
+      {"annexure_no": "A-20", "document_name": "Evidence List", "pages": 6, "filed_in_court": true, "exhibit_mark": "PW-3/D"},
+      {"annexure_no": "A-21", "document_name": "Timeline Reconstruction", "pages": 8, "filed_in_court": true, "exhibit_mark": "PW-14/A"},
+      {"annexure_no": "A-22", "document_name": "Photographs (45 frames)", "filed_in_court": true, "exhibit_mark": "M-1"}
+    ],
+    "certification": "Total pages: 118 plus digital evidence. All documents filed with chargesheet. Case triable by Sessions Court, being committed accordingly.",
+    "signature": "Anil Kumar Chauhan, Inspector",
+    "date": "2025-01-18"
+  }
+}
