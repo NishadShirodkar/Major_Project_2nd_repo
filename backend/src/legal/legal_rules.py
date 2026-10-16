@@ -41,6 +41,11 @@ class LegalReference(DomainModel):
     source: LegalReferenceSource
     version: str = Field(min_length=1)
     source_reference: SourceReference
+    statute: str = Field(default="The Bharatiya Nyaya Sanhita, 2023")
+    provision_type: str = Field(default="substantive")
+    legacy_ipc_equivalent: str | None = None
+    verified: bool = True
+    verification_date: str | None = "2024-07-01"
 
     @model_validator(mode="after")
     def effective_range_is_valid(self) -> "LegalReference":

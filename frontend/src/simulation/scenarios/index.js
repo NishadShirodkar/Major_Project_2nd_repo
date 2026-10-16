@@ -1,5 +1,5 @@
-import { delhiAccidentScene } from "./delhiAccidentScene";
-import { indoorShootingScene } from "./indoorShootingScene";
+import { delhiAccidentScene } from "./delhiAccidentScene.js";
+import { indoorShootingScene } from "./indoorShootingScene.js";
 
 export const SCENARIO_REGISTRY = {
   case_001: {

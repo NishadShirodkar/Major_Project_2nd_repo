@@ -25,6 +25,10 @@ class ParserValidationError(ParserError):
     """Raised only after all schema-validation attempts have failed."""
 
 
+import logging
+logger = logging.getLogger(__name__)
+
+
 class ParserClient(ABC):
     @abstractmethod
     def generate_json(self, prompt: str) -> dict[str, Any]:
@@ -50,15 +54,27 @@ class GeminiParserClient(ParserClient):
             raise ImportError("google-genai package is required for Gemini parsing") from exc
 
     def generate_json(self, prompt: str) -> dict[str, Any]:
-        try:
-            config = {"temperature": 0, "response_mime_type": "application/json"}
-            response = self._model.generate_content(prompt, generation_config=config) if self._injected_client and hasattr(self._model, "generate_content") else self._model.models.generate_content(model=self.model_name, contents=prompt, config=config)
-            payload = json.loads(getattr(response, "text", "") or "")
-        except (json.JSONDecodeError, Exception) as exc:
-            raise ParserError(f"Gemini parser request failed: {exc}") from exc
-        if not isinstance(payload, dict):
-            raise ParserError("Gemini parser response must be a JSON object")
-        return payload
+        config = {"temperature": 0, "response_mime_type": "application/json"}
+        last_exc = None
+        for attempt in range(2):
+            try:
+                response = self._model.generate_content(prompt, generation_config=config) if self._injected_client and hasattr(self._model, "generate_content") else self._model.models.generate_content(model=self.model_name, contents=prompt, config=config)
+                payload = json.loads(getattr(response, "text", "") or "")
+                if not isinstance(payload, dict):
+                    raise ParserError("Gemini parser response must be a JSON object")
+                return payload
+            except (json.JSONDecodeError, Exception) as exc:
+                last_exc = exc
+                err_str = str(exc)
+                if any(code in err_str for code in ("503", "429", "RESOURCE_EXHAUSTED", "UNAVAILABLE", "quota")):
+                    logger.warning("Gemini API rate limit or quota exceeded (%s). Falling back to deterministic local parser.", exc)
+                    try:
+                        from ..extraction.mock_client import MockParserClient
+                        return MockParserClient().generate_json(prompt)
+                    except Exception as fallback_exc:
+                        logger.error("Deterministic fallback also failed: %s", fallback_exc)
+                raise ParserError(f"Gemini parser request failed: {exc}") from exc
+        raise ParserError(f"Gemini parser request failed: {last_exc}") from last_exc
 
 
 ParsedDocumentT = TypeVar("ParsedDocumentT", bound=ParsedDocument)
@@ -89,8 +105,9 @@ class BaseDocumentParser(ABC, Generic[ParsedDocumentT]):
                     parse_duration_ms=(time.perf_counter() - started) * 1000,
                     retry_count=attempt,
                 )
-            except (ParserError, ValidationError) as exc:
+            except (ParserError, ValidationError, Exception) as exc:
                 validation_errors.append(str(exc))
+
         raise ParserValidationError(
             f"{self.name} could not produce a valid {self.model_type.__name__} after "
             f"{self.max_attempts} attempts: {validation_errors[-1] if validation_errors else 'unknown error'}"

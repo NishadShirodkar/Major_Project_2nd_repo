@@ -3,8 +3,9 @@ import SceneCanvas from "./SceneCanvas";
 import ArkhamHUD from "./ArkhamHUD";
 import { SCENARIO_REGISTRY } from "./scenarios";
 
-export default function SceneViewer() {
-  const [selectedCaseId, setSelectedCaseId] = useState("case_001");
+export default function SceneViewer({ initialCaseId, onReturnToWorkspace }) {
+  const safeInitial = initialCaseId && SCENARIO_REGISTRY[initialCaseId] ? initialCaseId : "case_001";
+  const [selectedCaseId, setSelectedCaseId] = useState(safeInitial);
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
@@ -76,6 +77,41 @@ export default function SceneViewer() {
         setSelectedTargetId={setSelectedTargetId}
         cameraPreset={cameraPreset}
       />
+
+      {/* Return to Workspace Overlay Button */}
+      {onReturnToWorkspace && (
+        <div
+          style={{
+            position: "absolute",
+            top: "16px",
+            right: "16px",
+            zIndex: 1000,
+            pointerEvents: "auto",
+          }}
+        >
+          <button
+            onClick={onReturnToWorkspace}
+            style={{
+              background: "rgba(15, 24, 38, 0.9)",
+              border: "1px solid #00f0ff",
+              color: "#00f0ff",
+              padding: "8px 16px",
+              fontFamily: "'Courier New', Courier, monospace",
+              fontSize: "12px",
+              fontWeight: "bold",
+              letterSpacing: "1px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              boxShadow: "0 0 10px rgba(0, 240, 255, 0.25)",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
+            &larr; RETURN TO INVESTIGATION WORKSPACE
+          </button>
+        </div>
+      )}
 
       {/* Arkham Detective Mode HUD Overlay */}
       <ArkhamHUD

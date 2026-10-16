@@ -9,7 +9,18 @@ from .fact_projection import project_fact
 
 def project_entities(nodes: tuple[GraphNode, ...]):
     people = [node for node in nodes if node.node_type == GraphNodeType.PERSON]
-    persons = tuple(CanonicalPerson(id=node.id, name=project_fact(node.label, node.provenance, f"graph.nodes[{node.id}].label"), roles=node.roles) for node in people)
+    persons = tuple(
+        CanonicalPerson(
+            id=node.id,
+            name=project_fact(node.label, node.provenance, f"graph.nodes[{node.id}].label"),
+            roles=node.roles,
+            attributes={
+                key: project_fact(value, node.provenance, f"graph.nodes[{node.id}].attributes.{key}")
+                for key, value in node.attributes.items()
+            },
+        )
+        for node in people
+    )
     by_role = lambda role: tuple(person for person in persons if role in person.roles)
     vehicles = tuple(CanonicalVehicle(id=node.id, registration_number=project_fact(node.attributes.get("registration_number", node.label), node.provenance, f"graph.nodes[{node.id}].attributes.registration_number")) for node in nodes if node.node_type == GraphNodeType.VEHICLE)
     locations = tuple(CanonicalLocation(id=node.id, name=project_fact(node.label, node.provenance, f"graph.nodes[{node.id}].label")) for node in nodes if node.node_type == GraphNodeType.LOCATION)

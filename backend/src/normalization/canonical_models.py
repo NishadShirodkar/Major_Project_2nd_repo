@@ -52,6 +52,7 @@ class CanonicalPerson(DomainModel):
     id: UUID
     name: CanonicalFact
     roles: frozenset[PersonRole] = frozenset()
+    attributes: dict[str, CanonicalFact] = Field(default_factory=dict)
 
 
 class CanonicalVehicle(DomainModel):
@@ -82,6 +83,7 @@ class CanonicalEvidence(DomainModel):
     related_vehicle_ids: tuple[UUID, ...] = ()
     related_event_ids: tuple[UUID, ...] = ()
     confidence: float | None = Field(default=None, ge=0, le=1)
+    attributes: dict[str, CanonicalFact] = Field(default_factory=dict)
 
 
 class TimelineStatus(StrEnum):

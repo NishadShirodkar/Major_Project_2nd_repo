@@ -8,16 +8,6 @@ from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from ..domain.documents import SourceDocument
-from ..normalization.canonical_models import CanonicalInvestigation
-from ..knowledge_graph.graph_models import InvestigationKnowledgeGraph
-from ..validation.validation_models import ValidationReport
-from ..context.case_context import CaseContext
-from ..legal.legal_findings import LegalFindings
-from ..chargesheet.form_if5_schema import ChargeSheetData
-from ..review.review_models import ChargeSheetReview
-from .state import WorkflowState
-
 
 class ContextItem(BaseModel):
     """A named future-stage value retained without leaking unrelated arguments."""
@@ -35,6 +25,17 @@ class GeneratedArtifact(BaseModel):
     storage_key: str
     media_type: str
     generated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+
+from ..domain.documents import SourceDocument
+from ..normalization.canonical_models import CanonicalInvestigation
+from ..knowledge_graph.graph_models import InvestigationKnowledgeGraph
+from ..validation.validation_models import ValidationReport
+from ..context.case_context import CaseContext
+from ..legal.legal_findings import LegalFindings
+from ..chargesheet.form_if5_schema import ChargeSheetData
+from ..review.review_models import ChargeSheetReview
+from .state import WorkflowState
 
 
 class WorkflowContext(BaseModel):

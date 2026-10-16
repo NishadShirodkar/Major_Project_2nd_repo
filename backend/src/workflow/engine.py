@@ -19,9 +19,11 @@ class WorkflowEngine:
         registry: StageRegistry,
         *,
         clock: Callable[[], datetime] = utc_now,
+        on_stage_update: Callable[[str, StageStatus, WorkflowContext | None], None] | None = None,
     ) -> None:
         self._registry = registry
         self._clock = clock
+        self._on_stage_update = on_stage_update
 
     def run(self, context: WorkflowContext) -> WorkflowRunResult:
         started_at = self._clock()
@@ -42,6 +44,11 @@ class WorkflowEngine:
 
             state = current_context.execution_state.mark_running(stage.name, self._clock())
             current_context = current_context.with_updates(execution_state=state)
+            if self._on_stage_update is not None:
+                try:
+                    self._on_stage_update(stage.name, StageStatus.RUNNING, current_context)
+                except Exception:
+                    pass
             try:
                 stage_context = stage.execute(current_context)
                 if not isinstance(stage_context, WorkflowContext):
@@ -54,9 +61,19 @@ class WorkflowEngine:
                     )
                 state = current_context.execution_state.mark_completed(stage.name, self._clock())
                 current_context = stage_context.with_updates(execution_state=state)
+                if self._on_stage_update is not None:
+                    try:
+                        self._on_stage_update(stage.name, StageStatus.COMPLETED, current_context)
+                    except Exception:
+                        pass
             except Exception as exc:  # Stage failures become inspectable state, not lost context.
                 state = current_context.execution_state.mark_failed(stage.name, self._clock(), exc)
                 current_context = current_context.with_updates(execution_state=state)
+                if self._on_stage_update is not None:
+                    try:
+                        self._on_stage_update(stage.name, StageStatus.FAILED, current_context)
+                    except Exception:
+                        pass
                 if stage.is_critical:
                     stopped_on_critical_failure = True
                     break

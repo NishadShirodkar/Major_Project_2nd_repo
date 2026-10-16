@@ -33,7 +33,7 @@ class OCRMetadata(BaseModel):
 class OCRResult(BaseModel):
     """A provenance-ready text transcription, not a parsed investigation document."""
 
-    model_config = ConfigDict(frozen=True, extra="forbid")
+    model_config = ConfigDict(frozen=True, extra="ignore")
 
     document_id: UUID
     pages: tuple[OCRPage, ...]

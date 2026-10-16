@@ -25,7 +25,17 @@ class ReviewEventType(StrEnum):
     APPROVED = "approved"
     REJECTED = "rejected"
     REVISION_REQUESTED = "revision_requested"
+    CORRECTION_APPLIED = "correction_applied"
+    NOTE_ADDED = "note_added"
     FINALIZED = "finalized"
+
+
+class ReviewNote(DomainModel):
+    note_id: UUID = Field(default_factory=uuid4)
+    author_id: str
+    author_name: str | None = None
+    note_text: str
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
 class ReviewEvent(DomainModel):
@@ -55,3 +65,4 @@ class ChargeSheetReview(DomainModel):
     finalized_at: datetime | None = None
     final_artifact_reference: str | None = None
     events: tuple[ReviewEvent, ...] = ()
+    notes: tuple[ReviewNote, ...] = ()

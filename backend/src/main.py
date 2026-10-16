@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 from pathlib import Path
 from uuid import NAMESPACE_URL, UUID, uuid5
 
@@ -10,6 +11,7 @@ from .config import Config
 from .intake.upload_manager import IncomingUpload
 from .validation.validation_models import ValidationDisposition
 from .workflow.production import create_workflow_context, run_production_workflow
+from .api.app import app
 
 
 def _case_id(value: str) -> UUID:
@@ -37,6 +39,9 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--gemini-api-key", default=Config.GEMINI_API_KEY, help="Gemini key; defaults to GEMINI_API_KEY")
     parser.add_argument("--gemini-model", default=Config.GEMINI_MODEL, help="Gemini model; defaults to GEMINI_MODEL")
     parser.add_argument("--resume", action="store_true", help="Reuse only OCR artifacts validated against this case's persisted manifest.")
+    parser.add_argument("--mock-llm", action="store_true", help="Run with deterministic synthetic mock OCR and Parser clients for offline testing and verification without calling Gemini.")
+    parser.add_argument("--legal-reference-path", type=Path, default=None, help="Path to BNS legal references JSON (defaults to bundled references/legal/bns_sections.json).")
+    parser.add_argument("--legal-reference-version", default=Config.LEGAL_REFERENCE_VERSION or "bns-2023-2024-07-01", help="Legal reference version tag.")
     return parser
 
 
@@ -46,18 +51,42 @@ def main(argv: list[str] | None = None) -> int:
         uploads = _discover_uploads(args.input_dir)
         if not uploads:
             raise ValueError(f"No files found in input directory: {args.input_dir}")
-        if not args.gemini_api_key:
-            raise ValueError("GEMINI_API_KEY is required for OCR and document parsing")
+
+        mock_mode = args.mock_llm or bool(os.getenv("BYOMKESH_MOCK_LLM"))
+        if not mock_mode and not args.gemini_api_key:
+            raise ValueError("GEMINI_API_KEY is required for OCR and document parsing (or specify --mock-llm for offline execution)")
+
+        # Resolve legal reference path: explicit CLI arg -> environment config -> bundled reference
+        legal_ref_path = args.legal_reference_path
+        if legal_ref_path is None:
+            if Config.LEGAL_REFERENCE_PATH:
+                legal_ref_path = Path(Config.LEGAL_REFERENCE_PATH)
+            else:
+                bundled_path = Path(__file__).resolve().parent.parent / "references" / "legal" / "bns_sections.json"
+                if bundled_path.is_file():
+                    legal_ref_path = bundled_path
+
         case_id = _case_id(args.case_id)
         context = create_workflow_context(case_id, uploads, resume=args.resume, storage_root=args.output_dir)
+
+        dependencies: dict[str, object] = {
+            "legal_reference_path": legal_ref_path,
+            "legal_reference_version": args.legal_reference_version,
+            "resume": args.resume,
+        }
+
+        if mock_mode:
+            from .extraction.mock_client import MockOCRClient, MockParserClient
+            dependencies["ocr_client"] = MockOCRClient()
+            dependencies["parser_client"] = MockParserClient()
+        else:
+            dependencies["gemini_api_key"] = args.gemini_api_key
+            dependencies["gemini_model"] = args.gemini_model
+
         result = run_production_workflow(
             args.output_dir,
             context,
-            gemini_api_key=args.gemini_api_key,
-            gemini_model=args.gemini_model,
-            legal_reference_path=Path(Config.LEGAL_REFERENCE_PATH) if Config.LEGAL_REFERENCE_PATH else None,
-            legal_reference_version=Config.LEGAL_REFERENCE_VERSION,
-            resume=args.resume,
+            **dependencies,
         )
     except (ValueError, OSError) as exc:
         print(f"Configuration error: {exc}")

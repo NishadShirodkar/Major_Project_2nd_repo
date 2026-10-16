@@ -13,6 +13,7 @@ from ..workflow.context import ContextItem, WorkflowContext
 from ..workflow.stage import WorkflowStage
 from .ocr_artifacts import OCRArtifactWriter
 from .ocr_client import OCRClient
+from .ocr_exceptions import OCRProviderError
 
 
 class OCRStage(WorkflowStage):
@@ -34,6 +35,7 @@ class OCRStage(WorkflowStage):
 
     def execute(self, context: WorkflowContext) -> WorkflowContext:
         started = time.perf_counter()
+        initial_results_count = len(context.ocr_results)
         results: list[ContextItem] = list(context.ocr_results)
         artifacts = list(context.generated_artifacts)
         updated_documents = []
@@ -41,6 +43,8 @@ class OCRStage(WorkflowStage):
         character_count = 0
         confidence_values: list[float] = []
         reused_count = 0
+        failed_documents: list[tuple[SourceDocument, str]] = []
+        attempted_count = 0
 
         for document in context.uploaded_documents:
             if (
@@ -50,22 +54,34 @@ class OCRStage(WorkflowStage):
             ):
                 updated_documents.append(document)
                 continue
-            source_path = self.storage_root / document.storage_key
-            loaded = self._load_resume_artifact(document, source_path) if self.resume else None
-            if loaded is not None:
-                result, existing_artifacts = loaded
-                artifacts.extend(existing_artifacts)
-                reused_count += 1
-            else:
-                result = self.client.extract(document, source_path)
-                artifacts.extend(self.artifact_writer.write(document, result))
-            results.append(ContextItem(key=str(document.id), value=result))
-            updated_documents.append(document.model_copy(update={"extraction_state": ExtractionState.COMPLETE}))
-            page_count += result.page_count
-            character_count += len(result.raw_text)
-            if result.confidence is not None:
-                confidence_values.append(result.confidence)
 
+            attempted_count += 1
+            source_path = self.storage_root / document.storage_key
+            try:
+                loaded = self._load_resume_artifact(document, source_path) if self.resume else None
+                if loaded is not None:
+                    result, existing_artifacts = loaded
+                    artifacts.extend(existing_artifacts)
+                    reused_count += 1
+                else:
+                    result = self.client.extract(document, source_path)
+                    artifacts.extend(self.artifact_writer.write(document, result))
+                results.append(ContextItem(key=str(document.id), value=result))
+                updated_documents.append(document.model_copy(update={"extraction_state": ExtractionState.COMPLETE}))
+                page_count += result.page_count
+                character_count += len(result.raw_text)
+                if result.confidence is not None:
+                    confidence_values.append(result.confidence)
+            except Exception as exc:
+                failed_documents.append((document, str(exc)))
+                updated_documents.append(document.model_copy(update={"extraction_state": ExtractionState.FAILED}))
+
+        new_results_count = len(results) - initial_results_count
+        if attempted_count > 0 and new_results_count == 0:
+            first_err = failed_documents[0][1] if failed_documents else "Unknown extraction failure"
+            raise OCRProviderError(f"All {attempted_count} candidate document extractions failed: {first_err}")
+
+        warnings = [f"Extraction failed for document {doc.id} ({doc.original_filename}): {err}" for doc, err in failed_documents]
         return context.with_updates(
             uploaded_documents=tuple(updated_documents),
             ocr_results=tuple(results),
@@ -79,12 +95,24 @@ class OCRStage(WorkflowStage):
                         "characters_extracted": character_count,
                         "confidence": (sum(confidence_values) / len(confidence_values) if confidence_values else None),
                         "token_usage": None,
-                        "estimated_cost": None, "reused_ocr_results": reused_count,
+                        "estimated_cost": None,
+                        "reused_ocr_results": reused_count,
+                        "documents_failed": len(failed_documents),
+                        "failed_document_ids": tuple(str(doc.id) for doc, _ in failed_documents),
+                        "warnings": tuple(warnings),
                     },
                 ),
             ),
             execution_metadata=context.execution_metadata + (
-                ContextItem(key=self.name, value={"provider": type(self.client).__name__, "documents_processed": len(results) - len(context.ocr_results), "reused_ocr_results": reused_count}),
+                ContextItem(
+                    key=self.name,
+                    value={
+                        "provider": type(self.client).__name__,
+                        "documents_processed": new_results_count,
+                        "reused_ocr_results": reused_count,
+                        "documents_failed": len(failed_documents),
+                    },
+                ),
             ),
         )
 

@@ -63,6 +63,31 @@ Use the supplied response schema. For multi-page PDFs, return one entry per page
             raise OCRProviderError(f"Stored source document was not found: {source_path}")
 
         started = time.perf_counter()
+        if (document.media_type == "application/pdf" or str(source_path).endswith(".pdf")) and source_path.is_file():
+            from .pdf_extractor import extract_digital_pdf_pages
+            digital_pages = extract_digital_pdf_pages(source_path)
+            if digital_pages and sum(len(p.strip()) for p in digital_pages) >= 50:
+                pages = tuple(
+                    OCRPage(page_number=idx, text=page_text, confidence=0.99)
+                    for idx, page_text in enumerate(digital_pages, 1)
+                )
+                processing_time_ms = (time.perf_counter() - started) * 1000
+                return OCRResult(
+                    document_id=document.id,
+                    pages=pages,
+                    raw_text="\n\n".join(page.text for page in pages),
+                    confidence=0.99,
+                    warnings=(),
+                    language="en",
+                    metadata=OCRMetadata(
+                        provider="gemini_digital_ocr",
+                        model="native_stream_extractor",
+                        input_mime_type=document.media_type,
+                        processing_time_ms=processing_time_ms,
+                        token_usage=sum(len(p.split()) for p in digital_pages),
+                    ),
+                )
+
         try:
             response = self._generate(source_path, document.media_type)
             payload = self._response_payload(response)
@@ -109,12 +134,26 @@ Use the supplied response schema. For multi-page PDFs, return one entry per page
             uploaded = self._model.files.upload(file=str(source_path), config={"mime_type": mime_type})
             try:
                 uploaded = self._wait_for_uploaded_file(uploaded)
-                return self._model.models.generate_content(model=self.model_name, contents=[self.OCR_PROMPT, uploaded], config=config)
+                for attempt in range(3):
+                    try:
+                        return self._model.models.generate_content(model=self.model_name, contents=[self.OCR_PROMPT, uploaded], config=config)
+                    except Exception as exc:
+                        if ("503" in str(exc) or "429" in str(exc)) and attempt < 2:
+                            time.sleep(2 * (attempt + 1))
+                            continue
+                        raise
             finally:
                 self._model.files.delete(name=uploaded.name)
         from google.genai import types
         image = types.Part.from_bytes(data=source_path.read_bytes(), mime_type=mime_type)
-        return self._model.models.generate_content(model=self.model_name, contents=[self.OCR_PROMPT, image], config=config)
+        for attempt in range(3):
+            try:
+                return self._model.models.generate_content(model=self.model_name, contents=[self.OCR_PROMPT, image], config=config)
+            except Exception as exc:
+                if ("503" in str(exc) or "429" in str(exc)) and attempt < 2:
+                    time.sleep(2 * (attempt + 1))
+                    continue
+                raise
 
     def _wait_for_uploaded_file(self, uploaded: Any) -> Any:
         """Wait only when the SDK reports asynchronous PDF processing."""

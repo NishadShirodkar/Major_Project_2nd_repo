@@ -81,111 +81,113 @@ export default function SceneCanvas({
         touchAction: "none",
       }}
     >
-      {/* Fog for Tactical Depth */}
-      <fog attach="fog" args={["#05080f", isIndoor ? 15 : 20, isIndoor ? 45 : 65]} />
+      <React.Suspense fallback={null}>
+        {/* Fog for Tactical Depth */}
+        <fog attach="fog" args={["#05080f", isIndoor ? 15 : 20, isIndoor ? 45 : 65]} />
 
-      {/* Cyber-Forensic Ambient & Directional Lighting */}
-      <ambientLight intensity={0.9} />
-      <directionalLight
-        position={[15, 20, 10]}
-        intensity={2.2}
-        color="#e0f7ff"
-      />
-      <directionalLight
-        position={[-10, 10, -10]}
-        intensity={1.0}
-        color="#00f0ff"
-      />
-
-      <Environment preset="night" />
-
-      {/* Forensic Blueprint Grid */}
-      <Grid
-        position={[0, -0.01, 0]}
-        args={[80, 80]}
-        cellSize={1}
-        cellColor="#102538"
-        sectionSize={5}
-        sectionColor="#00f0ff"
-        fadeDistance={isIndoor ? 35 : 50}
-        fadeStrength={1.5}
-      />
-
-      {/* 1. Render Indoor Room Environment if Indoor Case */}
-      {isIndoor && scene.room && (
-        <RoomEnvironment
-          room={scene.room}
-          ballistics={ballistics}
-          currentTime={currentTime}
+        {/* Cyber-Forensic Ambient & Directional Lighting */}
+        <ambientLight intensity={0.9} />
+        <directionalLight
+          position={[15, 20, 10]}
+          intensity={2.2}
+          color="#e0f7ff"
         />
-      )}
-
-      {/* 2. Render Outdoor Roads if Road Collision Case */}
-      {!isIndoor && roads.map((road) => (
-        <Road key={road.id} road={road} />
-      ))}
-
-      {/* 3. Render Holographic Trajectory Ribbons for Vehicles */}
-      {vehicles.map((vehicle, idx) => (
-        <TrajectoryPath
-          key={`traj_${vehicle.id}`}
-          entity={vehicle}
-          timeline={timeline}
-          color={idx === 0 ? "#00f0ff" : idx === 1 ? "#ffb700" : "#00ff88"}
-          currentTime={currentTime}
+        <directionalLight
+          position={[-10, 10, -10]}
+          intensity={1.0}
+          color="#00f0ff"
         />
-      ))}
+        <hemisphereLight args={["#00f0ff", "#05080f", 0.6]} />
+        <pointLight position={[0, 8, 0]} intensity={1.5} color="#00f0ff" distance={30} />
 
-      {/* 4. Render Holographic Trajectory Ribbons for Moving People */}
-      {people.map((person, idx) => (
-        <TrajectoryPath
-          key={`traj_person_${person.id}`}
-          entity={person}
-          timeline={timeline}
-          color="#ff0055"
-          currentTime={currentTime}
+        {/* Forensic Blueprint Grid */}
+        <Grid
+          position={[0, -0.01, 0]}
+          args={[80, 80]}
+          cellSize={1}
+          cellColor="#102538"
+          sectionSize={5}
+          sectionColor="#00f0ff"
+          fadeDistance={isIndoor ? 35 : 50}
+          fadeStrength={1.5}
         />
-      ))}
 
-      {/* 5. Render Collision Epicenter & Shockwave Beacon (Outdoor only) */}
-      {!isIndoor && <ImpactWave position={[0, 0.04, 0]} currentTime={currentTime} />}
+        {/* 1. Render Indoor Room Environment if Indoor Case */}
+        {isIndoor && scene.room && (
+          <RoomEnvironment
+            room={scene.room}
+            ballistics={ballistics}
+            currentTime={currentTime}
+          />
+        )}
 
-      {/* 6. Render Vehicles Dynamically */}
-      {vehicles.map((vehicle) => (
-        <VehicleModel
-          key={vehicle.id}
-          vehicle={vehicle}
-          timeline={timeline}
-          currentTime={currentTime}
-          isSelected={selectedTargetId === vehicle.id}
-          onSelect={(id) => setSelectedTargetId(id)}
-        />
-      ))}
+        {/* 2. Render Outdoor Roads if Road Collision Case */}
+        {!isIndoor && roads.map((road) => (
+          <Road key={road.id} road={road} />
+        ))}
 
-      {/* 7. Render Standalone People / Pedestrians / Suspects / Victims */}
-      {people.map((person) => (
-        <PersonModel
-          key={person.id}
-          person={person}
-          timeline={timeline}
-          currentTime={currentTime}
-          isSelected={selectedTargetId === person.id}
-          onSelect={(id) => setSelectedTargetId(id)}
-        />
-      ))}
+        {/* 3. Render Holographic Trajectory Ribbons for Vehicles */}
+        {vehicles.map((vehicle, idx) => (
+          <TrajectoryPath
+            key={`traj_${vehicle.id}`}
+            entity={vehicle}
+            timeline={timeline}
+            color={idx === 0 ? "#00f0ff" : idx === 1 ? "#ffb700" : "#00ff88"}
+            currentTime={currentTime}
+          />
+        ))}
 
-      {/* 8. Render Forensic Evidence Markers */}
-      {evidence.map((ev) => (
-        <EvidenceMarker
-          key={ev.id}
-          evidence={ev}
-          isSelected={selectedTargetId === ev.id}
-          onSelect={(id) => setSelectedTargetId(id)}
-        />
-      ))}
+        {/* 4. Render Holographic Trajectory Ribbons for Moving People */}
+        {people.map((person, idx) => (
+          <TrajectoryPath
+            key={`traj_person_${person.id}`}
+            entity={person}
+            timeline={timeline}
+            color="#ff0055"
+            currentTime={currentTime}
+          />
+        ))}
 
-      {/* Camera Preset Manager & Controls */}
-      <CameraController cameraPreset={cameraPreset} isIndoor={isIndoor} />
+        {/* 5. Render Collision Epicenter & Shockwave Beacon (Outdoor only) */}
+        {!isIndoor && <ImpactWave position={[0, 0.04, 0]} currentTime={currentTime} />}
+
+        {/* 6. Render Vehicles Dynamically */}
+        {vehicles.map((vehicle) => (
+          <VehicleModel
+            key={vehicle.id}
+            vehicle={vehicle}
+            timeline={timeline}
+            currentTime={currentTime}
+            isSelected={selectedTargetId === vehicle.id}
+            onSelect={(id) => setSelectedTargetId(id)}
+          />
+        ))}
+
+        {/* 7. Render Standalone People / Pedestrians / Suspects / Victims */}
+        {people.map((person) => (
+          <PersonModel
+            key={person.id}
+            person={person}
+            timeline={timeline}
+            currentTime={currentTime}
+            isSelected={selectedTargetId === person.id}
+            onSelect={(id) => setSelectedTargetId(id)}
+          />
+        ))}
+
+        {/* 8. Render Forensic Evidence Markers */}
+        {evidence.map((ev) => (
+          <EvidenceMarker
+            key={ev.id}
+            evidence={ev}
+            isSelected={selectedTargetId === ev.id}
+            onSelect={(id) => setSelectedTargetId(id)}
+          />
+        ))}
+
+        {/* Camera Preset Manager & Controls */}
+        <CameraController cameraPreset={cameraPreset} isIndoor={isIndoor} />
+      </React.Suspense>
     </Canvas>
   );
 }

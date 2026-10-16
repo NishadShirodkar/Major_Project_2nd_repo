@@ -10,7 +10,7 @@ from ..chargesheet.form_if5_schema import ChargeSheetData
 from ..intake.storage_layout import CaseStorageLayout
 from ..rendering.if5_renderer import IF5Renderer
 from ..validation.validation_models import ValidationDisposition
-from .review_models import ChargeSheetReview, ReviewEvent, ReviewEventType, ReviewStatus
+from .review_models import ChargeSheetReview, ReviewEvent, ReviewEventType, ReviewNote, ReviewStatus
 
 
 class ReviewLifecycleError(ValueError):
@@ -43,27 +43,42 @@ class ReviewService:
     def approve(self, review: ChargeSheetReview, data: ChargeSheetData, *, reviewer_id: str, reviewer_name: str | None = None, comments: str | None = None) -> ChargeSheetReview:
         self._ensure_status(review, ReviewStatus.REVIEW_REQUIRED)
         self._ensure_data_matches(review, data)
+        if not reviewer_id or not reviewer_id.strip():
+            raise ReviewLifecycleError("A reviewer identity is required")
         if data.disposition == ValidationDisposition.FINAL_BLOCKED.value:
             raise ReviewLifecycleError("FINAL_BLOCKED charge sheets cannot be approved")
         now = datetime.now(timezone.utc)
-        approved = review.model_copy(update={"status": ReviewStatus.APPROVED, "reviewer_id": reviewer_id, "reviewer_name": reviewer_name, "review_timestamp": now, "decision": "approved", "comments": comments, "rejection_reason": None, "approved_version": data.version, "approved_content_hash": data.content_hash})
-        return self._event(approved, ReviewEventType.APPROVED, actor_id=reviewer_id)
+        approved = review.model_copy(update={"status": ReviewStatus.APPROVED, "reviewer_id": reviewer_id.strip(), "reviewer_name": reviewer_name, "review_timestamp": now, "decision": "approved", "comments": comments, "rejection_reason": None, "approved_version": data.version, "approved_content_hash": data.content_hash})
+        return self._event(approved, ReviewEventType.APPROVED, actor_id=reviewer_id.strip())
 
     def reject(self, review: ChargeSheetReview, data: ChargeSheetData, *, reviewer_id: str, rejection_reason: str, comments: str | None = None) -> ChargeSheetReview:
         self._ensure_status(review, ReviewStatus.REVIEW_REQUIRED)
         self._ensure_data_matches(review, data)
-        if not rejection_reason.strip():
+        if not reviewer_id or not reviewer_id.strip():
+            raise ReviewLifecycleError("A reviewer identity is required")
+        if not rejection_reason or not rejection_reason.strip():
             raise ReviewLifecycleError("A rejection reason is required")
-        rejected = review.model_copy(update={"status": ReviewStatus.REJECTED, "reviewer_id": reviewer_id, "review_timestamp": datetime.now(timezone.utc), "decision": "rejected", "comments": comments, "rejection_reason": rejection_reason})
-        return self._event(rejected, ReviewEventType.REJECTED, actor_id=reviewer_id)
+        rejected = review.model_copy(update={"status": ReviewStatus.REJECTED, "reviewer_id": reviewer_id.strip(), "review_timestamp": datetime.now(timezone.utc), "decision": "rejected", "comments": comments, "rejection_reason": rejection_reason.strip()})
+        return self._event(rejected, ReviewEventType.REJECTED, actor_id=reviewer_id.strip())
 
     def request_revision(self, review: ChargeSheetReview, data: ChargeSheetData, *, reviewer_id: str, comments: str) -> ChargeSheetReview:
         self._ensure_status(review, ReviewStatus.REVIEW_REQUIRED)
         self._ensure_data_matches(review, data)
-        if not comments.strip():
+        if not reviewer_id or not reviewer_id.strip():
+            raise ReviewLifecycleError("A reviewer identity is required")
+        if not comments or not comments.strip():
             raise ReviewLifecycleError("Revision comments are required")
-        revised = review.model_copy(update={"status": ReviewStatus.DRAFT, "reviewer_id": reviewer_id, "review_timestamp": datetime.now(timezone.utc), "decision": "revision_requested", "comments": comments})
-        return self._event(revised, ReviewEventType.REVISION_REQUESTED, actor_id=reviewer_id)
+        revised = review.model_copy(update={"status": ReviewStatus.DRAFT, "reviewer_id": reviewer_id.strip(), "review_timestamp": datetime.now(timezone.utc), "decision": "revision_requested", "comments": comments.strip()})
+        return self._event(revised, ReviewEventType.REVISION_REQUESTED, actor_id=reviewer_id.strip())
+
+    def add_note(self, review: ChargeSheetReview, *, author_id: str, note_text: str, author_name: str | None = None) -> ChargeSheetReview:
+        if not author_id or not author_id.strip():
+            raise ReviewLifecycleError("An author identity is required")
+        if not note_text or not note_text.strip():
+            raise ReviewLifecycleError("Note text cannot be empty")
+        note = ReviewNote(author_id=author_id.strip(), author_name=author_name, note_text=note_text.strip())
+        updated = review.model_copy(update={"notes": review.notes + (note,)})
+        return self._event(updated, ReviewEventType.NOTE_ADDED, actor_id=author_id.strip(), metadata={"note_id": str(note.note_id)})
 
     def replace_data(self, review: ChargeSheetReview, data: ChargeSheetData) -> ChargeSheetReview:
         """Invalidate any prior approval when a new deterministic data version arrives."""

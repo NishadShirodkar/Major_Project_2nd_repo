@@ -18,10 +18,15 @@ def project_evidence(nodes: tuple[GraphNode, ...], edges: tuple[GraphEdge, ...])
         collection = tuple(project_fact(node_by_id[target].label, node.provenance, f"graph.edges[{edge.id}]") for edge in related if edge.relationship_type == GraphRelationshipType.COLLECTED_BY for target in (edge.target_node_id,))
         custody = tuple(project_fact(node_by_id[target].label, node.provenance, f"graph.edges[{edge.id}]") for edge in related if edge.relationship_type == GraphRelationshipType.RECOVERED_FROM for target in (edge.target_node_id,))
         confidences = [item.confidence for item in node.provenance if item.confidence is not None]
+        attributes = {
+            key: project_fact(value, node.provenance, f"graph.nodes[{node.id}].attributes.{key}")
+            for key, value in node.attributes.items()
+        }
         projected.append(CanonicalEvidence(
             evidence_id=node.id, type=node.node_type.value, description=project_fact(node.label, node.provenance, f"graph.nodes[{node.id}].label"),
             source_documents=tuple(dict.fromkeys(item.document_id for item in node.provenance)), collection_details=collection, custody_information=custody,
             related_person_ids=related_ids(GraphRelationshipType.COLLECTED_BY), related_vehicle_ids=(), related_event_ids=(),
             confidence=sum(confidences) / len(confidences) if confidences else None,
+            attributes=attributes,
         ))
     return tuple(projected)

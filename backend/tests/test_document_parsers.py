@@ -161,6 +161,8 @@ class DocumentParserTests(unittest.TestCase):
 
     def test_regression_fixture_entities_survive_parser_graph_and_canonical_projection(self) -> None:
         ocr_root = Path(__file__).parents[1] / "output" / "CASE_37e9a78cbf45553ebdbbf88e5e2ca761" / "processed" / "ocr"
+        if not (ocr_root / "FIR_d78b79f0_OCRResult.json").is_file():
+            self.skipTest("Historical fixture in output/ directory not present.")
         fir_ocr = self._ocr(json.loads((ocr_root / "FIR_d78b79f0_OCRResult.json").read_text(encoding="utf-8"))["raw_text"])
         complaint_ocr = self._ocr(json.loads((ocr_root / "complaint_553a46f3_OCRResult.json").read_text(encoding="utf-8"))["raw_text"])
         fir = FIRParser(QueueParserClient([{

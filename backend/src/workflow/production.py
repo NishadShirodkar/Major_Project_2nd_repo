@@ -5,6 +5,8 @@ from __future__ import annotations
 from pathlib import Path
 from uuid import UUID
 
+from typing import Callable
+
 from ..chargesheet.chargesheet_stage import ChargeSheetStage
 from ..context.context_stage import CaseContextStage
 from ..extraction.gemini_ocr import GeminiOCRClient
@@ -22,11 +24,13 @@ from ..normalization.canonical_stage import CanonicalInvestigationStage
 from ..parsers.base_parser import GeminiParserClient, ParserClient
 from ..parsers.parser_registry import ParserRegistry, create_default_parser_registry
 from ..parsers.parser_stage import ParserStage
+from ..rag.embedding_provider import EmbeddingProvider
 from ..validation.evidence_validator import EvidenceValidator
 from ..validation.validation_stage import EvidenceValidationStage
 from .context import ContextItem, WorkflowContext
 from .engine import WorkflowEngine
 from .registry import StageRegistry
+from .state import StageStatus
 from .state import WorkflowState
 
 
@@ -68,6 +72,7 @@ def create_production_registry(
     legal_reference_version: str | None = None,
     legal_reasoner: LegalReasoner | None = None,
     evidence_validator: EvidenceValidator | None = None,
+    embedding_provider: EmbeddingProvider | None = None,
     resume: bool = False,
 ) -> StageRegistry:
     """Compose the approved Phase 1-10 stages in their required execution order."""
@@ -79,12 +84,12 @@ def create_production_registry(
     registry = StageRegistry((
         DocumentIntakeStage(storage_root, UploadManager(storage_root, validator=FileValidator(Config.MAX_UPLOAD_FILE_SIZE_BYTES), max_case_size_bytes=Config.MAX_CASE_UPLOAD_SIZE_BYTES), resume=resume),
         OCRStage(storage_root, resolved_ocr_client, resume=resume),
-        ParserStage(storage_root, resolved_parser_registry),
+        ParserStage(storage_root, resolved_parser_registry, resume=resume),
         GraphStage(storage_root),
         CanonicalInvestigationStage(storage_root),
         EvidenceValidationStage(storage_root, validator=evidence_validator),
         CaseContextStage(storage_root),
-        LegalReasoningStage(storage_root, reasoner=resolved_reasoner),
+        LegalReasoningStage(storage_root, reasoner=resolved_reasoner, embedding_provider=embedding_provider),
         ChargeSheetStage(storage_root),
     ))
     if tuple(stage.name for stage in registry.stages) != STAGE_ORDER:
@@ -95,8 +100,9 @@ def create_production_registry(
 def run_production_workflow(
     storage_root: Path,
     context: WorkflowContext,
+    on_stage_update: Callable[[str, StageStatus, WorkflowContext | None], None] | None = None,
     **dependencies: object,
 ):
     """Run a fully composed typed workflow; no legacy code participates."""
     registry = create_production_registry(storage_root, **dependencies)
-    return WorkflowEngine(registry).run(context)
+    return WorkflowEngine(registry, on_stage_update=on_stage_update).run(context)

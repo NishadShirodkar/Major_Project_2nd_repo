@@ -18,6 +18,9 @@ class FieldStatus(StrEnum):
     CONFLICT = "conflict"
     REVIEW_REQUIRED = "review_required"
     NOT_APPLICABLE = "not_applicable"
+    REVIEWER_CORRECTED = "reviewer_corrected"
+    NOT_FOUND = "not_found"
+    EXTRACTION_FAILED = "extraction_failed"
 
 
 class ChargeSheetField(DomainModel):
@@ -26,19 +29,41 @@ class ChargeSheetField(DomainModel):
     confidence: float | None = Field(default=None, ge=0, le=1)
     source_references: tuple[SourceReference, ...] = ()
     review_required: bool = False
+    origin: str = "extracted"  # "extracted" | "derived" | "reviewer_corrected" | "default_unavailable"
+    original_value: str | None = None
+    corrected_by: str | None = None
+    corrected_at: str | None = None
+    correction_notes: str | None = None
 
     @model_validator(mode="after")
     def populated_values_require_provenance(self) -> "ChargeSheetField":
         if self.status in {FieldStatus.POPULATED, FieldStatus.REVIEW_REQUIRED}:
             if not self.value or not self.source_references:
                 raise ValueError("Rendered charge-sheet values require source references")
-        if self.status in {FieldStatus.UNAVAILABLE, FieldStatus.NOT_APPLICABLE} and self.value:
-            raise ValueError("Unavailable fields cannot contain an unsupported value")
+        elif self.status == FieldStatus.REVIEWER_CORRECTED:
+            if not self.value:
+                raise ValueError("Reviewer corrected fields require a value")
+            if not self.source_references and not self.corrected_by:
+                raise ValueError("Reviewer corrected fields require either source references or reviewer identity")
+        if self.status in {FieldStatus.UNAVAILABLE, FieldStatus.NOT_APPLICABLE, FieldStatus.NOT_FOUND, FieldStatus.EXTRACTION_FAILED} and self.value:
+            raise ValueError("Unavailable/unpopulated fields cannot contain an unsupported value")
         return self
 
     @property
     def rendered(self) -> str:
-        return self.value if self.value else "Not Available in Investigation Records"
+        if self.value:
+            return self.value
+        if self.status == FieldStatus.NOT_FOUND:
+            return "Not found in uploaded evidence"
+        if self.status == FieldStatus.EXTRACTION_FAILED:
+            return "Extraction failed (Requires manual verification)"
+        if self.status == FieldStatus.CONFLICT:
+            return "Conflicting source information (Review Required)"
+        if self.status == FieldStatus.NOT_APPLICABLE:
+            return "Not Applicable"
+        if self.status == FieldStatus.REVIEW_REQUIRED:
+            return "Requires manual verification"
+        return "Not Available in Investigation Records"
 
 
 class IF5Row(DomainModel):
@@ -58,6 +83,11 @@ class ChargeSheetLegalFinding(DomainModel):
     review_required: bool
     supporting_evidence: tuple[ChargeSheetField, ...] = ()
     contradicting_evidence: tuple[ChargeSheetField, ...] = ()
+    ingredient_assessments: tuple[dict, ...] = ()
+    retrieved_passages: tuple[dict, ...] = ()
+    missing_evidence: tuple[str, ...] = ()
+    reasoning_summary: str | None = None
+    review_warnings: tuple[str, ...] = ()
 
 
 class ChargeSheetReviewItem(DomainModel):

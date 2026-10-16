@@ -5,15 +5,167 @@
       "section_id": "ec5fb2ce-b0b0-4ad8-a0d6-aa56caa6be7f",
       "section_number": "115",
       "offence_name": "Voluntarily causing hurt",
-      "description": "Configured BNS reference for voluntarily causing hurt; application requires evidence supporting the required element.",
-      "required_elements": ["hurt"],
+      "statute": "The Bharatiya Nyaya Sanhita, 2023",
+      "provision_type": "substantive",
+      "legacy_ipc_equivalent": "IPC Section 323",
+      "description": "Whoever does any act with the intention of thereby causing hurt to any person, or with the knowledge that he is likely thereby to cause hurt to any person, and does thereby cause hurt to any person, is said voluntarily to cause hurt.",
+      "required_elements": [
+        "hurt"
+      ],
       "jurisdiction": "IN",
       "effective_from": "2024-07-01",
       "effective_to": null,
+      "verified": true,
+      "verification_date": "2024-07-01",
       "source": {
         "publisher": "India Code",
         "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 115",
         "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01"
+    },
+    {
+      "section_id": "6b73b77c-47af-5f57-a411-52b892aae889",
+      "section_number": "281",
+      "offence_name": "Rash driving or riding on a public way",
+      "statute": "The Bharatiya Nyaya Sanhita, 2023",
+      "provision_type": "substantive",
+      "legacy_ipc_equivalent": "IPC Section 279",
+      "description": "Whoever drives any vehicle, or rides, on any public way in a manner so rash or negligent as to endanger human life, or to be likely to cause hurt or injury to any other person, shall be punished.",
+      "required_elements": [
+        "driving or riding vehicle on a public way",
+        "manner so rash or negligent as to endanger human life or likely to cause hurt"
+      ],
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "verified": true,
+      "verification_date": "2024-07-01",
+      "source": {
+        "publisher": "Ministry of Law and Justice, India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 281",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01"
+    },
+    {
+      "section_id": "5a3f3269-e61e-5cb8-a875-d7461fb2f095",
+      "section_number": "106",
+      "offence_name": "Causing death by negligence",
+      "statute": "The Bharatiya Nyaya Sanhita, 2023",
+      "provision_type": "substantive",
+      "legacy_ipc_equivalent": "IPC Section 304A",
+      "description": "Whoever causes the death of any person by doing any rash or negligent act not amounting to culpable homicide, shall be punished with imprisonment.",
+      "required_elements": [
+        "death of a human being",
+        "rash or negligent act causing the death",
+        "act does not amount to culpable homicide"
+      ],
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "verified": true,
+      "verification_date": "2024-07-01",
+      "source": {
+        "publisher": "Ministry of Law and Justice, India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 106",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01"
+    },
+    {
+      "section_id": "b9b70b66-7e16-57cd-85d5-04bc8752f828",
+      "section_number": "125",
+      "offence_name": "Act endangering life or personal safety of others",
+      "statute": "The Bharatiya Nyaya Sanhita, 2023",
+      "provision_type": "substantive",
+      "legacy_ipc_equivalent": "IPC Section 336",
+      "description": "Whoever does any act so rashly or negligently as to endanger human life or the personal safety of others, shall be punished.",
+      "required_elements": [
+        "rash or negligent act",
+        "endangering human life or personal safety of others"
+      ],
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "verified": true,
+      "verification_date": "2024-07-01",
+      "source": {
+        "publisher": "Ministry of Law and Justice, India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 125",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01"
+    },
+    {
+      "section_id": "85cd762b-cace-5bd6-aa16-7bb3125e236f",
+      "section_number": "324",
+      "offence_name": "Mischief causing damage",
+      "statute": "The Bharatiya Nyaya Sanhita, 2023",
+      "provision_type": "substantive",
+      "legacy_ipc_equivalent": "IPC Section 427",
+      "description": "Whoever with intent to cause, or knowing that he is likely to cause, wrongful loss or damage to the public or to any person, causes the destruction of any property, or any such change in any property or in the situation thereof as destroys or diminishes its value or utility, or affects it injuriously, commits mischief.",
+      "required_elements": [
+        "intent or knowledge to cause wrongful loss or damage",
+        "destruction or diminishment in value/utility of property"
+      ],
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "verified": true,
+      "verification_date": "2024-07-01",
+      "source": {
+        "publisher": "Ministry of Law and Justice, India Code",
+        "citation": "The Bharatiya Nyaya Sanhita, 2023 (Act 45 of 2023), section 324",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf"
+      },
+      "version": "bns-2023-2024-07-01"
+    },
+    {
+      "section_id": "5a8d3ce3-873e-5128-b0a7-bb0e384ed474",
+      "section_number": "193",
+      "offence_name": "Report of police officer on completion of investigation",
+      "statute": "The Bharatiya Nagarik Suraksha Sanhita, 2023",
+      "provision_type": "procedural",
+      "legacy_ipc_equivalent": "CrPC Section 173",
+      "description": "Every investigation under this Chapter shall be completed without unnecessary delay. As soon as it is completed, the officer in charge of the police station shall forward to a Magistrate empowered to take cognizance of the offence on a police report, a report in the form prescribed.",
+      "required_elements": [
+        "completion of police investigation",
+        "submission of final report to competent Magistrate"
+      ],
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "verified": true,
+      "verification_date": "2024-07-01",
+      "source": {
+        "publisher": "Ministry of Law and Justice, India Code",
+        "citation": "The Bharatiya Nagarik Suraksha Sanhita, 2023 (Act 46 of 2023), section 193",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20063/1/a2023-46.pdf"
+      },
+      "version": "bns-2023-2024-07-01"
+    },
+    {
+      "section_id": "4d9e927a-babc-55e7-ab00-12b54330d169",
+      "section_number": "63",
+      "offence_name": "Admissibility of electronic records in evidence",
+      "statute": "The Bharatiya Sakshya Adhiniyam, 2023",
+      "provision_type": "evidentiary",
+      "legacy_ipc_equivalent": "IEA Section 65B",
+      "description": "Any information contained in an electronic record which is printed on a paper, stored, recorded or copied in optical or magnetic media shall be deemed to be also a document, and shall be admissible in any proceedings.",
+      "required_elements": [
+        "electronic record captured or stored",
+        "certification or chain of custody of device output"
+      ],
+      "jurisdiction": "IN",
+      "effective_from": "2024-07-01",
+      "effective_to": null,
+      "verified": true,
+      "verification_date": "2024-07-01",
+      "source": {
+        "publisher": "Ministry of Law and Justice, India Code",
+        "citation": "The Bharatiya Sakshya Adhiniyam, 2023 (Act 47 of 2023), section 63",
+        "uri": "https://www.indiacode.nic.in/bitstream/123456789/20064/1/a2023-47.pdf"
       },
       "version": "bns-2023-2024-07-01"
     }

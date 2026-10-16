@@ -66,6 +66,8 @@ class MedicalReport(ParsedDocument):
     hospital_name: str | None = None
     observations: tuple[str, ...] = ()
     opinion_text: str | None = None
+    age: str | None = None
+    gender: str | None = None
 
 
 class PostmortemReport(ParsedDocument):
@@ -76,6 +78,8 @@ class PostmortemReport(ParsedDocument):
     doctor_name: str | None = None
     findings: tuple[str, ...] = ()
     opinion_text: str | None = None
+    status: str | None = None
+    is_applicable: bool = True
 
 
 class FSLReport(ParsedDocument):
@@ -95,6 +99,10 @@ class WitnessStatement(ParsedDocument):
     witness_address: str | None = None
     recorded_by: str | None = None
     statement_text: str | None = None
+    father_name: str | None = None
+    age: str | None = None
+    occupation: str | None = None
+    contact: str | None = None
 
 
 class CaseDiaryEntry(DomainModel):
@@ -117,6 +125,10 @@ class ArrestMemo(ParsedDocument):
     arrested_person_name: str | None = None
     arrest_location: str | None = None
     arresting_officer_name: str | None = None
+    father_name: str | None = None
+    age: str | None = None
+    address: str | None = None
+    occupation: str | None = None
 
 
 class SeizureItem(DomainModel):

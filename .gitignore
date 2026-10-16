@@ -6,11 +6,14 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+Desktop.ini
 
 # Environment variables & secrets
 .env
 .env.*
 !.env.example
+*.pem
+*.key
 
 # Python
 __pycache__/
@@ -31,13 +34,45 @@ ENV/
 # Testing & Cache
 .pytest_cache/
 .coverage
+.coverage.*
 htmlcov/
 .mypy_cache/
 .ruff_cache/
+.cache/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Scratch & Temporary Directories
+scratch/
+backend/scratch/
+temp/
+tmp/
+*.tmp
+*.bak
+
+# Runtime Case Outputs & Test Execution Artifacts
+backend/output/CASE_*/
+backend/output/test_run_*/
+backend/output/e2e_*/
+backend/output/temp_*/
+backend/output/artifacts/
 
 # Node / Frontend
 node_modules/
+frontend/node_modules/
 dist/
+frontend/dist/
 dist-ssr/
 *.local
 .vite/
@@ -47,3 +82,4 @@ dist-ssr/
 .idea/
 *.swp
 *.swo
+
