@@ -1,28 +1,35 @@
 import React, { useState, useEffect, useRef } from "react";
 import SceneCanvas from "./SceneCanvas";
 import ArkhamHUD from "./ArkhamHUD";
-import { SCENARIO_REGISTRY } from "./scenarios";
+import { SCENARIO_REGISTRY, getScenario } from "./scenarios";
 
-export default function SceneViewer({ initialCaseId, onReturnToWorkspace }) {
-  const safeInitial = initialCaseId && SCENARIO_REGISTRY[initialCaseId] ? initialCaseId : "case_001";
-  const [selectedCaseId, setSelectedCaseId] = useState(safeInitial);
+export default function SceneViewer({
+  activeCaseId,
+  initialCaseId,
+  caseId,
+  onReturnToWorkspace,
+}) {
+  const incomingCaseId = activeCaseId || initialCaseId || caseId;
+  const initialScenario = getScenario(incomingCaseId);
+  const [selectedCaseId, setSelectedCaseId] = useState(initialScenario.id);
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
   const [activeHypotheses, setActiveHypotheses] = useState({});
   const [selectedTargetId, setSelectedTargetId] = useState("vehicle_1");
-  const [cameraPreset, setCameraPreset] = useState("tactical");
+  const [cameraPreset, setCameraPreset] = useState("director");
 
   const lastFrameTimeRef = useRef(performance.now());
 
   // Active Scene IR loaded dynamically from Scenario Registry
-  const scene = SCENARIO_REGISTRY[selectedCaseId]?.data || SCENARIO_REGISTRY.case_001.data;
+  const scene = getScenario(selectedCaseId)?.data || SCENARIO_REGISTRY.case_001_delhi_tpoint.data;
 
   // Reset target selection when switching cases
-  const handleSelectCase = (caseId) => {
-    setSelectedCaseId(caseId);
+  const handleSelectCase = (targetCaseId) => {
+    const sc = getScenario(targetCaseId);
+    setSelectedCaseId(sc.id);
     setCurrentTime(0);
-    const newScene = SCENARIO_REGISTRY[caseId]?.data;
+    const newScene = sc?.data;
     if (newScene) {
       if (newScene.vehicles && newScene.vehicles.length > 0) {
         setSelectedTargetId(newScene.vehicles[0].id);
@@ -31,6 +38,16 @@ export default function SceneViewer({ initialCaseId, onReturnToWorkspace }) {
       }
     }
   };
+
+  // Synchronize when activeCaseId prop changes externally
+  useEffect(() => {
+    if (incomingCaseId) {
+      const resolved = getScenario(incomingCaseId);
+      if (resolved && resolved.id !== selectedCaseId) {
+        handleSelectCase(resolved.id);
+      }
+    }
+  }, [incomingCaseId]);
 
   // High-precision animation clock loop
   useEffect(() => {
@@ -78,41 +95,6 @@ export default function SceneViewer({ initialCaseId, onReturnToWorkspace }) {
         cameraPreset={cameraPreset}
       />
 
-      {/* Return to Workspace Overlay Button */}
-      {onReturnToWorkspace && (
-        <div
-          style={{
-            position: "absolute",
-            top: "16px",
-            right: "16px",
-            zIndex: 1000,
-            pointerEvents: "auto",
-          }}
-        >
-          <button
-            onClick={onReturnToWorkspace}
-            style={{
-              background: "rgba(15, 24, 38, 0.9)",
-              border: "1px solid #00f0ff",
-              color: "#00f0ff",
-              padding: "8px 16px",
-              fontFamily: "'Courier New', Courier, monospace",
-              fontSize: "12px",
-              fontWeight: "bold",
-              letterSpacing: "1px",
-              borderRadius: "4px",
-              cursor: "pointer",
-              boxShadow: "0 0 10px rgba(0, 240, 255, 0.25)",
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-            }}
-          >
-            &larr; RETURN TO INVESTIGATION WORKSPACE
-          </button>
-        </div>
-      )}
-
       {/* Arkham Detective Mode HUD Overlay */}
       <ArkhamHUD
         currentTime={currentTime}
@@ -130,6 +112,7 @@ export default function SceneViewer({ initialCaseId, onReturnToWorkspace }) {
         selectedCaseId={selectedCaseId}
         onSelectCase={handleSelectCase}
         scene={scene}
+        onReturnToWorkspace={onReturnToWorkspace}
       />
     </div>
   );

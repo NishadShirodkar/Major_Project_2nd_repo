@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { resolveEntityWaypoints, sampleEntityState } from "./kinematics";
-import { SCENARIO_REGISTRY } from "./scenarios";
+import { SCENARIO_REGISTRY, SCENARIO_LIST } from "./scenarios";
 
 export default function ArkhamHUD({
   currentTime,
@@ -18,6 +18,7 @@ export default function ArkhamHUD({
   selectedCaseId,
   onSelectCase,
   scene = {},
+  onReturnToWorkspace,
 }) {
   const formatTime = (seconds) => {
     const s = Math.floor(seconds);
@@ -132,7 +133,7 @@ export default function ArkhamHUD({
                 cursor: "pointer",
               }}
             >
-              {Object.values(SCENARIO_REGISTRY).map((sc) => (
+              {SCENARIO_LIST.map((sc) => (
                 <option key={sc.id} value={sc.id} style={{ background: "#0c1322", color: "#fff" }}>
                   {sc.name}
                 </option>
@@ -231,50 +232,79 @@ export default function ArkhamHUD({
           </div>
         )}
 
-        {/* Right: Camera Viewport Presets */}
-        <div
-          style={{
-            pointerEvents: "auto",
-            background: "rgba(6, 11, 20, 0.88)",
-            border: "1px solid rgba(0, 240, 255, 0.35)",
-            padding: "8px 12px",
-            borderRadius: 6,
-            backdropFilter: "blur(6px)",
-          }}
-        >
-          <div style={{ fontSize: 10, color: "#8bd0db", marginBottom: 6, letterSpacing: 1 }}>
-            CAMERA VIEWPORT
+        {/* Right: Camera Viewport Presets & Exit Button */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10, pointerEvents: "auto" }}>
+          <div
+            style={{
+              background: "rgba(6, 11, 20, 0.88)",
+              border: "1px solid rgba(0, 240, 255, 0.35)",
+              padding: "8px 12px",
+              borderRadius: 6,
+              backdropFilter: "blur(6px)",
+            }}
+          >
+            <div style={{ fontSize: 10, color: "#8bd0db", marginBottom: 6, letterSpacing: 1 }}>
+              CAMERA VIEWPORT
+            </div>
+            <div style={{ display: "flex", gap: 6 }}>
+              {[
+                { id: "director", label: "🎬 DIRECTOR (CINEMATIC)" },
+                { id: "tactical", label: "TACTICAL 45°" },
+                { id: "overhead", label: "OVERHEAD" },
+                { id: "impact", label: "FOCUS POINT" },
+              ].map((cam) => (
+                <button
+                  key={cam.id}
+                  onClick={() => setCameraPreset(cam.id)}
+                  style={{
+                    background:
+                      cameraPreset === cam.id
+                        ? "rgba(0, 240, 255, 0.2)"
+                        : "rgba(255, 255, 255, 0.05)",
+                    border:
+                      cameraPreset === cam.id
+                        ? "1px solid #00f0ff"
+                        : "1px solid rgba(255, 255, 255, 0.2)",
+                    color: cameraPreset === cam.id ? "#00f0ff" : "#888",
+                    padding: "4px 8px",
+                    fontSize: 10,
+                    cursor: "pointer",
+                    borderRadius: 3,
+                    fontFamily: "inherit",
+                  }}
+                >
+                  {cam.label}
+                </button>
+              ))}
+            </div>
           </div>
-          <div style={{ display: "flex", gap: 6 }}>
-            {[
-              { id: "tactical", label: "TACTICAL 45°" },
-              { id: "overhead", label: "OVERHEAD" },
-              { id: "impact", label: "FOCUS POINT" },
-            ].map((cam) => (
-              <button
-                key={cam.id}
-                onClick={() => setCameraPreset(cam.id)}
-                style={{
-                  background:
-                    cameraPreset === cam.id
-                      ? "rgba(0, 240, 255, 0.2)"
-                      : "rgba(255, 255, 255, 0.05)",
-                  border:
-                    cameraPreset === cam.id
-                      ? "1px solid #00f0ff"
-                      : "1px solid rgba(255, 255, 255, 0.2)",
-                  color: cameraPreset === cam.id ? "#00f0ff" : "#888",
-                  padding: "4px 8px",
-                  fontSize: 10,
-                  cursor: "pointer",
-                  borderRadius: 3,
-                  fontFamily: "inherit",
-                }}
-              >
-                {cam.label}
-              </button>
-            ))}
-          </div>
+
+          {onReturnToWorkspace && (
+            <button
+              onClick={onReturnToWorkspace}
+              id="exit-simulation-btn"
+              style={{
+                background: "rgba(255, 68, 68, 0.18)",
+                border: "1px solid rgba(255, 80, 80, 0.8)",
+                boxShadow: "0 0 12px rgba(255, 68, 68, 0.3)",
+                color: "#ff6b6b",
+                padding: "9px 14px",
+                fontSize: 11,
+                cursor: "pointer",
+                borderRadius: 6,
+                fontFamily: "inherit",
+                fontWeight: "bold",
+                letterSpacing: 1.5,
+                backdropFilter: "blur(6px)",
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+              }}
+              title="Return to Byomkesh Workspace"
+            >
+              ✕ EXIT SIMULATION
+            </button>
+          )}
         </div>
       </div>
 

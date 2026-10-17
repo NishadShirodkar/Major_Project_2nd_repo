@@ -1,6 +1,6 @@
 export const indoorShootingScene = {
   metadata: {
-    scene_id: "case_002_rohini_shooting",
+    scene_id: "case_003_indoor_shooting",
     location_name: "Living Room, Flat 302, Sector 14, Rohini, New Delhi",
     scene_type: "indoor_crime_scene",
     coordinate_system: "local_cartesian",
@@ -81,6 +81,45 @@ export const indoorShootingScene = {
       type: "firearm_pistol",
       description: "Country-made 7.65mm/9mm pistol discarded near doorway",
       position: { x: -3.6, y: 0.03, z: 0.2 },
+    },
+  ],
+
+  environment_objects: [
+    {
+      id: "env_breached_door",
+      type: "door_frame",
+      description: "Main wooden entrance door with fractured lock latch kicked inward",
+      position: { x: -3.95, y: 0, z: 0.2 },
+      rotation: { x: 0, y: 0, z: 0 },
+    },
+    {
+      id: "env_sofa",
+      type: "sofa_3seater",
+      description: "3-seater fabric sofa along North wall of living room",
+      position: { x: 0.0, y: 0, z: -2.15 },
+      rotation: { x: 0, y: 0, z: 0 },
+      color: "#1e293b",
+    },
+    {
+      id: "env_table",
+      type: "coffee_table",
+      description: "Living room glass-top center table with tea cups",
+      position: { x: 0.0, y: 0, z: -0.9 },
+      rotation: { x: 0, y: 0, z: 0 },
+    },
+    {
+      id: "env_tv_unit",
+      type: "tv_unit",
+      description: "Entertainment credenza and wall-mounted TV display",
+      position: { x: 0.0, y: 0, z: -2.75 },
+      rotation: { x: 0, y: 0, z: 0 },
+    },
+    {
+      id: "env_ceiling_lamp",
+      type: "ceiling_lamp",
+      description: "Central warm pendant ceiling fixture illuminating room",
+      position: { x: 0.0, y: 2.65, z: 0.0 },
+      rotation: { x: 0, y: 0, z: 0 },
     },
   ],
 

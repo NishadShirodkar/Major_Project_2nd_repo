@@ -38,14 +38,14 @@ export default function RoomEnvironment({ room, ballistics = [], currentTime = 0
 
   return (
     <group>
-      {/* 1. Room Floor */}
-      <mesh position={[0, 0, 0]} receiveShadow material={floorMaterial}>
-        <boxGeometry args={[length, 0.04, width]} />
+      {/* 1. Room Floor - Clean Solid Architectural Apartment Plinth */}
+      <mesh position={[0, -0.015, 0]} receiveShadow material={floorMaterial}>
+        <boxGeometry args={[length, 0.03, width]} />
       </mesh>
 
       {/* Floor Tactical Boundary Grid */}
       <gridHelper
-        position={[0, 0.025, 0]}
+        position={[0, 0.005, 0]}
         args={[Math.max(length, width), Math.round(Math.max(length, width)), "#00f0ff", "#0d2b38"]}
       />
 
@@ -66,18 +66,36 @@ export default function RoomEnvironment({ room, ballistics = [], currentTime = 0
 
       {/* 5. West Wall with Entrance Doorway Cutout (X = -halfL) */}
       <group position={[-halfL, height / 2, 0]}>
-        {/* Upper wall above doorway */}
-        <mesh position={[0, 0.5, 0]} material={wallMaterial}>
-          <boxGeometry args={[0.1, height - 1.8, width]} />
-        </mesh>
-        {/* Left wall segment */}
-        <mesh position={[0, -0.6, halfW / 2 + 0.6]} material={wallMaterial}>
-          <boxGeometry args={[0.1, 1.8, halfW - 0.6]} />
-        </mesh>
-        {/* Right wall segment */}
-        <mesh position={[0, -0.6, -(halfW / 2 + 0.6)]} material={wallMaterial}>
-          <boxGeometry args={[0.1, 1.8, halfW - 0.6]} />
-        </mesh>
+        {/* Doorway at z = 2.5 (Case 2) or z = 0 (Case 3) */}
+        {room.door_z !== undefined ? (
+          <>
+            {/* Upper lintel over doorway */}
+            <mesh position={[0, 0.45, room.door_z]} material={wallMaterial}>
+              <boxGeometry args={[0.1, height - 2.1, 1.2]} />
+            </mesh>
+            {/* Wall segment before doorway */}
+            <mesh position={[0, 0, (room.door_z - halfW) / 2 - 0.6]} material={wallMaterial}>
+              <boxGeometry args={[0.1, height, Math.max(0.1, room.door_z + halfW - 0.6)]} />
+            </mesh>
+            {/* Wall segment after doorway */}
+            <mesh position={[0, 0, (halfW + room.door_z) / 2 + 0.6]} material={wallMaterial}>
+              <boxGeometry args={[0.1, height, Math.max(0.1, halfW - room.door_z - 0.6)]} />
+            </mesh>
+          </>
+        ) : (
+          <>
+            {/* Default center doorway */}
+            <mesh position={[0, 0.5, 0]} material={wallMaterial}>
+              <boxGeometry args={[0.1, height - 1.8, width]} />
+            </mesh>
+            <mesh position={[0, -0.6, halfW / 2 + 0.6]} material={wallMaterial}>
+              <boxGeometry args={[0.1, 1.8, halfW - 0.6]} />
+            </mesh>
+            <mesh position={[0, -0.6, -(halfW / 2 + 0.6)]} material={wallMaterial}>
+              <boxGeometry args={[0.1, 1.8, halfW - 0.6]} />
+            </mesh>
+          </>
+        )}
       </group>
 
       {/* 6. Tactical Architectural Wall Outline Trim */}

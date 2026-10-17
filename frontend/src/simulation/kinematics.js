@@ -46,7 +46,8 @@ export function resolveEntityWaypoints(entity, timeline = []) {
 }
 
 /**
- * Interpolates entity position, rotation, and instantaneous velocity for any arbitrary timestamp.
+ * Interpolates entity position, rotation, instantaneous velocity, and chassis dynamic states
+ * using deterministic Newtonian kinematics (braking deceleration, momentum impulse, frictional decay).
  */
 export function sampleEntityState(waypoints, currentTime) {
   if (!waypoints || waypoints.length === 0) {
@@ -55,6 +56,10 @@ export function sampleEntityState(waypoints, currentTime) {
       rotation: { x: 0, y: 0, z: 0 },
       speedKmph: 0,
       activeSegmentIndex: 0,
+      isBraking: false,
+      isSliding: false,
+      pitchDive: 0,
+      wheelSpeedKmph: 0,
     };
   }
 
@@ -64,6 +69,10 @@ export function sampleEntityState(waypoints, currentTime) {
       rotation: waypoints[0].rotation || { x: 0, y: 0, z: 0 },
       speedKmph: 0,
       activeSegmentIndex: 0,
+      isBraking: false,
+      isSliding: false,
+      pitchDive: 0,
+      wheelSpeedKmph: 0,
     };
   }
 
@@ -79,18 +88,32 @@ export function sampleEntityState(waypoints, currentTime) {
       position: waypoints[0].position,
       rotation: waypoints[0].rotation || { x: 0, y: 0, z: 0 },
       speedKmph,
+      wheelSpeedKmph: speedKmph,
       activeSegmentIndex: 0,
+      isBraking: false,
+      isSliding: false,
+      pitchDive: 0,
     };
   }
 
   // After last waypoint
   const lastIndex = waypoints.length - 1;
   if (currentTime >= waypoints[lastIndex].time) {
+    const lastW = waypoints[lastIndex];
+    const r = lastW.rotation || { x: 0, y: 0, z: 0 };
     return {
-      position: waypoints[lastIndex].position,
-      rotation: waypoints[lastIndex].rotation || { x: 0, y: 0, z: 0 },
+      position: lastW.position,
+      rotation: {
+        x: (r.x * Math.PI) / 180,
+        y: (r.y * Math.PI) / 180,
+        z: (r.z * Math.PI) / 180,
+      },
       speedKmph: 0,
+      wheelSpeedKmph: 0,
       activeSegmentIndex: lastIndex,
+      isBraking: false,
+      isSliding: false,
+      pitchDive: 0,
     };
   }
 
@@ -107,31 +130,83 @@ export function sampleEntityState(waypoints, currentTime) {
   const rawProgress = (currentTime - w1.time) / segDuration;
   const progress = Math.max(0, Math.min(1, rawProgress));
 
-  // Position interpolation
+  // Determine physical phase:
+  // Is this the approach-to-impact segment (e.g., segment 0 leading to collision at ~5s)?
+  const isApproachSegment = i === 0 && waypoints.length >= 3;
+  const isPostImpactSegment = i >= 1 && waypoints.length >= 3;
+
+  let physicalProgress = progress;
+  let isBraking = false;
+  let isSliding = false;
+  let pitchDive = 0;
+  let instantSpeedFactor = 1.0;
+
+  if (isApproachSegment) {
+    // Phase 1: Pre-braking cruise (first 65% of approach) followed by emergency braking (last 35%)
+    // Real braking deceleration: quadratic position curve s = v0*t - 0.5*a*t^2
+    const brakeThreshold = 0.65;
+    if (progress > brakeThreshold) {
+      isBraking = true;
+      const brakeProgress = (progress - brakeThreshold) / (1 - brakeThreshold);
+      // Nose-dive torque proportional to brake deceleration
+      pitchDive = Math.sin(brakeProgress * Math.PI * 0.8) * 0.08;
+      
+      // Deceleration curve: speed drops smoothly from cruise to impact velocity
+      instantSpeedFactor = 1.0 - 0.35 * brakeProgress;
+      
+      // Smooth quadratic displacement for braking
+      const easedBrake = 1 - Math.pow(1 - brakeProgress, 1.6);
+      physicalProgress = brakeThreshold + (1 - brakeThreshold) * easedBrake;
+    } else {
+      // Linear cruise
+      physicalProgress = progress * (brakeThreshold / brakeThreshold);
+      instantSpeedFactor = 1.0;
+    }
+  } else if (isPostImpactSegment) {
+    // Phase 2: Post-impact kinetic friction slide
+    // In physics, sliding under road friction decays quadratically: s(t) = s_final * (1 - (1 - t)^2)
+    isSliding = true;
+    physicalProgress = 1 - Math.pow(1 - progress, 2.2); // Rapid initial slide, strong frictional stop
+    instantSpeedFactor = Math.max(0, Math.pow(1 - progress, 1.8)); // Speed decays to 0
+  }
+
+  // Position interpolation with Newtonian physical progress
   const pos = {
-    x: w1.position.x + (w2.position.x - w1.position.x) * progress,
-    y: (w1.position.y || 0) + ((w2.position.y || 0) - (w1.position.y || 0)) * progress,
-    z: w1.position.z + (w2.position.z - w1.position.z) * progress,
+    x: w1.position.x + (w2.position.x - w1.position.x) * physicalProgress,
+    y: (w1.position.y || 0) + ((w2.position.y || 0) - (w1.position.y || 0)) * physicalProgress,
+    z: w1.position.z + (w2.position.z - w1.position.z) * physicalProgress,
   };
 
   // Rotation interpolation
   const r1 = w1.rotation || { x: 0, y: 0, z: 0 };
   const r2 = w2.rotation || r1;
+  
+  // Non-linear angular rotation post-impact (rapid initial spin, settling into rest orientation)
+  const rotProgress = isPostImpactSegment
+    ? 1 - Math.pow(1 - progress, 2.5)
+    : physicalProgress;
+
   const rot = {
-    x: ((r1.x + (r2.x - r1.x) * progress) * Math.PI) / 180,
-    y: ((r1.y + (r2.y - r1.y) * progress) * Math.PI) / 180,
-    z: ((r1.z + (r2.z - r1.z) * progress) * Math.PI) / 180,
+    x: (((r1.x + (r2.x - r1.x) * rotProgress)) * Math.PI) / 180 + pitchDive,
+    y: (((r1.y + (r2.y - r1.y) * rotProgress)) * Math.PI) / 180,
+    z: (((r1.z + (r2.z - r1.z) * rotProgress)) * Math.PI) / 180,
   };
 
   // Calculate instantaneous velocity in km/h
   const deltaDistance = Math.hypot(w2.position.x - w1.position.x, w2.position.z - w1.position.z);
   const baseSpeedKmph = (deltaDistance / segDuration) * 3.6;
+  const currentSpeedKmph = baseSpeedKmph * instantSpeedFactor;
 
   return {
     position: pos,
     rotation: rot,
-    speedKmph: baseSpeedKmph,
+    speedKmph: currentSpeedKmph,
+    wheelSpeedKmph: isBraking ? currentSpeedKmph * 0.4 : currentSpeedKmph, // Wheel slip under hard braking
     activeSegmentIndex: i,
     segmentProgress: progress,
+    physicalProgress,
+    isBraking,
+    isSliding,
+    pitchDive,
   };
 }

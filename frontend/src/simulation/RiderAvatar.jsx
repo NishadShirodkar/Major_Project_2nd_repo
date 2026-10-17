@@ -46,31 +46,31 @@ export default function RiderAvatar({
     const t = Math.min(1, Math.pow(fallProgress, 0.7));
 
     if (isVictim) {
-      // Victim rider knocked laterally to the right side of the scooter onto asphalt
+      // Victim rider knocked laterally away to the right/side (towards -Z / +X) clear of the scooter chassis onto asphalt
       return {
         currentPos: [
-          seatOffset[0] + t * 0.95, // Displaced right onto road
-          Math.max(0.12, seatOffset[1] * (1 - t) + 0.12 * t), // Strictly on top of road plane (Y >= 0.12)
-          seatOffset[2] - t * 0.35,
+          seatOffset[0] + t * 0.9, // Displaced sideways onto clear road
+          Math.max(0.10, seatOffset[1] * (1 - t) + 0.10 * t), // Strictly on top of road plane (Y >= 0.10)
+          seatOffset[2] - t * 0.85, // Displaced backwards away from front collision zone
         ],
         currentRot: [
-          Math.PI / 2 * t, // Lies flat on side on the asphalt
-          vehicleRotation.y + t * 0.4,
+          (Math.PI / 2) * t, // Lies flat on side on the asphalt
+          vehicleRotation.y + t * 0.6,
           0.3 * t,
         ],
       };
     } else {
-      // Accused rider ejected forward over handlebars onto ground
+      // Accused rider vaults forward/right over handlebars clear of the bike frame onto clear road
       return {
         currentPos: [
-          seatOffset[0] - t * 1.1, // Thrown forward along momentum vector
-          Math.max(0.12, seatOffset[1] * (1 - t) + 0.12 * t), // Strictly on top of road plane (Y >= 0.12)
-          seatOffset[2] + t * 0.4,
+          seatOffset[0] - t * 1.5, // Vaulted forward along momentum vector
+          Math.max(0.10, seatOffset[1] * (1 - t) + 0.10 * t), // Strictly on top of road plane (Y >= 0.10)
+          seatOffset[2] - t * 0.6, // Clears the bike's right side instead of clipping into front wheel/fork
         ],
         currentRot: [
-          0.2 * t,
+          0.3 * t,
           vehicleRotation.y + riderRotationY,
-          -Math.PI / 2 * t, // Lies flat on road
+          (-Math.PI / 2) * t, // Lies flat on road
         ],
       };
     }
